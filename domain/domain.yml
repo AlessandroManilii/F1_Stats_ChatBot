@@ -26,7 +26,8 @@ intents:
   - driver_info
   - driver_telemetry
   - driver_constructors
-  - constructor_standings
+  - constructor_standings:
+        use_entities: true  
   - constructor_info
   - constructor_info_number  
   # season intents
@@ -65,6 +66,7 @@ responses:
 
 actions:
 - action_nth_race
+- action_show_constructor_standings
 
 session_config:
   session_expiration_time: 60
