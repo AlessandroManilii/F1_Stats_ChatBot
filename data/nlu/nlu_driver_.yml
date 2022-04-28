@@ -1,0 +1,21 @@
+version: "3.1"
+
+nlu:
+- intent: standings
+  examples: |
+
+- intent: driver_standings
+  examples: |
+
+- intent: driver_info
+  examples: |
+
+- intent: driver_telemetry
+  examples: |
+
+- intent: driver_constructors
+  examples: |
+
+#lookup table definition
+- lookup: driver
+  examples: | 

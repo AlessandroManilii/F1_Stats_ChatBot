@@ -1,0 +1,12 @@
+version: "3.1"
+
+nlu:
+- intent: constructor_standings
+  examples: |
+
+- intent: constructor_info
+  examples: |
+  
+#lookup table definition
+- lookup: constructor
+  examples: | 

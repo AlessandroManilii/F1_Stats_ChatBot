@@ -1,0 +1,63 @@
+version: "3.1"
+
+nlu:
+- intent: next_race_schedule
+  examples: | 
+  
+#- intent: specific_next_race_schedule
+#  examples: |
+
+- intent: last_race
+  examples: |
+
+- intent: last_race_results
+  examples: |
+
+- intent: circuit_info
+  examples: |
+  
+
+- intent: last_race_qualifying_info
+  examples: |
+
+- intent: nth_race
+  examples: | 
+    - "Give the stats for the [4](race) race"
+
+- intent: nth_race_results
+  examples: |
+
+- intent: highlights
+  examples: |
+
+#lookup table definition
+- regex : race
+  examples: |
+    - [1-25]+
+
+- lookup : race
+  examples: |
+    - "first"
+    - "second"
+    - third"
+    - "fourth"
+    - "fifth"
+    - "sixth"
+    - "seventh"
+    - "eighth"
+    - "ninth"
+    - "tenth"
+    - "eleventh"
+    - "twelfth"
+    - "thirteenth"
+    - "fourteenth"
+    - "fifteenth"
+    - "sixteenth"
+    - "seventeenth"
+    - "eighteenth"
+    - "nineteenth"
+    - "twentieth-first"
+    - "twentieth-second"
+    - "twentieth-third"
+    - "twentieth-fourth"
+    - "twentieth-fifth"

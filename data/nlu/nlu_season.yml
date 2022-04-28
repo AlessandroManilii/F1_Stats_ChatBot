@@ -1,0 +1,16 @@
+version: "3.1"
+
+nlu:
+- intent: season_standings
+  examples: |
+
+- intent: season_constructors
+  examples: |
+
+- intent: season_info
+  examples: |
+
+#lookup table definition
+- regex: season
+  examples: |
+    - [1950-2022]+
