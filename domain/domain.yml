@@ -28,6 +28,7 @@ intents:
   - driver_constructors
   - constructor_standings
   - constructor_info
+  - constructor_info_number  
   # season intents
   - season_standings
   - season_constructors

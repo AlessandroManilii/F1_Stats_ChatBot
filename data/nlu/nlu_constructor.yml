@@ -6,7 +6,19 @@ nlu:
 
 - intent: constructor_info
   examples: |
-  
+    - what are the constructors of the current season ?
+    - constructors of this season 
+    - constructors
+    - what are the constructors of this season ?
+
+- intent: constructor_info_number
+  examples: |
+    - How many teams are there this season?
+    - How many teams are there in the current season?
+    - Number of constructors 
+
+
+
 #lookup table definition
 - lookup: constructor
   examples: | 
