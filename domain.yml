@@ -8,6 +8,31 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  # race intents
+  - next_race
+  #- specific_next_race_schedule
+  - next_race_schedule
+  - last_race
+  - last_race_results
+  - circuit_info
+  - last_race_qualifying_info
+  - nth_race
+  - nth_race_results
+  - highlights
+  # driver intents
+  - standings
+  - driver_standings
+  - driver_info
+  - driver_telemetry
+  - driver_constructors
+  - constructor_standings
+  - constructor_standings
+  - constructor_info
+  # season intents
+  - season_standings
+  - season_constructors
+  - season_info
+
 
 responses:
   utter_greet:
