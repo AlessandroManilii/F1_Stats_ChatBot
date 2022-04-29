@@ -81,5 +81,6 @@ actions:
 - action_nth_race
 - action_show_constructor_standings
 - action_show_standings_year
+- action_show_standings
 
 

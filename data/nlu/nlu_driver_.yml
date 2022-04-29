@@ -3,6 +3,19 @@ version: "3.1"
 nlu:
 - intent: standings
   examples: |
+    - drivers standings
+    - what's the standings?
+    - give me the drivers standings
+    - tell me the drivers standings
+    - what's the current drivers standings?
+    - hey, i want the drivers standings
+    - how many points do the drivers have?
+    - what's the drivers championship points?
+    - i don't know the drivers standings, can you show them to me?
+    - can you show me the drivers points?
+    - can you tell me the drivers standings?
+    - give me the drivers ranking
+    - can i have the drivers ranking?
 
 - intent: driver_standings
   examples: |
