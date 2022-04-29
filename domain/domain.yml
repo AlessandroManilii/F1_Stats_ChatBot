@@ -1,5 +1,11 @@
 version: "3.1"
 
+config:
+    store_entities_as_slots: true
+session_config:
+    session_expiration_time: 60
+    carry_over_slots_to_new_session: true
+
 intents:
   - greet
   - goodbye
@@ -31,9 +37,10 @@ intents:
   - constructor_info
   - constructor_info_number  
   # season intents
-  - season_standings
-  - season_constructors
+  - season_standings:
+        use_entities: true
   - season_info
+
 
 entities:
  - season
@@ -41,6 +48,12 @@ entities:
  - race
  - constructor
  - circuit
+slots:
+   season:
+     type: text
+     mappings:
+     - type: from_entity
+       entity: season
 
 
 responses:
@@ -67,7 +80,6 @@ responses:
 actions:
 - action_nth_race
 - action_show_constructor_standings
+- action_show_standings_year
 
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+

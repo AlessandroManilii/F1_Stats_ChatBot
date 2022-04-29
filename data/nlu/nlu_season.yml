@@ -3,14 +3,19 @@ version: "3.1"
 nlu:
 - intent: season_standings
   examples: |
-
-- intent: season_constructors
-  examples: |
+    - what was the final standing of the year [2012](season)?
+    - standings of the year [2012](season)
+    - standings [2012](season) 
+    - tell me the standings of the year [2012](season)   
 
 - intent: season_info
   examples: |
 
-#lookup table definition
+
+- synonym: standings
+  examples: |
+    - ranking 
+
 - regex: season
   examples: |
     - [1950-2022]+

@@ -1,0 +1,9 @@
+version: "3.1"
+
+stories:
+
+- story: standings years info
+  steps:
+  - intent: season_standings
+  - action: action_show_standings_year
+  

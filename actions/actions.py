@@ -52,8 +52,65 @@ class ActionactionShowConstructorStandings(Action):
                 temp = str("  "+x['position']+"    "+x['Constructor']['name']+"     "+x['points']+" \n")
                 rank.append(temp) 
             lista = ''.join(rank)  #devo trasformare la lista in stringa per poterla restituire in output
-            output="The ranking of the current season {} are: \n {}".format(season,lista)
+            output="The Constructor standings of the current season {}: \n {}".format(season,lista)
         else:
             output = "I do not know anything about, what a mistery!? Are you sure it is correctly spelled?"
         dispatcher.utter_message(text=output)
         return []
+
+class ActionactionShowStandingYear(Action):
+
+    def name(self) -> Text:
+        return "action_show_standings_year"
+
+    def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        year = str(tracker.get_slot('season'))
+        r_d=requests.get(url='https://ergast.com/api/f1/'+  str(year) +'/last/driverStandings.json')
+        flag_d = False
+        r_c =requests.get(url='https://ergast.com/api/f1/'+  str(year) +'/last/ConstructorStandings.json')
+        flag_c = False
+        output1 = ""
+        output2 = ""
+
+        if r_d.status_code == 200 :
+            data = r_d.json()
+            season = data['MRData']['StandingsTable']['season']
+            ranking = list(data['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'])
+            rank = []
+            header = "Pos.  Driver             points \n"
+            rank.append(header)
+            for x in ranking:
+                if x['position'] == '1':
+                    winner = str(x['Driver']['givenName']+" "+x['Driver']['familyName'])
+                    winnercar = str(x['Constructors'][0]['name']) 
+                temp = str("  "+x['position']+"    "+x['Driver']['givenName']+" "+x['Driver']['familyName']+"         "+x['points']+" \n")
+                rank.append(temp)
+            lista = ''.join(rank)
+            output1="The driver who won the championship in {} was {} with {}. \n The drivers standings of the season {}: \n {}".format(season,winner,winnercar,season,lista)
+        else:
+            flag_d = True
+        
+        if r_c.status_code == 200 :
+            data = r_c.json()
+            season = data['MRData']['StandingsTable']['season']
+            ranking = list(data['MRData']['StandingsTable']['StandingsLists'][0]['ConstructorStandings'])
+            rank = []
+            header = "Pos.  Constructor             points \n"
+            rank.append(header)
+            for x in ranking:
+                if x['position'] == '1':
+                    winnercar = str(x['Constructor']['name'])
+                temp = str("  "+x['position']+"    "+x['Constructor']['name']+"     "+x['points']+" \n")
+                rank.append(temp)
+            lista = ''.join(rank)
+            output2="\n The Constructor who won the championship in {} was {}. \n The Constructor standings of the season {}: \n {}".format(season,winnercar,season,lista)
+        else:
+            flag_c = True
+
+        if flag_c and flag_d: 
+            output = "I do not know anything about, what a mistery!? Are you sure it is correctly spelled?"
+        
+        output = output1+output2
+        dispatcher.utter_message(text=output)
+        return []        
