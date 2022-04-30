@@ -7,3 +7,14 @@ stories:
   - intent: constructor_standings
   - action: action_show_constructor_standings
   
+- story: constructor wiki
+  steps:
+  - intent: constructor_wiki
+  - action: action_constructor_wikipedia
+
+
+- story: constructors info
+  steps:
+  - intent: constructor_info
+  - action: action_list_constructors
+

@@ -7,3 +7,12 @@ stories:
   - intent: season_standings
   - action: action_show_standings_year
   
+- story: winner years info
+  steps:
+  - intent: season_winner
+  - action: action_show_winner_year
+
+- story: season years info
+  steps:
+  - intent: season_info
+  - action: action_championship_wikipedia
