@@ -17,8 +17,18 @@ nlu:
     - give me the drivers ranking
     - can i have the drivers ranking?
 
-- intent: driver_standings
+- intent: driver_standing
   examples: |
+    - [leclerc](driver) standing
+    - [hamilton](driver) points
+    - how many points does [vettel](driver) have at the moment?
+    - what is the standing of [verstappen](driver)?
+    - show me the points of [alonso](driver)
+    - i want to know the standings for [ricciardo](driver)
+    - can i have the points for [russel](driver)?
+    - can i have [albon](driver)'s standing?
+    - [stroll](driver) position in the championship
+    - what is [perez](driver) position in the championship?
 
 - intent: driver_info
   examples: |
@@ -31,4 +41,138 @@ nlu:
 
 #lookup table definition
 - lookup: driver
-  examples: | 
+  examples: |
+    - leclerc
+    - sainz
+    - verstappen
+    - perez
+    - hamilton
+    - russel
+    - norris
+    - bottas
+    - zhou
+    - ricciardo
+    - alonso
+    - ocon
+    - gasly
+    - tsunoda
+    - vettel
+    - stroll
+    - hulkenberg
+    - magnussen
+    - mick_schumacher
+    - albon
+    - latifi
+    
+- synonym: leclerc
+  examples: |
+    - charles
+    - charles leclerc
+
+- synonym: sainz
+  examples: |
+    - carlos
+    - carlos sainz
+    - carlos sainz jr.
+
+- synonym: verstappen
+  examples: |
+    - max
+    - max verstappen
+
+- synonym: perez
+  examples: |
+    - sergio
+    - checo
+    - checo peréz
+    - sergio peréz
+    - sergio perez
+    - checo perez
+
+- synonym: hamilton
+  examples: |
+    - lewis
+    - lewis hamilton
+    
+- synonym: russel
+  examples: |
+    - george
+    - george russel
+
+- synonym: norris
+  examples: |
+    - lando
+    - lando norris
+
+- synonym: ricciardo
+  examples: |
+    - daniel
+    - daniel ricciardo
+    
+- synonym: alonso
+  examples: |
+    - fernando
+    - fernando alonso
+    
+- synonym: ocon
+  examples: |
+    - esteban
+    - esteban ocon
+    
+- synonym: vettel
+  examples: |
+    - sebastian
+    - sebastian vettel
+    
+- synonym: stroll
+  examples: |
+    - lance stroll
+    - lance
+    
+- synonym: bottas
+  examples: |
+    - valtteri
+    - valtteri bottas
+
+- synonym: zhou
+  examples: |
+    - zhou guanyu
+    - guanyu zhou
+    - guanyu
+
+- synonym: albon
+  examples: |
+    - alexander albon
+    - alexander
+    - alex albon
+    
+- synonym: latifi
+  examples: |
+    - nicholas latifi
+    
+- synonym: magnussen
+  examples: |
+    - kevin
+    - kevin magnussen
+    
+- synonym: mick_schumacher
+  examples: |
+    - mick
+    - mick schumacher
+
+- synonym: gasly
+  examples: |
+    - pierre
+    - pierre jean-jacques
+    - pierre gasly
+    - pierre jean jacques gasly
+    
+- synonym: tsunoda
+  examples: |
+    - yuki
+    - yuki tsunoda
+    
+- synonym: hulkenberg
+  examples: |
+    - nico hulkenberg
+    - nicholas hulkenberg

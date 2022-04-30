@@ -7,3 +7,8 @@ stories:
   - intent: standings
   - action: action_show_standings
   
+- story: driver standings short
+  steps:
+  - intent: driver_standing
+  - action: action_show_driver_standing
+  

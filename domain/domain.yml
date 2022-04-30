@@ -28,7 +28,7 @@ intents:
   - highlights
   # driver intents
   - standings
-  - driver_standings
+  - driver_standing
   - driver_info
   - driver_telemetry
   - driver_constructors
@@ -82,5 +82,6 @@ actions:
 - action_show_constructor_standings
 - action_show_standings_year
 - action_show_standings
+- action_show_driver_standing
 
 

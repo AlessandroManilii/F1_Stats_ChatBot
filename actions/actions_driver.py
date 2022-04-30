@@ -19,7 +19,7 @@ from rasa_sdk.knowledge_base.actions import ActionQueryKnowledgeBase
 from rasa_sdk.events import SlotSet
 
 
-class ActionactionShowStandings(Action):
+class ActionShowStandings(Action):
 
     def name(self) -> Text:
         return "action_show_standings"
@@ -44,7 +44,40 @@ class ActionactionShowStandings(Action):
             lista = ''.join(rank)  #devo trasformare la lista in stringa per poterla restituire in output
             output="The drivers standings of the current season {}: \n {}".format(season,lista)
         else:
-            output = "I do not know anything about, what a mistery!? Are you sure it is correctly spelled?"
+            output = "Sorry there might be a problem with the server, please try again\n"
+        dispatcher.utter_message(text=output)
+        return []
+
+class ActionShowDriverStanding(Action):
+
+    def name(self) -> Text:
+        return "action_show_driver_standing"
+
+    def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        driver = tracker.latest_message["entities"]
+        dispatcher.utter_message(text=driver)
+        
+        r=requests.get(url='http://ergast.com/api/f1/current/driverStandings.json')
+
+        if r.status_code == 200 :
+            data = r.json()
+            season = data['MRData']['StandingsTable']['season']
+            ranking = list(data['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'])
+            not_found = True
+            for x in ranking:
+                if x['Driver']['driverId'] == driver:
+                    output = x['Driver']['givenName'] + " " + x['Driver']['familyName'] + " "
+                    if x['position'] =='1':
+                        output += "is leading the championship with "+ x['points'] +"\n"
+                    else:
+                        output += "is in position n° "+x['position'] +" with " + x['points'] + " points \n"
+                    not_found = False
+                    break
+            if not_found:
+                output = "Sorry, maybe you spelled his name wrong or he's not participating in the current season\n"
+        else:
+            output = "Sorry there might be a problem with the server, please try again\n"
         dispatcher.utter_message(text=output)
         return []
      
