@@ -10,6 +10,16 @@ nlu:
 
 - intent: season_info
   examples: |
+    - Tell me information about championship [2012](season)
+    - information on season [2012](season)
+    - Season [2012](season)
+
+- intent: season_winner
+  examples: |
+    - Tell me information about winner [2012](season)
+    - winner on season [2012](season)
+    - winner [2012](season)
+    - who won the championship in the [2012](season) ?
 
 - synonym: standings
   examples: |

@@ -28,18 +28,24 @@ intents:
   - highlights
   # driver intents
   - standings
-  - driver_standing
+  - driver_standings
   - driver_info
   - driver_telemetry
   - driver_constructors
   - constructor_standings:
         use_entities: true  
-  - constructor_info
-  - constructor_info_number  
+  - constructor_info:
+        use_entities: true
+  - constructor_wiki:
+        use_entities: true      
   # season intents
   - season_standings:
         use_entities: true
-  - season_info
+  - season_info:
+        use_entities: true
+  - season_winner:
+        use_entities: true
+
 
 
 entities:
@@ -54,6 +60,11 @@ slots:
      mappings:
      - type: from_entity
        entity: season
+   constructor:
+     type: text
+     mappings:
+     - type: from_entity
+       entity: constructor       
 
 
 responses:
@@ -83,5 +94,9 @@ actions:
 - action_show_standings_year
 - action_show_standings
 - action_show_driver_standing
+- action_constructor_wikipedia
+- action_list_constructors
+- action_show_winner_year
+- action_championship_wikipedia
 
 

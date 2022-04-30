@@ -19,15 +19,35 @@ nlu:
     - constructors of this season 
     - constructors
     - what are the constructors of this season ?
-
-- intent: constructor_info_number
-  examples: |
     - How many teams are there this season?
     - How many teams are there in the current season?
-    - Number of constructors 
+    - Number of constructors  
 
+
+- intent: constructor_wiki
+  examples: |
+    - Tell me information about [Ferrari](constructor)
+    - information on [Ferrari](constructor)
+    - [Ferrari](constructor)
+    - Constructors [Ferrari](constructor)
+    - Car [Ferrari](constructor)
+
+
+- synonym: Constructors
+  examples: |
+    - Teams 
 
 
 #lookup table definition
 - lookup: constructor
   examples: | 
+    - Ferrari        
+    - Red Bull       
+    - Mercedes       
+    - McLaren        
+    - Alfa Romeo     
+    - Alpine  
+    - AlphaTauri     
+    - Haas   
+    - Aston Martin   
+    - Williams       

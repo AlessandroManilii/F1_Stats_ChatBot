@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 from typing import Any, Text, Dict, List
 import requests
+import wikipedia
 from rasa_sdk.events import SlotSet
 
 from rasa_sdk import Action, Tracker
@@ -32,7 +33,7 @@ class ActionNthRace(Action):
         return []
 
 
-class ActionactionShowConstructorStandings(Action):
+class ActionShowConstructorStandings(Action):
 
     def name(self) -> Text:
         return "action_show_constructor_standings"
@@ -46,10 +47,10 @@ class ActionactionShowConstructorStandings(Action):
             season = data['MRData']['StandingsTable']['season']
             ranking = list(data['MRData']['StandingsTable']['StandingsLists'][0]['ConstructorStandings'])
             rank = [] #lista contenente la classifica 
-            header = "Pos.  Constructor  points \n" 
+            header = "Pos. \t Constructor \t points \n" 
             rank.append(header)
             for x in ranking: 
-                temp = str("  "+x['position']+"    "+x['Constructor']['name']+"     "+x['points']+" \n")
+                temp = str("  "+x['position']+"\t"+x['Constructor']['name']+"\t"+x['points']+" \n")
                 rank.append(temp) 
             lista = ''.join(rank)  #devo trasformare la lista in stringa per poterla restituire in output
             output="The Constructor standings of the current season {}: \n {}".format(season,lista)
@@ -58,7 +59,7 @@ class ActionactionShowConstructorStandings(Action):
         dispatcher.utter_message(text=output)
         return []
 
-class ActionactionShowStandingYear(Action):
+class ActionShowStandingYear(Action):
 
     def name(self) -> Text:
         return "action_show_standings_year"
@@ -66,9 +67,9 @@ class ActionactionShowStandingYear(Action):
     def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
         year = str(tracker.get_slot('season'))
-        r_d=requests.get(url='https://ergast.com/api/f1/'+  str(year) +'/last/driverStandings.json')
+        r_d=requests.get(url='https://ergast.com/api/f1/'+  year +'/last/driverStandings.json')
         flag_d = False
-        r_c =requests.get(url='https://ergast.com/api/f1/'+  str(year) +'/last/ConstructorStandings.json')
+        r_c =requests.get(url='https://ergast.com/api/f1/'+ year +'/last/ConstructorStandings.json')
         flag_c = False
         output1 = ""
         output2 = ""
@@ -78,13 +79,13 @@ class ActionactionShowStandingYear(Action):
             season = data['MRData']['StandingsTable']['season']
             ranking = list(data['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'])
             rank = []
-            header = "Pos.  Driver             points \n"
+            header = "Pos. \t Driver \t points \n"
             rank.append(header)
             for x in ranking:
                 if x['position'] == '1':
                     winner = str(x['Driver']['givenName']+" "+x['Driver']['familyName'])
                     winnercar = str(x['Constructors'][0]['name']) 
-                temp = str("  "+x['position']+"    "+x['Driver']['givenName']+" "+x['Driver']['familyName']+"         "+x['points']+" \n")
+                temp = str("  "+x['position']+"\t"+x['Driver']['givenName']+" "+x['Driver']['familyName']+"\t"+x['points']+" \n")
                 rank.append(temp)
             lista = ''.join(rank)
             output1="The driver who won the championship in {} was {} with {}. \n The drivers standings of the season {}: \n {}".format(season,winner,winnercar,season,lista)
@@ -96,12 +97,12 @@ class ActionactionShowStandingYear(Action):
             season = data['MRData']['StandingsTable']['season']
             ranking = list(data['MRData']['StandingsTable']['StandingsLists'][0]['ConstructorStandings'])
             rank = []
-            header = "Pos.  Constructor             points \n"
+            header = "Pos. \t Constructor \t points \n"
             rank.append(header)
             for x in ranking:
                 if x['position'] == '1':
                     winnercar = str(x['Constructor']['name'])
-                temp = str("  "+x['position']+"    "+x['Constructor']['name']+"     "+x['points']+" \n")
+                temp = str("  "+x['position']+"\t"+x['Constructor']['name']+"\t"+x['points']+" \n")
                 rank.append(temp)
             lista = ''.join(rank)
             output2="\n The Constructor who won the championship in {} was {}. \n The Constructor standings of the season {}: \n {}".format(season,winnercar,season,lista)
@@ -112,5 +113,90 @@ class ActionactionShowStandingYear(Action):
             output = "I do not know anything about, what a mistery!? Are you sure it is correctly spelled?"
         
         output = output1+output2
+        dispatcher.utter_message(text=output)
+        return []        
+class ActionConstructorWikipedia(Action):
+
+    def name(self) -> Text:
+        return "action_constructor_wikipedia"
+
+    def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+       
+        team = str(tracker.get_slot('constructor'))
+        wikipedia.set_lang("en")
+        try:
+            summary = wikipedia.summary(team, sentences = 3)
+            output = str(summary)
+        except:
+            output = "I do not know anything about, what a mistery!? Are you sure it is correctly spelled?"
+        dispatcher.utter_message(text=output)
+        return []
+
+class ActionChampionshipWikipedia(Action):
+
+    def name(self) -> Text:
+        return "action_championship_wikipedia"
+
+    def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+       
+        season = str(tracker.get_slot('season'))
+        wikipedia.set_lang("en")
+        try:
+            search = season + "_Formula_One_World_Championship"
+            summary = wikipedia.summary(search, sentences = 12)
+            output = str(summary)
+        except:
+            output = "I do not know anything about, what a mistery!? Are you sure it is correctly spelled?"
+        dispatcher.utter_message(text=output)
+        return []
+
+class ActionListConstructors(Action):
+
+    def name(self) -> Text:
+        return "action_list_constructors"
+
+    def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        r=requests.get(url='http://ergast.com/api/f1/current/constructorStandings.json')
+
+        if r.status_code == 200 :
+            data = r.json()
+            season = data['MRData']['StandingsTable']['season']
+            ranking = list(data['MRData']['StandingsTable']['StandingsLists'][0]['ConstructorStandings'])
+            rank = [] #lista contenente la classifica 
+            for x in ranking: 
+                temp = str("  "+x['Constructor']['name']+ "\n")
+                rank.append(temp) 
+            lista = ''.join(rank)  #devo trasformare la lista in stringa per poterla restituire in output
+            output="The Constructor of the current season {}: \n {}".format(season,lista)
+        else:
+            output = "I do not know anything about, what a mistery!? Are you sure it is correctly spelled?"
+        dispatcher.utter_message(text=output)
+        return []    
+
+class ActionShowWinnerYear(Action):
+
+    def name(self) -> Text:
+        return "action_show_winner_year"
+
+    def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        year = str(tracker.get_slot('season'))
+        r_d=requests.get(url='https://ergast.com/api/f1/'+  year +'/last/driverStandings.json')
+
+
+        if r_d.status_code == 200 :
+            data = r_d.json()
+            season = data['MRData']['StandingsTable']['season']
+            ranking = list(data['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'])
+            for x in ranking:
+                if x['position'] == '1':
+                    winner = str(x['Driver']['givenName']+" "+x['Driver']['familyName'])
+                    winnercar = str(x['Constructors'][0]['name']) 
+                    break
+            output="The driver who won the championship in {} was {} with {}. \n".format(season,winner,winnercar)
+        else:
+            output = "I do not know anything about, what a mistery!? Are you sure it is correctly spelled?"
+        
         dispatcher.utter_message(text=output)
         return []        
