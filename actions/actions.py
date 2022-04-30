@@ -32,7 +32,7 @@ class ActionNthRace(Action):
         return []
 
 
-class ActionactionShowConstructorStandings(Action):
+class ActionShowConstructorStandings(Action):
 
     def name(self) -> Text:
         return "action_show_constructor_standings"
@@ -46,10 +46,10 @@ class ActionactionShowConstructorStandings(Action):
             season = data['MRData']['StandingsTable']['season']
             ranking = list(data['MRData']['StandingsTable']['StandingsLists'][0]['ConstructorStandings'])
             rank = [] #lista contenente la classifica 
-            header = "Pos.  Constructor  points \n" 
+            header = "Pos. \t Constructor \t points \n" 
             rank.append(header)
             for x in ranking: 
-                temp = str("  "+x['position']+"    "+x['Constructor']['name']+"     "+x['points']+" \n")
+                temp = str("  "+x['position']+"\t"+x['Constructor']['name']+"\t"+x['points']+" \n")
                 rank.append(temp) 
             lista = ''.join(rank)  #devo trasformare la lista in stringa per poterla restituire in output
             output="The Constructor standings of the current season {}: \n {}".format(season,lista)
@@ -58,7 +58,7 @@ class ActionactionShowConstructorStandings(Action):
         dispatcher.utter_message(text=output)
         return []
 
-class ActionactionShowStandingYear(Action):
+class ActionShowStandingYear(Action):
 
     def name(self) -> Text:
         return "action_show_standings_year"
@@ -78,13 +78,13 @@ class ActionactionShowStandingYear(Action):
             season = data['MRData']['StandingsTable']['season']
             ranking = list(data['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'])
             rank = []
-            header = "Pos.  Driver             points \n"
+            header = "Pos. \t Driver \t points \n"
             rank.append(header)
             for x in ranking:
                 if x['position'] == '1':
                     winner = str(x['Driver']['givenName']+" "+x['Driver']['familyName'])
                     winnercar = str(x['Constructors'][0]['name']) 
-                temp = str("  "+x['position']+"    "+x['Driver']['givenName']+" "+x['Driver']['familyName']+"         "+x['points']+" \n")
+                temp = str("  "+x['position']+"\t"+x['Driver']['givenName']+" "+x['Driver']['familyName']+"\t"+x['points']+" \n")
                 rank.append(temp)
             lista = ''.join(rank)
             output1="The driver who won the championship in {} was {} with {}. \n The drivers standings of the season {}: \n {}".format(season,winner,winnercar,season,lista)
@@ -96,12 +96,12 @@ class ActionactionShowStandingYear(Action):
             season = data['MRData']['StandingsTable']['season']
             ranking = list(data['MRData']['StandingsTable']['StandingsLists'][0]['ConstructorStandings'])
             rank = []
-            header = "Pos.  Constructor             points \n"
+            header = "Pos. \t Constructor \t points \n"
             rank.append(header)
             for x in ranking:
                 if x['position'] == '1':
                     winnercar = str(x['Constructor']['name'])
-                temp = str("  "+x['position']+"    "+x['Constructor']['name']+"     "+x['points']+" \n")
+                temp = str("  "+x['position']+"\t"+x['Constructor']['name']+"\t"+x['points']+" \n")
                 rank.append(temp)
             lista = ''.join(rank)
             output2="\n The Constructor who won the championship in {} was {}. \n The Constructor standings of the season {}: \n {}".format(season,winnercar,season,lista)
