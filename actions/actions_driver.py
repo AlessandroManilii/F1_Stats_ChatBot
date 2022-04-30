@@ -55,8 +55,9 @@ class ActionShowDriverStanding(Action):
 
     def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        driver = tracker.latest_message["entities"]
-        dispatcher.utter_message(text=driver)
+        # driver = tracker.latest_message["entities"]
+        # dispatcher.utter_message(text=driver)
+        driver = 'leclerc'
         
         r=requests.get(url='http://ergast.com/api/f1/current/driverStandings.json')
 

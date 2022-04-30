@@ -28,7 +28,8 @@ intents:
   - highlights
   # driver intents
   - standings
-  - driver_standings
+  - driver_standing:
+        use_entities: true
   - driver_info
   - driver_telemetry
   - driver_constructors
