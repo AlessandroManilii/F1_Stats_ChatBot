@@ -12,3 +12,8 @@ stories:
   - intent: driver_standing
   - action: action_show_driver_standing
   
+- story: driver info short
+  steps:
+  - intent: driver_info
+  - action: action_show_driver_info
+  

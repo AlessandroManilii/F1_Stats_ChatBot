@@ -22,16 +22,50 @@ nlu:
     - [leclerc](driver) standing
     - [hamilton](driver) points
     - how many points does [vettel](driver) have at the moment?
-    - what is the standing of [verstappen](driver)?
+    - what is the standing of [max_verstappen](driver)?
     - show me the points of [alonso](driver)
     - i want to know the standings for [ricciardo](driver)
     - can i have the points for [russel](driver)?
     - can i have [albon](driver)'s standing?
     - [stroll](driver) position in the championship
     - what is [perez](driver) position in the championship?
+    - what is [magnussen](driver) standing?
+    - [charles](driver) standing
+    - [lewis](driver) points
+    - how many points does [sebastian](driver) have at the moment?
+    - what is the standing of [carlos](driver)?
+    - show me the points of [fernando](driver)
+    - i want to know the standings for [daniel](driver)
+    - can i have the points for [george](driver)?
+    - can i have [checo](driver)'s standing?
+    - [lance](driver) position in the championship
+    - what is [sergio](driver) position in the championship?
+    - what is [kevin](driver) standing?
+    - give me [pierre](driver) points
+    - i would like to know [yuki](driver) standing
+    - standing of [valtteri](driver)
+    - points obtained by [guanyu](driver)
+    - championship standing of [esteban](driver)
+    - championship points of [nicholas](driver)
+    - season points of [nico](driver)
+    - what is [lando](driver)'s current standing
+    - what's [mick](driver) standing?
+    - i don't know [alex](driver) current standing
+    - [max](driver) standing in the championship
 
 - intent: driver_info
   examples: |
+    - can i get some info about [leclerc](driver)?
+    - tell me something about [hamilton](driver)
+    - who is [vettel](driver)?
+    - information about [russel](driver)
+    - show me info on [max_verstappen](driver)
+    - i would like some info on [alonso](driver)
+    - [perez](driver) information
+    - i want [norris](driver) bio
+    - what is his general information?
+    - what's his info?
+    - show me his data
 
 - intent: driver_telemetry
   examples: |
@@ -44,7 +78,7 @@ nlu:
   examples: |
     - leclerc
     - sainz
-    - verstappen
+    - max_verstappen
     - perez
     - hamilton
     - russel
@@ -75,10 +109,11 @@ nlu:
     - carlos sainz
     - carlos sainz jr.
 
-- synonym: verstappen
+- synonym: max_verstappen
   examples: |
     - max
     - max verstappen
+    - verstappen
 
 - synonym: perez
   examples: |
@@ -175,4 +210,11 @@ nlu:
 - synonym: hulkenberg
   examples: |
     - nico hulkenberg
-    - nicholas hulkenberg
+    - nicolas hulkenberg
+    
+- synonym: info
+  examples: |
+    - information
+    - data
+    - details
+    - bio

@@ -30,7 +30,8 @@ intents:
   - standings
   - driver_standing:
         use_entities: true
-  - driver_info
+  - driver_info:
+        use_entities: true
   - driver_telemetry
   - driver_constructors
   - constructor_standings:
@@ -65,7 +66,12 @@ slots:
      type: text
      mappings:
      - type: from_entity
-       entity: constructor       
+       entity: constructor
+   driver:
+      type: text
+      mappings:
+      - type: from_entity
+        entity: driver
 
 
 responses:
@@ -95,6 +101,7 @@ actions:
 - action_show_standings_year
 - action_show_standings
 - action_show_driver_standing
+- action_show_driver_info
 - action_constructor_wikipedia
 - action_list_constructors
 - action_show_winner_year
