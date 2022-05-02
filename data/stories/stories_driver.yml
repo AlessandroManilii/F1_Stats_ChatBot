@@ -21,4 +21,9 @@ stories:
   steps:
   - intent: championship_leader
   - action: action_show_championship_leader
+
+- story: driver constructors short
+  steps:
+  - intent: driver_constructors
+  - action: action_show_driver_constructors
   

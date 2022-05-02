@@ -138,4 +138,36 @@ class ActionShowDriverInfo(Action):
                 output = "Sorry there might be a problem with the server, please try again.\n"
         dispatcher.utter_message(text=output)
         return []
+
+class ActionShowDriverConstructors(Action):
+
+    def name(self) -> Text:
+        return "action_show_driver_constructors"
+
+    def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        driver = next(tracker.get_latest_entity_values('driver'), None)
+        if driver is None:
+            driver = tracker.get_slot('driver')
+        if driver is None:
+            output = "Sorry you didn't specify the driver.\n"
+        else:
+            r=requests.get(url='http://ergast.com/api/f1/drivers/'+driver+'/constructors.json')
+            r2=requests.get(url='http://ergast.com/api/f1/drivers/'+driver+'.json')
+            if r.status_code == 200 and r2.status_code == 200:
+                data = r.json()
+                data2 = r2.json()
+                driver = data2['MRData']['DriverTable']['Drivers'][0]
+                driver_name = driver["givenName"] + " " + driver["familyName"]
+                total = int(data['MRData']['total'])
+                constructors = data['MRData']['ConstructorTable']['Constructors']
+                output = driver_name + " is currently driving for " + constructors[0]["name"] + ".\n"
+                if total > 1:
+                    output += "He has previously driven for: "
+                    for i in range(1, total):
+                        output += constructors[i]["name"] + "\n"
+            else:
+                output = "Sorry there might be a problem with the server, please try again.\n"
+        dispatcher.utter_message(text=output)
+        return []
      

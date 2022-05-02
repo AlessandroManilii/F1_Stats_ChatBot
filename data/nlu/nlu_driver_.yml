@@ -87,6 +87,16 @@ nlu:
 
 - intent: driver_constructors
   examples: |
+    - what is [leclerc](driver) constructor?
+    - which is [sebastian](driver)'s team?
+    - for which constructors is [hamilton](driver) driving?
+    - [magnussen](driver) constructors
+    - [fernando](driver) team
+    - what team is [sainz](driver) signed to?
+    - what are his constructors?
+    - who is he driving for?
+    - which constructors has [george](driver) driven for?
+    - which is his team?
 
 #lookup table definition
 - lookup: driver
