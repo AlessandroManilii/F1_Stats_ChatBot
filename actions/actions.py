@@ -19,19 +19,6 @@ from rasa_sdk.knowledge_base.storage import InMemoryKnowledgeBase
 from rasa_sdk.knowledge_base.actions import ActionQueryKnowledgeBase
 from rasa_sdk.events import SlotSet
 
-class ActionNthRace(Action):
-
-    def name(self) -> Text:
-        return "action_nth_race"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        dispatcher.utter_message(text="race 1 stats")
-
-        return []
-
 
 class ActionShowConstructorStandings(Action):
 

@@ -14,18 +14,23 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+
   # race intents
   - next_race
   #- specific_next_race_schedule
   - next_race_schedule
   - last_race
   - last_race_results
-  - circuit_info
+  - circuit_info:
+      use_entities: true
   - last_race_qualifying_info
   - nth_race:
         use_entities: true
-  - nth_race_results
-  - highlights
+  - nth_race_results:
+      use_entities: true
+  - highlights:
+      use_entities: true
+
   # driver intents
   - standings
   - driver_standing:
@@ -42,6 +47,7 @@ intents:
         use_entities: true
   - constructor_wiki:
         use_entities: true      
+
   # season intents
   - season_standings:
         use_entities: true
@@ -50,14 +56,13 @@ intents:
   - season_winner:
         use_entities: true
 
-
-
 entities:
  - season
  - driver
  - race
  - constructor
  - circuit
+
 slots:
    season:
      type: text
@@ -74,6 +79,11 @@ slots:
       mappings:
       - type: from_entity
         entity: driver
+   race:
+      type: text
+      mappings:
+      - type: from_entity
+        entity: race
 
 
 responses:
@@ -99,6 +109,8 @@ responses:
 
 actions:
 - action_nth_race
+- action_next_race
+- action_last_race
 - action_show_constructor_standings
 - action_show_standings_year
 - action_show_standings

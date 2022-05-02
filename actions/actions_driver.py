@@ -45,29 +45,9 @@ class ActionShowStandings(Action):
             lista = ''.join(rank)  #devo trasformare la lista in stringa per poterla restituire in output
             output="The drivers standings of the current season {}: \n {}".format(season,lista)
         else:
-            output = "Sorry there might be a problem with the server, please try again.\n"
+            output = "Sorry there might be a problem with the server, please try again\n"
         dispatcher.utter_message(text=output)
         return []
-    
-class ActionShowChampionshipLeader(Action):
-
-    def name(self) -> Text:
-        return "action_show_championship_leader"
-
-    def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        r=requests.get(url='http://ergast.com/api/f1/current/driverStandings.json')
-
-        if r.status_code == 200 :
-            data = r.json()
-            season = data['MRData']['StandingsTable']['season']
-            leader = data['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'][0]
-            output = leader['Driver']['givenName'] + " " + leader['Driver']['familyName'] + " "           
-            output += "is leading the championship with "+ leader['points'] +" points.\n"
-        else:
-            output = "Sorry there might be a problem with the server, please try again.\n"
-        dispatcher.utter_message(text=output)
-        return [SlotSet("driver", leader["Driver"]["driverId"])]
 
 class ActionShowDriverStanding(Action):
 
@@ -80,7 +60,7 @@ class ActionShowDriverStanding(Action):
         if driver is None:
             driver = tracker.get_slot('driver')
         if driver is None:
-            output = "Sorry you didn't specify the driver.\n"
+            output = "Sorry you didn't specify the driver\n"
         else:
         
             r=requests.get(url='http://ergast.com/api/f1/current/driverStandings.json')
@@ -100,9 +80,9 @@ class ActionShowDriverStanding(Action):
                         not_found = False
                         break
                 if not_found:
-                    output = "Sorry, maybe you spelled his name wrong or he's not participating in the current season.\n"
+                    output = "Sorry, maybe you spelled his name wrong or he's not participating in the current season\n"
             else:
-                output = "Sorry there might be a problem with the server, please try again.\n"
+                output = "Sorry there might be a problem with the server, please try again\n"
         dispatcher.utter_message(text=output)
         return []
 
@@ -118,7 +98,7 @@ class ActionShowDriverInfo(Action):
         if driver is None:
             driver = tracker.get_slot('driver')
         if driver is None:
-            output = "Sorry you didn't specify the driver.\n"
+            output = "Sorry you didn't specify the driver\n"
         else:
             r=requests.get(url='http://ergast.com/api/f1/drivers/'+driver+'.json')
 
@@ -133,9 +113,9 @@ class ActionShowDriverInfo(Action):
                     summary = wikipedia.summary(d["givenName"]+ " " +d["familyName"]+xt,auto_suggest=False, sentences = 3)
                     output = str(summary)
                 except Exception as e:
-                    output = e+"There might be problems with wikipedia at the moment, please try later.\n"
+                    output = e+"There might be problems with wikipedia at the moment, please try later\n"
             else:
-                output = "Sorry there might be a problem with the server, please try again.\n"
+                output = "Sorry there might be a problem with the server, please try again\n"
         dispatcher.utter_message(text=output)
         return []
 
