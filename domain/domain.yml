@@ -32,8 +32,10 @@ intents:
         use_entities: true
   - driver_info:
         use_entities: true
+  - championship_leader
   - driver_telemetry
-  - driver_constructors
+  - driver_constructors:
+        use_entities: true
   - constructor_standings:
         use_entities: true  
   - constructor_info:
@@ -102,6 +104,7 @@ actions:
 - action_show_standings
 - action_show_driver_standing
 - action_show_driver_info
+- action_show_championship_leader
 - action_constructor_wikipedia
 - action_list_constructors
 - action_show_winner_year

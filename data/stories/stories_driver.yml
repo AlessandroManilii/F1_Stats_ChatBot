@@ -17,3 +17,8 @@ stories:
   - intent: driver_info
   - action: action_show_driver_info
   
+- story: championship leader short
+  steps:
+  - intent: championship_leader
+  - action: action_show_championship_leader
+  
