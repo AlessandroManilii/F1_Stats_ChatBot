@@ -16,19 +16,14 @@ intents:
   - bot_challenge
 
   # race intents
-  - next_race:
-      use_entities: true
+  - next_race
   #- specific_next_race_schedule
-  - next_race_schedule:
-      use_entities: true
-  - last_race:
-      use_entities: true
-  - last_race_results:
-      use_entities: true
+  - next_race_schedule
+  - last_race
+  - last_race_results
   - circuit_info:
       use_entities: true
-  - last_race_qualifying_info:
-      use_entities: true
+  - last_race_qualifying_info
   - nth_race:
         use_entities: true
   - nth_race_results:
@@ -42,10 +37,10 @@ intents:
         use_entities: true
   - driver_info:
         use_entities: true
+  - championship_leader
   - driver_telemetry
-  - driver_constructors
-
-  # constructor intents
+  - driver_constructors:
+        use_entities: true
   - constructor_standings:
         use_entities: true  
   - constructor_info:
@@ -120,6 +115,7 @@ actions:
 - action_show_standings
 - action_show_driver_standing
 - action_show_driver_info
+- action_show_championship_leader
 - action_constructor_wikipedia
 - action_list_constructors
 - action_show_winner_year
