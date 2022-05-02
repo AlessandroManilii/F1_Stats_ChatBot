@@ -52,6 +52,9 @@ nlu:
     - what's [mick](driver) standing?
     - i don't know [alex](driver) current standing
     - [max](driver) standing in the championship
+    - what is his standing in the championship?
+    - what is his ranking in the season?
+    - what's his position in the season?
 
 - intent: driver_info
   examples: |
@@ -66,6 +69,17 @@ nlu:
     - what is his general information?
     - what's his info?
     - show me his data
+
+- intent: championship_leader
+  examples: |
+    - who is leading the championship?
+    - who's on top of the leaderbord?
+    - season leader
+    - season top driver
+    - championship top driver
+    - can you tell me who has the most points at the moment?
+    - show me the driver with most points
+    - i want to know the leader of the championship
 
 - intent: driver_telemetry
   examples: |
@@ -228,3 +242,7 @@ nlu:
     - data
     - details
     - bio
+    
+- synonym: season
+  examples: |
+    - championship
