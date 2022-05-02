@@ -1,8 +1,17 @@
 version: "3.1"
 
 nlu:
-- intent: next_race_schedule
+- intent: next_race
   examples: | 
+    - next race
+    - following race
+    - what's next race?
+    - what's the following race?
+    - give me info on next race
+    - info on following race
+    - next race schedule 
+    - could you give me next race schedule?
+    - what's next race schedule?
   
 #- intent: specific_next_race_schedule
 #  examples: |
@@ -30,11 +39,12 @@ nlu:
 - intent: highlights
   examples: |
 
-#lookup table definition
+#regex definition
 - regex : race
   examples: |
     - [1-25]+
 
+#lookup table definition
 - lookup : race
   examples: |
     - "first"
