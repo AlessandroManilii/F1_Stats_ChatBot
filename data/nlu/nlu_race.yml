@@ -18,6 +18,12 @@ nlu:
 
 - intent: last_race
   examples: |
+    - last race
+    - details on last race
+    - what's last race?
+    - info on last race
+    - give me info on last race
+    - could you give me info on last race?
 
 - intent: last_race_results
   examples: |

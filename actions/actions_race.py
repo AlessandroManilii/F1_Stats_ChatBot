@@ -36,7 +36,7 @@ class ActionNextRace(Action):
             output = "The next race for " + season + " season is " \
                 + name + " (n° " + str(round) + ").\n" \
                 + "It will be held in " + country + "," + city \
-                + " in " + circuit_name + ".\n" \
+                + " at " + circuit_name + ".\n" \
                 + "The following it's the official race schedule:\n" \
                 + schedule_header \
                 + "Race \t\t" + data['date'] + "\t" + data['time'].replace(':00Z', " (GMT)") + "\n" \
@@ -46,6 +46,35 @@ class ActionNextRace(Action):
                     + "\t" + data['SecondPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
                 + "Qualifying \t" +  data['Qualifying']['date'] \
                     + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)")
+        else:
+            output = "Sorry there might be a problem with the server, please try again\n"
+
+        dispatcher.utter_message(text=output)
+        return []
+
+class ActionLastRace(Action):
+
+    def name(self) -> Text:
+        return "action_last_race"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        r=requests.get(url='http://ergast.com/api/f1/current/last.json')
+        if r.status_code == 200 :
+            data = r.json()
+            data = data['MRData'] ['RaceTable']['Races'][0]
+            season = data['season']
+            round = data['round']
+            name = data['raceName']
+            country = data['Circuit']['Location']['country']
+            city = data['Circuit']['Location']['locality']
+            circuit_name = data['Circuit']['circuitName']
+            output = "Last race for " + season + " season has been " \
+                + name + " (n° " + str(round) + ").\n" \
+                + "It's been held in " + country + "," + city \
+                + " at " + circuit_name
         else:
             output = "Sorry there might be a problem with the server, please try again\n"
 

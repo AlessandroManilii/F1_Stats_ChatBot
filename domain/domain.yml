@@ -110,6 +110,7 @@ responses:
 actions:
 - action_nth_race
 - action_next_race
+- action_last_race
 - action_show_constructor_standings
 - action_show_standings_year
 - action_show_standings
