@@ -152,20 +152,27 @@ class ActionShowDriverConstructors(Action):
         if driver is None:
             output = "Sorry you didn't specify the driver.\n"
         else:
-            r=requests.get(url='http://ergast.com/api/f1/drivers/'+driver+'/constructors.json')
-            r2=requests.get(url='http://ergast.com/api/f1/drivers/'+driver+'.json')
-            if r.status_code == 200 and r2.status_code == 200:
+            # I have to specify current because in the list of all constructors the records aren't ordered
+            r = requests.get(url='http://ergast.com/api/f1/current/drivers/'+driver+'/constructors.json')
+            r2 = requests.get(url='http://ergast.com/api/f1/drivers/'+driver+'.json')
+            r3 = requests.get(url='http://ergast.com/api/f1/drivers/'+driver+'/constructors.json')
+            if r.status_code == 200 and r2.status_code == 200 and r3.status_code == 200:
                 data = r.json()
                 data2 = r2.json()
+                data3 = r3.json()
+                
                 driver = data2['MRData']['DriverTable']['Drivers'][0]
                 driver_name = driver["givenName"] + " " + driver["familyName"]
-                total = int(data['MRData']['total'])
-                constructors = data['MRData']['ConstructorTable']['Constructors']
-                output = driver_name + " is currently driving for " + constructors[0]["name"] + ".\n"
+                total = int(data3['MRData']['total'])
+                current = data['MRData']['ConstructorTable']['Constructors'][0]
+                constructors = data3['MRData']['ConstructorTable']['Constructors']
+                c_name = current["name"]
+                output = driver_name + " is currently driving for " + current["name"] + ".\n"
                 if total > 1:
-                    output += "He has previously driven for: "
-                    for i in range(1, total):
-                        output += constructors[i]["name"] + "\n"
+                    output += "He has previously driven for:\n"
+                    for i in range(0, total):
+                        if constructors[i]["name"] != c_name:
+                            output += constructors[i]["name"] + "\n"
             else:
                 output = "Sorry there might be a problem with the server, please try again.\n"
         dispatcher.utter_message(text=output)
