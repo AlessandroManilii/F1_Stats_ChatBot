@@ -17,3 +17,16 @@ stories:
   - intent: driver_info
   - action: action_show_driver_info
   
+<<<<<<< HEAD
+=======
+- story: championship leader short
+  steps:
+  - intent: championship_leader
+  - action: action_show_championship_leader
+
+- story: driver constructors short
+  steps:
+  - intent: driver_constructors
+  - action: action_show_driver_constructors
+  
+>>>>>>> 2e003724bcfd5fe79e70d1be3acd2570b4e033b0

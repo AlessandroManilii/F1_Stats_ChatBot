@@ -115,6 +115,7 @@ actions:
 - action_show_standings
 - action_show_driver_standing
 - action_show_driver_info
+- action_show_driver_constructors
 - action_show_championship_leader
 - action_constructor_wikipedia
 - action_list_constructors
