@@ -45,7 +45,11 @@ class ActionNextRace(Action):
                 + "Second Practice\t" + data['SecondPractice']['date'] \
                     + "\t" + data['SecondPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
                 + "Qualifying \t" +  data['Qualifying']['date'] \
-                    + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)")
+                    + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)") + "\n"
+
+            if 'Sprint' in data:
+                output += "Sprint \t" +  data['Sprint']['date'] \
+                    + "\t" + data['Sprint']['time'].replace(':00Z', " (GMT)")
         else:
             output = "Sorry there might be a problem with the server, please try again\n"
 
@@ -78,7 +82,7 @@ class ActionNextRaceSchedule(Action):
                     + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)") + "\n"
 
             if 'Sprint' in data:
-                output += + "Sprint \t" +  data['Sprint']['date'] \
+                output += "Sprint \t" +  data['Sprint']['date'] \
                     + "\t" + data['Sprint']['time'].replace(':00Z', " (GMT)")
         else:
             output = "Sorry there might be a problem with the server, please try again\n"
