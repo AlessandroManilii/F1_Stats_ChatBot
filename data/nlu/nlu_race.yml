@@ -39,10 +39,17 @@ nlu:
 
 - intent: last_race_results
   examples: |
+    - last race results
+    - what are last race results?
+    - how did last race end up?
+    - give me info on last race results
+    - could you give me info on last race results?
+    - results of last race
+    - what's the order of arrival for last race?
+    - last race order of arrival
 
 - intent: circuit_info
   examples: |
-  
 
 - intent: last_race_qualifying_info
   examples: |

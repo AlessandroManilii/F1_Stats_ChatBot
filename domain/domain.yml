@@ -119,6 +119,7 @@ actions:
 - action_next_race
 - action_next_race_schedule
 - action_last_race
+- action_last_race_results
 - action_show_constructor_standings
 - action_show_standings_year
 - action_show_standings

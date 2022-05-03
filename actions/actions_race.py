@@ -119,6 +119,52 @@ class ActionLastRace(Action):
         dispatcher.utter_message(text=output)
         return []
 
+class ActionLastRaceResults(Action):
+
+    def name(self) -> Text:
+        return "action_last_race_results"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        r=requests.get(url='http://ergast.com/api/f1/current/last/results.json')
+        if r.status_code == 200 :
+            data = r.json()
+            data = data['MRData'] ['RaceTable']['Races'][0]
+            name = data['raceName']
+            output = "Results for " + name + " are the following:\n" 
+            results_header = "N.\tPilot\t\tConstructor\tTime\t\tFastest Lap\tPoints\n"
+            output += results_header
+            results = data['Results']
+            for record in results:
+                row = []
+                row.append(record['position'])
+                row.append(record['Driver']['familyName'])
+                row.append(record['Constructor']['name'])
+                if 'Time' in record:
+                    row.append(record['Time']['time'])
+                else: 
+                    row.append("-------")
+                if 'FastestLap' in record:
+                    row.append(record['FastestLap']['Time']['time'])
+                else: 
+                    row.append("-------")
+                row.append(record['points'])
+
+                output += row[0] + "\t"
+                for el in row[1:]:
+                    if len(el)>7:
+                        output += el + "\t" 
+                    else: 
+                        output += el + "\t\t"
+                output +=  "\n"
+        else:
+            output = "Sorry there might be a problem with the server, please try again\n"
+
+        dispatcher.utter_message(text=output)
+        return []
+
 class ActionNthRace(Action):
 
     def name(self) -> Text:

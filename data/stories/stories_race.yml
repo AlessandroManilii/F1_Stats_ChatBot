@@ -17,6 +17,11 @@ stories:
   - intent: last_race
   - action: action_last_race  
 
+- story: last race results short
+  steps:
+  - intent: last_race_results
+  - action: action_last_race_results
+
 - story: nth race path
   steps:
   - intent: nth_race
