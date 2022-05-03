@@ -61,6 +61,7 @@ nlu:
     - can i get some info about [leclerc](driver)?
     - tell me something about [hamilton](driver)
     - who is [vettel](driver)?
+    - who is [esteban](driver)
     - information about [russel](driver)
     - show me info on [max_verstappen](driver)
     - i would like some info on [alonso](driver)
