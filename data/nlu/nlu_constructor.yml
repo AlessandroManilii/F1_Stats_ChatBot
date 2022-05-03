@@ -26,16 +26,16 @@ nlu:
 
 - intent: constructor_wiki
   examples: |
-    - Tell me information about [Ferrari](constructor)
-    - information on [Ferrari](constructor)
-    - [Ferrari](constructor)
-    - Constructors [Ferrari](constructor)
-    - Car [Ferrari](constructor)
+    - Tell me more information about constructor[Ferrari](constructor)
+    - information on [Red Bull](constructor)
+    - [Alfa Romeo](constructor)
+    - The Constructor [Mclaren](constructor)
+    - The Car [Mercedes](constructor)
 
 
-- synonym: Constructors
+- synonym: constructor
   examples: |
-    - Teams 
+    - team
 
 
 #lookup table definition
