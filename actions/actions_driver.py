@@ -11,6 +11,8 @@ from pathlib import Path
 from typing import Any, Text, Dict, List
 import requests
 import wikipedia
+import fastf1 as f1
+import datetime
 from rasa_sdk.events import SlotSet
 
 from rasa_sdk import Action, Tracker
@@ -18,6 +20,10 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.knowledge_base.storage import InMemoryKnowledgeBase
 from rasa_sdk.knowledge_base.actions import ActionQueryKnowledgeBase
 from rasa_sdk.events import SlotSet
+
+codes = {"leclerc": "LEC", "sainz": "SAI", "max_verstappen": "VER", "perez": "PER", "hamilton": "HAM", "russel": "RUS",
+         "norris": "NOR", "ricciardo": "RIC", "alonso" : "ALO", "ocon" : "OCO", "gasly" : "GAS", "tsunoda" : "TSU",
+         "magnussen" : "MAG", "mick_schumacher" : "MSC", "vettel" : "VET", "stroll" : "STR", "albon" : "alb", "latifi": "LAT"}
 
 
 class ActionShowStandings(Action):
@@ -94,7 +100,7 @@ class ActionShowDriverStanding(Action):
                     if x['Driver']['driverId'] == driver:
                         output = x['Driver']['givenName'] + " " + x['Driver']['familyName'] + " "
                         if x['position'] =='1':
-                            output += "is leading the championship with "+ x['points'] +"\n"
+                            output += "is leading the championship with "+ x['points'] +" points\n"
                         else:
                             output += "is in position n° "+x['position'] +" with " + x['points'] + " points \n"
                         not_found = False
@@ -136,6 +142,36 @@ class ActionShowDriverInfo(Action):
                     output = e+"There might be problems with wikipedia at the moment, please try later.\n"
             else:
                 output = "Sorry there might be a problem with the server, please try again.\n"
+        dispatcher.utter_message(text=output)
+        return []
+
+class ActionShowDriverTelemetry(Action):
+
+    def name(self) -> Text:
+        return "action_show_driver_telemetry"
+
+    def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        driver = next(tracker.get_latest_entity_values('driver'), None)
+        if driver is None:
+            driver = tracker.get_slot('driver')
+        if driver is None:
+            output = "Sorry you didn't specify the driver.\n"
+        else:
+            race = next(tracker.get_latest_entity_values('race_name'), None)
+            if race is None:
+                output = "Sorry you didn't specify a grand prix or a circuit.\n"
+            else:
+                try:
+                    year = int(datetime.datetime.now().date().strftime("%Y"))
+                    session = f1.get_session(year, race, "R")
+                    session.load(weather=False)
+                    dr = session.get_driver(codes[driver])
+                    fastest = session.laps.pick_driver(driver).pick_fastest()
+                    output = dr["FirstName"] + " " + dr["LastName"] + " fastest lap is " + str(fastest["LapTime"]) +"\n"
+                except Exception as e:
+                    output = e
+
         dispatcher.utter_message(text=output)
         return []
 

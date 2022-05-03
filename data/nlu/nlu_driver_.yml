@@ -84,7 +84,16 @@ nlu:
 
 - intent: driver_telemetry
   examples: |
-    - give me [leclerc](driver) telemetry for
+    - give me [leclerc](driver) telemetry for [melbourne](race_name)
+    - lap times of [george](driver) for [baku city circuit](race_name)
+    - what is the telemetry [schumacher](driver) at [imola](race_name)
+    - telemetry for [verstappen](driver) in [italy](race_name)
+    - [yuki](driver) telemetry in [azerbaijan](race_name)
+    - show me the lap times for [hungaroring](race_name) of [sebastian](driver)
+    - show me his telemetry at [budapest](race_name)
+    - what are his lap times at [baku city circuit](race_name)? 
+    - i would like to know the telemetry of [ocon](driver) at [jeddah](race_name)
+    - i want [gasly](driver)'s lap times in [australia](race_name)
 
 - intent: driver_constructors
   examples: |
@@ -98,6 +107,79 @@ nlu:
     - who is he driving for?
     - which constructors has [george](driver) driven for?
     - which is his team?
+
+- lookup: race_name
+  examples: |
+    - albert park
+    - albert park grand prix circuit
+    - melbourne
+    - australia
+    - circuit of the americas
+    - austin
+    - usa
+    - bahrain international circuit
+    - sakhir
+    - bahrain
+    - baku city circuit
+    - baku
+    - azerbaijan
+    - circuit de barcelona-catalunya
+    - montmeló
+    - spain
+    - hungaroring
+    - budapest
+    - hungary
+    - autodromo enzo e dino ferrari
+    - emilia romagna
+    - imola
+    - italy
+    - italia
+    - autódromo josé carlos pace
+    - são paulo
+    - brazil
+    - jeddah corniche circuit
+    - jeddah
+    - saudi arabia
+    - marina bay street circuit
+    - marina bay
+    - singapore
+    - miami international autodrome
+    - miami
+    - usa
+    - circuit de monaco
+    - monte-carlo
+    - monaco
+    - autodromo nazionale di monza
+    - monza
+    - italy
+    - red bull ring
+    - spielberg
+    - austria
+    - circuit paul ricard
+    - le castellet
+    - france
+    - autódromo hermanos rodríguez
+    - mexico city
+    - mexico
+    - silverstone circuit
+    - silverstone
+    - uk
+    - circuit de spa-francorchamps
+    - spa
+    - belgium
+    - suzuka circuit
+    - suzuka
+    - japan
+    - circuit gilles villeneuve
+    - montreal
+    - canada
+    - yas marina circuit
+    - abu dhabi
+    - uae
+    - circuit park zandvoort
+    - zandvoort
+    - netherlands
+
 
 #lookup table definition
 - lookup: driver
