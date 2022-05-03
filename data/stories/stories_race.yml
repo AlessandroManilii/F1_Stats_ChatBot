@@ -7,6 +7,11 @@ stories:
   - intent: next_race
   - action: action_next_race
 
+- story: next race schedule short
+  steps:
+  - intent: next_race_schedule
+  - action: action_next_race_schedule
+
 - story: last race short
   steps:
   - intent: last_race

@@ -52,6 +52,40 @@ class ActionNextRace(Action):
         dispatcher.utter_message(text=output)
         return []
 
+class ActionNextRaceSchedule(Action):
+
+    def name(self) -> Text:
+        return "action_next_race_schedule"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        r=requests.get(url='http://ergast.com/api/f1/current/next.json')
+        if r.status_code == 200 :
+            data = r.json()
+            data = data['MRData'] ['RaceTable']['Races'][0]
+            name = data['raceName']
+            schedule_header = "\t\tDate\t\tTime \n"
+            output = "The following it's the official race schedule for " + name + ":\n" \
+                + schedule_header \
+                + "Race \t\t" + data['date'] + "\t" + data['time'].replace(':00Z', " (GMT)") + "\n" \
+                + "First Practice \t" + data['FirstPractice']['date'] \
+                    + "\t" + data['FirstPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
+                + "Second Practice\t" + data['SecondPractice']['date'] \
+                    + "\t" + data['SecondPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
+                + "Qualifying \t" +  data['Qualifying']['date'] \
+                    + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)") + "\n"
+
+            if 'Sprint' in data:
+                output += + "Sprint \t" +  data['Sprint']['date'] \
+                    + "\t" + data['Sprint']['time'].replace(':00Z', " (GMT)")
+        else:
+            output = "Sorry there might be a problem with the server, please try again\n"
+
+        dispatcher.utter_message(text=output)
+        return []
+
 class ActionLastRace(Action):
 
     def name(self) -> Text:

@@ -9,9 +9,21 @@ nlu:
     - what's the following race?
     - give me info on next race
     - info on following race
-    - next race schedule 
+    - could you give me info on next race?
+    - details on next race
+    - details on following race
+
+- intent: next_race_schedule
+  examples: | 
+    - next race schedule
+    - following race schedule
+    - what's the schedule for next race?
+    - what's the next race schedule ?
+    - what's the schedule for the following race?
+    - what's the following race schedule?
+    - give me info on next race schedule
+    - info on following race schedule
     - could you give me next race schedule?
-    - what's next race schedule?
   
 #- intent: specific_next_race_schedule
 #  examples: |

@@ -17,8 +17,8 @@ intents:
 
   # race intents
   - next_race
-  #- specific_next_race_schedule
   - next_race_schedule
+  #- specific_next_race_schedule
   - last_race
   - last_race_results
   - circuit_info:
@@ -117,6 +117,7 @@ responses:
 actions:
 - action_nth_race
 - action_next_race
+- action_next_race_schedule
 - action_last_race
 - action_show_constructor_standings
 - action_show_standings_year
