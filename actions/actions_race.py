@@ -45,7 +45,45 @@ class ActionNextRace(Action):
                 + "Second Practice\t" + data['SecondPractice']['date'] \
                     + "\t" + data['SecondPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
                 + "Qualifying \t" +  data['Qualifying']['date'] \
-                    + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)")
+                    + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)") + "\n"
+
+            if 'Sprint' in data:
+                output += "Sprint \t" +  data['Sprint']['date'] \
+                    + "\t" + data['Sprint']['time'].replace(':00Z', " (GMT)")
+        else:
+            output = "Sorry there might be a problem with the server, please try again\n"
+
+        dispatcher.utter_message(text=output)
+        return []
+
+class ActionNextRaceSchedule(Action):
+
+    def name(self) -> Text:
+        return "action_next_race_schedule"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        r=requests.get(url='http://ergast.com/api/f1/current/next.json')
+        if r.status_code == 200 :
+            data = r.json()
+            data = data['MRData'] ['RaceTable']['Races'][0]
+            name = data['raceName']
+            schedule_header = "\t\tDate\t\tTime \n"
+            output = "The following it's the official race schedule for " + name + ":\n" \
+                + schedule_header \
+                + "Race \t\t" + data['date'] + "\t" + data['time'].replace(':00Z', " (GMT)") + "\n" \
+                + "First Practice \t" + data['FirstPractice']['date'] \
+                    + "\t" + data['FirstPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
+                + "Second Practice\t" + data['SecondPractice']['date'] \
+                    + "\t" + data['SecondPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
+                + "Qualifying \t" +  data['Qualifying']['date'] \
+                    + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)") + "\n"
+
+            if 'Sprint' in data:
+                output += "Sprint \t" +  data['Sprint']['date'] \
+                    + "\t" + data['Sprint']['time'].replace(':00Z', " (GMT)")
         else:
             output = "Sorry there might be a problem with the server, please try again\n"
 
@@ -75,6 +113,52 @@ class ActionLastRace(Action):
                 + name + " (n° " + str(round) + ").\n" \
                 + "It's been held in " + country + "," + city \
                 + " at " + circuit_name
+        else:
+            output = "Sorry there might be a problem with the server, please try again\n"
+
+        dispatcher.utter_message(text=output)
+        return []
+
+class ActionLastRaceResults(Action):
+
+    def name(self) -> Text:
+        return "action_last_race_results"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        r=requests.get(url='http://ergast.com/api/f1/current/last/results.json')
+        if r.status_code == 200 :
+            data = r.json()
+            data = data['MRData'] ['RaceTable']['Races'][0]
+            name = data['raceName']
+            output = "Results for " + name + " are the following:\n" 
+            results_header = "N.\tPilot\t\tConstructor\tTime\t\tFastest Lap\tPoints\n"
+            output += results_header
+            results = data['Results']
+            for record in results:
+                row = []
+                row.append(record['position'])
+                row.append(record['Driver']['familyName'])
+                row.append(record['Constructor']['name'])
+                if 'Time' in record:
+                    row.append(record['Time']['time'])
+                else: 
+                    row.append("-------")
+                if 'FastestLap' in record:
+                    row.append(record['FastestLap']['Time']['time'])
+                else: 
+                    row.append("-------")
+                row.append(record['points'])
+
+                output += row[0] + "\t"
+                for el in row[1:]:
+                    if len(el)>7:
+                        output += el + "\t" 
+                    else: 
+                        output += el + "\t\t"
+                output +=  "\n"
         else:
             output = "Sorry there might be a problem with the server, please try again\n"
 
