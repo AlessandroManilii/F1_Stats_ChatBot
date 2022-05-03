@@ -38,7 +38,8 @@ intents:
   - driver_info:
         use_entities: true
   - championship_leader
-  - driver_telemetry
+  - driver_telemetry:
+        use_entities: true
   - driver_constructors:
         use_entities: true
   - constructor_standings:
@@ -60,6 +61,7 @@ entities:
  - season
  - driver
  - race
+ - race_name
  - constructor
  - circuit
 
@@ -84,6 +86,11 @@ slots:
       mappings:
       - type: from_entity
         entity: race
+   race_name:
+      type: text
+      mappings:
+      - type: from_entity
+        entity: race_name
 
 
 responses:
@@ -116,6 +123,7 @@ actions:
 - action_show_standings
 - action_show_driver_standing
 - action_show_driver_info
+- action_show_driver_telemetry
 - action_show_driver_constructors
 - action_show_championship_leader
 - action_constructor_wikipedia

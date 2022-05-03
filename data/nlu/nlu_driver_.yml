@@ -84,6 +84,7 @@ nlu:
 
 - intent: driver_telemetry
   examples: |
+    - give me [leclerc](driver) telemetry for
 
 - intent: driver_constructors
   examples: |
