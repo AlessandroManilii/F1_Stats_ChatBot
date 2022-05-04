@@ -12,6 +12,7 @@ from typing import Any, Text, Dict, List
 import requests
 import wikipedia
 import fastf1 as f1
+from fastf1 import plotting
 import datetime
 from rasa_sdk.events import SlotSet
 
@@ -164,7 +165,8 @@ class ActionShowDriverTelemetry(Action):
                 output = "Sorry you didn't specify a grand prix or a circuit.\n"
             else:
                 year = int(datetime.datetime.now().date().strftime("%Y"))
-                # f1.Cache.enable_cache("f1_cache")
+                plotting.setup_mpl()
+                f1.Cache.enable_cache('./')
                 session = f1.get_session(year, race, "R")
                 session.load(weather=False)
                 dr = session.get_driver(codes[driver])

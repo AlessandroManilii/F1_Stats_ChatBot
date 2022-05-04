@@ -7,6 +7,7 @@ API used:
 https://github.com/theOehrly/Fast-F1
 https://theoehrly.github.io/Fast-F1/examples/index.html 
 pip install fastf1
+<br> pip install requests-cache
 
 http://ergast.com/mrd/
 
