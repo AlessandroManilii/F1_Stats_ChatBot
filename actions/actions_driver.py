@@ -165,8 +165,7 @@ class ActionShowDriverTelemetry(Action):
                 output = "Sorry you didn't specify a grand prix or a circuit.\n"
             else:
                 year = int(datetime.datetime.now().date().strftime("%Y"))
-                plotting.setup_mpl()
-                f1.Cache.enable_cache('./')
+                f1.Cache.enable_cache('./f1_cache/')
                 session = f1.get_session(year, race, "R")
                 session.load(weather=False)
                 dr = session.get_driver(codes[driver])
