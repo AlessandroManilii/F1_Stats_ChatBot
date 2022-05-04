@@ -23,7 +23,8 @@ from rasa_sdk.events import SlotSet
 
 codes = {"leclerc": "LEC", "sainz": "SAI", "max_verstappen": "VER", "perez": "PER", "hamilton": "HAM", "russel": "RUS",
          "norris": "NOR", "ricciardo": "RIC", "alonso" : "ALO", "ocon" : "OCO", "gasly" : "GAS", "tsunoda" : "TSU",
-         "magnussen" : "MAG", "mick_schumacher" : "MSC", "vettel" : "VET", "stroll" : "STR", "albon" : "alb", "latifi": "LAT"}
+         "magnussen" : "MAG", "mick_schumacher" : "MSC", "vettel" : "VET", "stroll" : "STR", "albon" : "alb", "latifi": "LAT",
+         "bottas" : "BOT", "zhou" : "ZHO"}
 
 
 class ActionShowStandings(Action):
@@ -162,18 +163,22 @@ class ActionShowDriverTelemetry(Action):
             if race is None:
                 output = "Sorry you didn't specify a grand prix or a circuit.\n"
             else:
-                try:
-                    year = int(datetime.datetime.now().date().strftime("%Y"))
-                    session = f1.get_session(year, race, "R")
-                    session.load(weather=False)
-                    dr = session.get_driver(codes[driver])
-                    fastest = session.laps.pick_driver(driver).pick_fastest()
-                    output = dr["FirstName"] + " " + dr["LastName"] + " fastest lap is " + str(fastest["LapTime"]) +"\n"
-                except Exception as e:
-                    output = e
-
+                year = int(datetime.datetime.now().date().strftime("%Y"))
+                # f1.Cache.enable_cache("f1_cache")
+                session = f1.get_session(year, race, "R")
+                session.load(weather=False)
+                dr = session.get_driver(codes[driver])
+                fastest = session.laps.pick_driver(codes[driver]).pick_fastest()
+                lt = lap_time(fastest["LapTime"])
+                output = dr["FirstName"] + " " + dr["LastName"] + " fastest lap is " + lt +"\n"
+        print(lt)
         dispatcher.utter_message(text=output)
         return []
+
+def lap_time(timedelta):
+    millis = timedelta.microseconds / 1000
+    minutes, seconds = divmod(timedelta.seconds, 60)
+    return ("{:01}:{:02}.{:03}".format(int(minutes), int(seconds), int(millis)))
 
 class ActionShowDriverConstructors(Action):
 
