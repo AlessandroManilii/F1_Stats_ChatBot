@@ -112,9 +112,13 @@ responses:
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+  
+  utter_fetching:
+  - text: "Ok, give me a moment, i'm fetching the data."
 
 
 actions:
+- utter_fetching
 - action_nth_race
 - action_next_race
 - action_next_race_schedule

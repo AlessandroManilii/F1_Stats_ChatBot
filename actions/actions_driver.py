@@ -164,17 +164,21 @@ class ActionShowDriverTelemetry(Action):
             if race is None:
                 output = "Sorry you didn't specify a grand prix or a circuit.\n"
             else:
+                dispatcher.utter_message(text="Ok, give me a moment, i'm fetching the data.")
                 year = int(datetime.datetime.now().date().strftime("%Y"))
                 f1.Cache.enable_cache('./f1_cache/')
+                
                 session = f1.get_session(year, race, "R")
                 session.load(weather=False)
                 dr = session.get_driver(codes[driver])
-                fastest = session.laps.pick_driver(codes[driver]).pick_fastest()
-                lt = lap_time(fastest["LapTime"])
-                output = dr["FirstName"] + " " + dr["LastName"] + " fastest lap is " + lt +"\n"
-        print(lt)
+                ft = session.laps.pick_driver(codes[driver]).pick_fastest()
+                lt = lap_time(ft["LapTime"])
+                print(lt)
+                
+                output = dr["FirstName"] + " " + dr["LastName"] + " fastest lap is " + lt +" with " + ft["Compound"] + " tyres on lap n° "+ str(int(ft["LapNumber"]))+ ".\n" 
         dispatcher.utter_message(text=output)
         return []
+
 
 def lap_time(timedelta):
     millis = timedelta.microseconds / 1000

@@ -30,5 +30,6 @@ stories:
 - story: driver telemetry short
   steps:
   - intent: driver_telemetry
+  - action: utter_fetching
   - action: action_show_driver_telemetry
   
