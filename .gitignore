@@ -1,5 +1,4 @@
 /models
 /.rasa
 /actions/__pycache__
-/2022
-/fi_cache
+/f1_cache
