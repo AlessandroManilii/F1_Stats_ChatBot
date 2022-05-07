@@ -84,16 +84,20 @@ nlu:
 
 - intent: driver_lap_times
   examples: |
-    - give me [leclerc](driver) telemetry for [melbourne](race_name)
-    - lap times of [george](driver) for [baku city circuit](race_name)
-    - what is the telemetry [schumacher](driver) at [imola](race_name)
-    - telemetry for [verstappen](driver) in [italy](race_name)
-    - [yuki](driver) telemetry in [azerbaijan](race_name)
-    - show me the lap times for [hungaroring](race_name) of [sebastian](driver)
-    - show me his telemetry at [budapest](race_name)
-    - what are his lap times at [baku city circuit](race_name)? 
-    - i would like to know the telemetry of [ocon](driver) at [jeddah](race_name)
-    - i want [gasly](driver)'s lap times in [australia](race_name)
+    - give me [leclerc](driver) lap times for [melbourne](race_name) [qualifying](session_type)
+    - lap times of [george](driver) for [baku city circuit](race_name) during [race](session_type)
+    - what is the fastest lap of [schumacher](driver) at [imola](race_name) [free practice 2](session_type)
+    - lap times for [verstappen](driver) in [sprint](session_type) of [italy](race_name) grand prix 
+    - [yuki](driver) lap times in [azerbaijan](race_name) [fp1](session_type)
+    - show me the lap times for [hungaroring](race_name) [race](session_type) of [sebastian](driver)
+    - show me his lap times of [qualifying](session_type) [budapest](race_name) 
+    - what are his lap times at [baku city circuit](race_name) during the [sprint](session_type)? 
+    - i would like to know the lap times of [ocon](driver) at [jeddah](race_name) on [qualifying](session_type) day
+    - i want [gasly](driver)'s lap times for [free practice 3](session_type) in [australia](race_name)
+    - [russel](driver)'s lap times during [fp2](session_type) at [miami](race_name)
+    - lap times of [lewis](driver) during [free practice 2](session_type) in [abu dhabi](race_name)
+    - what are [ocon](driver) lap times at the [australian](race_name) grand prix [fp3](session_type)
+    - lap times for [carlos](driver) during [free practice 3](session_type) at [monza](race_name)
 
 - intent: driver_constructors
   examples: |
@@ -107,6 +111,38 @@ nlu:
     - who is he driving for?
     - which constructors has [george](driver) driven for?
     - which is his team?
+    
+- lookup: session_type
+  examples: |
+    - race
+    - qualifying
+    - sprint
+    - free practice 1
+    - free practice 2
+    - free practice 3
+    - practice 1
+    - practice 2
+    - practice 3
+    - quali
+    - fp1
+    - fp2
+    - fp3
+
+- synonym: qualifying
+  examples: |
+    - quali   
+- synonym: fp1
+  examples: |
+    - free practice 1
+    - practice 1 
+- synonym: fp2
+  examples: |
+    - free practice 2
+    - practice 2
+- synonym: fp3
+  examples: |
+    - free practice 3
+    - practice 3
 
 - lookup: race_name
   examples: |
@@ -114,10 +150,12 @@ nlu:
     - albert park grand prix circuit
     - melbourne
     - australia
+    - australian
     - circuit of the americas
     - austin
     - usa
-    - bahrain international circuit
+    - united states
+    - bahrain international circuit 
     - sakhir
     - bahrain
     - baku city circuit

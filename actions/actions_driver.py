@@ -14,6 +14,9 @@ import wikipedia
 import fastf1 as f1
 from fastf1 import plotting
 import datetime
+from math import isnan
+import numpy
+import pandas
 from rasa_sdk.events import SlotSet
 
 from rasa_sdk import Action, Tracker
@@ -25,7 +28,7 @@ from rasa_sdk.events import SlotSet
 codes = {"leclerc": "LEC", "sainz": "SAI", "max_verstappen": "VER", "perez": "PER", "hamilton": "HAM", "russel": "RUS",
          "norris": "NOR", "ricciardo": "RIC", "alonso" : "ALO", "ocon" : "OCO", "gasly" : "GAS", "tsunoda" : "TSU",
          "magnussen" : "MAG", "mick_schumacher" : "MSC", "vettel" : "VET", "stroll" : "STR", "albon" : "alb", "latifi": "LAT",
-         "bottas" : "BOT", "zhou" : "ZHO"}
+         "bottas" : "BOT", "zhou" : "ZHO", "hulkenberg": "HUL"}
 
 
 class ActionShowStandings(Action):
@@ -126,7 +129,7 @@ class ActionShowDriverInfo(Action):
         if driver is None:
             driver = tracker.get_slot('driver')
         if driver is None:
-            output = "Sorry you didn't specify the driver.\n"
+            output = "Sorry, you didn't specify the driver.\n"
         else:
             r=requests.get(url='http://ergast.com/api/f1/drivers/'+driver+'.json')
 
@@ -147,42 +150,76 @@ class ActionShowDriverInfo(Action):
         dispatcher.utter_message(text=output)
         return []
 
-class ActionShowDriverTelemetry(Action):
+class ActionShowDriverLapTimes(Action):
 
     def name(self) -> Text:
-        return "action_show_driver_telemetry"
+        return "action_show_driver_lap_times"
 
     def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         driver = next(tracker.get_latest_entity_values('driver'), None)
         if driver is None:
             driver = tracker.get_slot('driver')
+        race = next(tracker.get_latest_entity_values('race_name'), None)
+        if race is None:
+            race = tracker.get_slot('race_name')
+        stype = next(tracker.get_latest_entity_values('session_type'), None)
+        if stype is None:
+            # output = "Sorry, you didn't specify the session (race,qualifying,sprint,etc...).\n"
+            stype = "race"
+        
         if driver is None:
-            output = "Sorry you didn't specify the driver.\n"
+            output = "Sorry, you didn't specify the driver.\n"
+        elif race is None:
+            output = "Sorry, you didn't specify a grand prix or a circuit.\n"
         else:
-            race = next(tracker.get_latest_entity_values('race_name'), None)
-            if race is None:
-                output = "Sorry you didn't specify a grand prix or a circuit.\n"
+            now = datetime.datetime.now()
+            year = int(now.date().strftime("%Y"))
+            f1.Cache.enable_cache('C:/Users/User/Desktop/Rasa/F1_Stats_ChatBot/f1_cache')
+            try:
+                session = f1.get_session(year, race, stype)
+            except ValueError as e:
+                output = "Sorry. "+ str(e) +"\n"
             else:
-                year = int(datetime.datetime.now().date().strftime("%Y"))
-                f1.Cache.enable_cache('./f1_cache/')
-                
-                session = f1.get_session(year, race, "R")
-                session.load(weather=False)
-                dr = session.get_driver(codes[driver])
-                ft = session.laps.pick_driver(codes[driver]).pick_fastest()
-                lt = lap_time(ft["LapTime"])
-                print(lt)
-                
-                output = dr["FirstName"] + " " + dr["LastName"] + " fastest lap is " + lt +" with " + ft["Compound"] + " tyres on lap n° "+ str(int(ft["LapNumber"]))+ ".\n" 
+                if session.date > now:
+                   output = "The session hasn't started yet.\n"
+                else:
+                    session.load(weather=False)
+                    try:
+                        dr = session.get_driver(codes[driver])
+                    except ValueError as e:
+                        output = "Sorry, there is no data for " + driver + " during '"+ session.name + "' of the " + session.event["EventName"] + ".\n"    
+                    else:
+                        if session.name != "Qualifying":
+                            ft = session.laps.pick_driver(codes[driver]).pick_fastest()
+                            if type(ft["LapTime"]) is numpy.float64 and isnan(ft["LapTime"]):
+                                output = "Sorry, there is no data for " + dr["FirstName"] + " " + dr["LastName"] + " during '"+ session.name + "' of the " + session.event["EventName"] + ".\n"
+                            else:
+                                output = dr["FirstName"] + " " + dr["LastName"] + "'s fastest lap during '" + session.name + "' of the " + session.event["EventName"] + " is:\n"
+                                lt = lap_time(ft["LapTime"])
+                                output +=  lt +" with " + ft["Compound"] + " tyres on lap n° "+ str(int(ft["LapNumber"]))+ ".\n" 
+                        else:
+                            output = dr["FirstName"] + " " + dr["LastName"] + "'s qualifying laps of the " + session.event["EventName"] + " are:\n"
+                            results = session.results
+                            for i in range(1, 4):
+                                data = results.loc[:,['Abbreviation', 'Q'+str(i)]]
+                                time = data[data['Abbreviation'] == codes[driver]].iat[0,1]
+                                if pandas.isnull(time):
+                                    output += "Q"+str(i)+": no time\n"
+                                else:
+                                    lt = lap_time(time)
+                                    output += "Q"+str(i)+": " + lt+"\n" 
         dispatcher.utter_message(text=output)
         return []
+
 
 
 def lap_time(timedelta):
     millis = timedelta.microseconds / 1000
     minutes, seconds = divmod(timedelta.seconds, 60)
     return ("{:01}:{:02}.{:03}".format(int(minutes), int(seconds), int(millis)))
+
+
 
 class ActionShowDriverConstructors(Action):
 
