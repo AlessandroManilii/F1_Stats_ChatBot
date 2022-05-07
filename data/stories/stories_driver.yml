@@ -27,9 +27,9 @@ stories:
   - intent: driver_constructors
   - action: action_show_driver_constructors
   
-- story: driver telemetry short
+- story: driver lap_times short
   steps:
-  - intent: driver_telemetry
+  - intent: driver_lap_times
   - action: utter_fetching
-  - action: action_show_driver_telemetry
+  - action: action_show_driver_lap_times
   

@@ -39,7 +39,7 @@ intents:
   - driver_info:
         use_entities: true
   - championship_leader
-  - driver_telemetry:
+  - driver_lap_times:
         use_entities: true
   - driver_constructors:
         use_entities: true
@@ -65,6 +65,7 @@ entities:
  - race_name
  - constructor
  - circuit
+ - session_type
 
 slots:
    season:
@@ -92,6 +93,11 @@ slots:
       mappings:
       - type: from_entity
         entity: race_name
+   session_type:
+      type: text
+      mappings:
+      - type: from_entity
+        entity: session_type
 
 
 responses:
@@ -115,7 +121,7 @@ responses:
   - text: "I am a bot, powered by Rasa."
   
   utter_fetching:
-  - text: "Ok, give me a moment, i'm fetching the data."
+  - text: "Ok, give me a moment, I'm fetching the data."
 
 
 actions:
@@ -131,7 +137,7 @@ actions:
 - action_show_standings
 - action_show_driver_standing
 - action_show_driver_info
-- action_show_driver_telemetry
+- action_show_driver_lap_times
 - action_show_driver_constructors
 - action_show_championship_leader
 - action_constructor_wikipedia

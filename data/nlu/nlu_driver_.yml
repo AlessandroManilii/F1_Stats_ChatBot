@@ -82,7 +82,7 @@ nlu:
     - show me the driver with most points
     - i want to know the leader of the championship
 
-- intent: driver_telemetry
+- intent: driver_lap_times
   examples: |
     - give me [leclerc](driver) telemetry for [melbourne](race_name)
     - lap times of [george](driver) for [baku city circuit](race_name)
