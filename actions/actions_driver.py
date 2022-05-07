@@ -164,7 +164,6 @@ class ActionShowDriverTelemetry(Action):
             if race is None:
                 output = "Sorry you didn't specify a grand prix or a circuit.\n"
             else:
-                dispatcher.utter_message(text="Ok, give me a moment, i'm fetching the data.")
                 year = int(datetime.datetime.now().date().strftime("%Y"))
                 f1.Cache.enable_cache('./f1_cache/')
                 
