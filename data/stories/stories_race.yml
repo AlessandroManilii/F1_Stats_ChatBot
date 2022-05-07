@@ -27,3 +27,7 @@ stories:
   - intent: nth_race
   - action: action_nth_race
   
+- story: nth race schedule short
+  steps:
+  - intent: nth_race_schedule
+  - action: action_nth_race_schedule

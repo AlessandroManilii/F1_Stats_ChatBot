@@ -18,14 +18,15 @@ intents:
   # race intents
   - next_race
   - next_race_schedule
-  #- specific_next_race_schedule
   - last_race
   - last_race_results
+  - nth_race:
+      use_entities: true
+  - nth_race_schedule
   - circuit_info:
       use_entities: true
   - last_race_qualifying_info
-  - nth_race:
-        use_entities: true
+
   - nth_race_results:
       use_entities: true
   - highlights:
@@ -120,6 +121,7 @@ responses:
 actions:
 - utter_fetching
 - action_nth_race
+- action_nth_race_schedule
 - action_next_race
 - action_next_race_schedule
 - action_last_race
