@@ -57,84 +57,67 @@ nlu:
 
 - intent: nth_race
   examples: | 
-    - info on [third](race) race
-    - info on [1](race) race
-    - [10](race) race info
-    - give me info on [4](race) race
-    - general info on [first](race) race
-    - could you give me info on [6](race) race?
-    - what's general info on [2](race) race?
-    - where and when [fourth](race) race?
+    - info on race [3](race)
+    - info on race [3](race) of current season
+    - about [melbourne](race) race
+    - race [10](race) info
+    - give me info on race [4](race)
+    - general info on [azerbaijan](race) race
+    - could you give me info on race [6](race)?
+    - what's general info on [circuit de barcelona-catalunya](race) race?
+    - where and when [saudi arabia](race) race?
 
 - intent: nth_race_schedule
   examples: |
-    - [4](race) race schedule
-    - schedule for [second](race) race
-    - what's the schedule for the [first](race) race of the season?
-    - what's the [first](race) race schedule ?
-    - what's the schedule for the [third](race) race?
-    - what's the [8](race) race schedule?
-    - give me info on [7](race) race schedule
-    - info on [sixth](race) race schedule
-    - could you give me [10](race) race schedule?
+    - race [4](race) schedule
+    - schedule for [miami](race) race
+    - what's the schedule for the [autodromo nazionale di monza](race) race?
+    - what's the [red bull ring](race) race schedule?
+    - what's the schedule for the race [5](race)?
+    - what's the race [spielberg](race) schedule?
+    - give me info on race [7](race) schedule
+    - info on [france](race) race schedule
+    - could you give me race [10](race)schedule?
 
 - intent: nth_race_results
   examples: |
-    - [4](race) results
-    - [5](race) race results
-    - what are [third](race) race results?
-    - how did [first](race) race end up?
-    - give me info on [6](race) race results
-    - could you give me info on [second](race) race results?
-    - results of [fourth](race) race
-    - order of arrival for [1](race) race?
-    - [10](race) race order of arrival
+    - race [4](race) results
+    - [italy](race) race results
+    - what are [austria](race) race results?
+    - how did [circuit paul ricard](race) race end up?
+    - give me info on race [6](race) results
+    - could you give me info on [le castellet](race) race results?
+    - results of [mexico city](race) race
+    - order of arrival for race [1](race)?
+    - race [10](race) order of arrival
 
 - intent: nth_race_circuit
   examples: |
-    - [4](race) race circuit
-    - [5](race) race circuit info
-    - circuit of the [fourth](race) race
-    - what's the circuit of the [third](race) race?
-    - give me info on [6](race) race circuit
-    - could you give me info on [second](race) race circuit?
-    - general info on [1](race) race circuit?
-    - describe [10](race) race circuit 
+    - race [4](race) circuit
+    - race [5](race) circuit info
+    - circuit of the [uk](race) race
+    - what's the circuit of the [spa](race) race?
+    - give me info on race [6](race) circuit
+    - could you give me info on [silverstone](race) race circuit?
+    - general info on race circuit [1](race)?
+    - describe race [10](race) circuit 
 
 - intent: highlights
   examples: |
-
+    - highlights
+    - last race highlights
+    - give me last race highlights
+    - highlights on last race
+    - what are last race highlights
+    - are there highlights for last race?
+    - could you give me last race highlights?
+    - could you give me higlights?
+    - send me highlights please
+    - highlights of last race
 
 #regex definition
 - regex : race
   examples: |
     - [1-25]+
 
-#lookup table definition
-- lookup : race
-  examples: |
-    - "first"
-    - "second"
-    - "third"
-    - "fourth"
-    - "fifth"
-    - "sixth"
-    - "seventh"
-    - "eighth"
-    - "ninth"
-    - "tenth"
-    - "eleventh"
-    - "twelfth"
-    - "thirteenth"
-    - "fourteenth"
-    - "fifteenth"
-    - "sixteenth"
-    - "seventeenth"
-    - "eighteenth"
-    - "nineteenth"
-    - "twentieth"
-    - "twentieth-first"
-    - "twentieth-second"
-    - "twentieth-third"
-    - "twentieth-fourth"
-    - "twentieth-fifth"
+#lookup table for race already defined in nlu_driver
