@@ -22,6 +22,11 @@ stories:
   - intent: last_race_results
   - action: action_last_race_results
 
+- story: last race qualifying results short
+  steps:
+  - intent: last_race_qualifying_results
+  - action: action_last_race_qualifying_results
+
 - story: nth race path
   steps:
   - intent: nth_race
@@ -31,3 +36,5 @@ stories:
   steps:
   - intent: nth_race_schedule
   - action: action_nth_race_schedule
+
+

@@ -24,18 +24,6 @@ nlu:
     - give me info on next race schedule
     - info on following race schedule
     - could you give me next race schedule?
-  
-- intent: nth_race_schedule
-  examples: |
-    - [4](race) race schedule
-    - schedule for [second](race) race
-    - what's the schedule for the [first](race) race of the season?
-    - what's the [first](race) race schedule ?
-    - what's the schedule for the [third](race) race?
-    - what's the [8](race) race schedule?
-    - give me info on [7](race) race schedule
-    - info on [sixth](race) race schedule
-    - could you give me [10](race) race schedule?
 
 - intent: last_race
   examples: |
@@ -57,10 +45,29 @@ nlu:
     - what's the order of arrival for last race?
     - last race order of arrival
 
-- intent: circuit_info
+- intent: last_race_qualifying_results
   examples: |
+    - qualifying
+    - last race qualifying
+    - give me last race qualyfing info
+    - what are last race qualifying results?
+    - give me info on last race qualifying
+    - could you give me info on last race qualifying?
+    - results of last qualifying 
 
-- intent: last_race_qualifying_info
+- intent: nth_race_schedule
+  examples: |
+    - [4](race) race schedule
+    - schedule for [second](race) race
+    - what's the schedule for the [first](race) race of the season?
+    - what's the [first](race) race schedule ?
+    - what's the schedule for the [third](race) race?
+    - what's the [8](race) race schedule?
+    - give me info on [7](race) race schedule
+    - info on [sixth](race) race schedule
+    - could you give me [10](race) race schedule?
+
+- intent: nth_race_circuit_info
   examples: |
 
 - intent: nth_race
@@ -72,6 +79,7 @@ nlu:
 
 - intent: highlights
   examples: |
+
 
 #regex definition
 - regex : race
