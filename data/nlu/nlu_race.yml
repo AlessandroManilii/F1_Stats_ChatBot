@@ -78,11 +78,22 @@ nlu:
     - info on [sixth](race) race schedule
     - could you give me [10](race) race schedule?
 
+- intent: nth_race_results
+  examples: |
+    - [4](race) results
+    - [5](race) race results
+    - what are [third](race) race results?
+    - how did [first](race) race end up?
+    - give me info on [6](race) race results
+    - could you give me info on [second](race) race results?
+    - results of [fourth](race) race
+    - order of arrival for [1](race) race?
+    - [10](race) race order of arrival
+
 - intent: nth_race_circuit_info
   examples: |
 
-- intent: nth_race_results
-  examples: |
+
 
 - intent: highlights
   examples: |

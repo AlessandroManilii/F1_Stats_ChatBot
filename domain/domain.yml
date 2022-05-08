@@ -136,6 +136,7 @@ actions:
 - action_last_race_qualifying_results
 - action_nth_race
 - action_nth_race_schedule
+- action_nth_race_results
 - action_show_constructor_standings
 - action_show_standings_year
 - action_show_standings

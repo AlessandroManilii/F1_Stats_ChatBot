@@ -369,5 +369,92 @@ class ActionNthRaceSchedule(Action):
         dispatcher.utter_message(text=output)
         return []
 
+class ActionNthRaceResults(Action):
 
+    def name(self) -> Text:
+        return "action_nth_race_results"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        nth = {
+            "first": 1,
+            "second": 2,
+            "third": 3,
+            "fourth": 4,
+            "fifth": 5,
+            "sixth": 6,
+            "seventh": 7,
+            "eighth": 8,
+            "nineth": 9,
+            "tenth": 10,
+            "eleventh": 11,
+            "twelth": 12,
+            "thirteenth": 13,
+            "fourteenth": 14,
+            "fifteenth": 15,
+            "sixteenth": 16,
+            "seventeenth": 17,
+            "eighteenth": 18,
+            "nineteenth": 19,
+            "twentieth": 20,
+            "twentieth-first": 21,
+            "twentieth-second": 22,
+            "twentieth-third": 23,
+            "twentieth-fourth": 24,
+            "twentieth-fifth": 25 
+        }
+        
+        race = next(tracker.get_latest_entity_values('race'), None)
+        if race is None:
+            race = tracker.get_slot('race')
+        if race is None:
+            output = "Sorry you didn't specify the race.\n"
+        else:
+            if race in nth.keys():
+                race = nth[str(race)]
+            if race not in range(1,25):
+                output = "Sorry you didn't specify a correct race number.\n"
+        r=requests.get(url='http://ergast.com/api/f1/current/'+str(race)+'/results.json')
+
+        if r.status_code == 200 :
+            data = r.json()
+            data = data['MRData'] ['RaceTable']['Races']
+            if len(data) == 0:
+                output = "The " + race + "° race of current season hasn't be raced yet."
+            else:
+                data = data[0]
+                name = data['raceName']
+                output = "Results for " + race + "° race of current season are the following:\n" 
+                results_header = "N.\tPilot\t\tConstructor\tTime\t\tFastest Lap\tPoints\n"
+                output += results_header
+                results = data['Results']
+                for record in results:
+                    row = []
+                    row.append(record['position'])
+                    row.append(record['Driver']['familyName'])
+                    row.append(record['Constructor']['name'])
+                    if 'Time' in record:
+                        row.append(record['Time']['time'])
+                    else: 
+                        row.append("-------")
+                    if 'FastestLap' in record:
+                        row.append(record['FastestLap']['Time']['time'])
+                    else: 
+                        row.append("-------")
+                    row.append(record['points'])
+
+                    output += row[0] + "\t"
+                    for el in row[1:]:
+                        if len(el)>7:
+                            output += el + "\t" 
+                        else: 
+                            output += el + "\t\t"
+                    output +=  "\n"
+        else:
+            output = "Sorry there might be a problem with the server, please try again\n"
+
+        dispatcher.utter_message(text=output)
+        return []
 
