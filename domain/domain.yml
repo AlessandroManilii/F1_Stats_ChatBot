@@ -27,7 +27,7 @@ intents:
       use_entities: true
   - nth_race_results:
       use_entities: true
-  - nth_race_circuit_info:
+  - nth_race_circuit:
       use_entities: true
   - highlights:
       use_entities: true
@@ -137,6 +137,7 @@ actions:
 - action_nth_race
 - action_nth_race_schedule
 - action_nth_race_results
+- action_nth_race_circuit
 - action_show_constructor_standings
 - action_show_standings_year
 - action_show_standings
@@ -149,5 +150,3 @@ actions:
 - action_list_constructors
 - action_show_winner_year
 - action_championship_wikipedia
-
-

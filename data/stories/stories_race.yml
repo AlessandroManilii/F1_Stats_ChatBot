@@ -42,4 +42,9 @@ stories:
   - intent: nth_race_results
   - action: action_nth_race_results
 
+- story: nth race circuit short
+  steps:
+  - intent: nth_race_circuit
+  - action: action_nth_race_circuit
+
 

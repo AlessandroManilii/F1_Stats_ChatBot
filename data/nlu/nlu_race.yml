@@ -90,10 +90,16 @@ nlu:
     - order of arrival for [1](race) race?
     - [10](race) race order of arrival
 
-- intent: nth_race_circuit_info
+- intent: nth_race_circuit
   examples: |
-
-
+    - [4](race) race circuit
+    - [5](race) race circuit info
+    - circuit of the [fourth](race) race
+    - what's the circuit of the [third](race) race?
+    - give me info on [6](race) race circuit
+    - could you give me info on [second](race) race circuit?
+    - general info on [1](race) race circuit?
+    - describe [10](race) race circuit 
 
 - intent: highlights
   examples: |

@@ -458,3 +458,65 @@ class ActionNthRaceResults(Action):
         dispatcher.utter_message(text=output)
         return []
 
+class ActionNthRaceCircuit(Action):
+
+    def name(self) -> Text:
+        return "action_nth_race_circuit"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        nth = {
+            "first": 1,
+            "second": 2,
+            "third": 3,
+            "fourth": 4,
+            "fifth": 5,
+            "sixth": 6,
+            "seventh": 7,
+            "eighth": 8,
+            "nineth": 9,
+            "tenth": 10,
+            "eleventh": 11,
+            "twelth": 12,
+            "thirteenth": 13,
+            "fourteenth": 14,
+            "fifteenth": 15,
+            "sixteenth": 16,
+            "seventeenth": 17,
+            "eighteenth": 18,
+            "nineteenth": 19,
+            "twentieth": 20,
+            "twentieth-first": 21,
+            "twentieth-second": 22,
+            "twentieth-third": 23,
+            "twentieth-fourth": 24,
+            "twentieth-fifth": 25 
+        }
+        
+        race = next(tracker.get_latest_entity_values('race'), None)
+        if race is None:
+            race = tracker.get_slot('race')
+        if race is None:
+            output = "Sorry you didn't specify the race.\n"
+        else:
+            if race in nth.keys():
+                race = nth[str(race)]
+            if race not in range(1,25):
+                output = "Sorry you didn't specify a correct race number.\n"
+            r=requests.get(url='http://ergast.com/api/f1/current/'+str(race)+'/circuits.json')
+            if r.status_code == 200 :
+                data = r.json()
+                data = data['MRData']['CircuitTable']['Circuits'][0]
+                circuit = data['circuitName']
+                city_country = data['Location']['locality'] + ',' + data['Location']['country']
+                wiki_url = data['url']
+                output = "The " + race + "° race of current season is planned to be raced in " \
+                + circuit + ", located in " + city_country \
+                + ". More details on circuit can be found at " + wiki_url 
+            else:
+                output = "Sorry there might be a problem with the server, please try again\n"     
+
+        dispatcher.utter_message(text=output)
+        return []
