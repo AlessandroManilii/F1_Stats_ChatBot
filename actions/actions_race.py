@@ -223,9 +223,78 @@ class ActionNthRace(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        nth = {
+            "first": 1,
+            "second": 2,
+            "third": 3,
+            "fourth": 4,
+            "fifth": 5,
+            "sixth": 6,
+            "seventh": 7,
+            "eighth": 8,
+            "nineth": 9,
+            "tenth": 10,
+            "eleventh": 11,
+            "twelth": 12,
+            "thirteenth": 13,
+            "fourteenth": 14,
+            "fifteenth": 15,
+            "sixteenth": 16,
+            "seventeenth": 17,
+            "eighteenth": 18,
+            "nineteenth": 19,
+            "twentieth": 20,
+            "twentieth-first": 21,
+            "twentieth-second": 22,
+            "twentieth-third": 23,
+            "twentieth-fourth": 24,
+            "twentieth-fifth": 25 
+        }
+        
+        race = next(tracker.get_latest_entity_values('race'), None)
+        if race is None:
+            race = tracker.get_slot('race')
+        if race is None:
+            output = "Sorry you didn't specify the race.\n"
+        else:
+            if race in nth.keys():
+                race = nth[str(race)]
+            if race not in range(1,25):
+                output = "Sorry you didn't specify a correct race number.\n"
+        r=requests.get(url='http://ergast.com/api/f1/current/'+str(race)+'.json')
 
-        dispatcher.utter_message(text="race 1 stats")
+        if r.status_code == 200 :
+            data = r.json()
+            data = data['MRData'] ['RaceTable']['Races'][0]
+            season = data['season']
+            round = data['round']
+            name = data['raceName']
+            country = data['Circuit']['Location']['country']
+            city = data['Circuit']['Location']['locality']
+            circuit_name = data['Circuit']['circuitName']
+            schedule_header = "\t\tDate\t\tTime \n"
+            output = "The " + str(race) + "° race of " + season + " season is " \
+                + name + " (n° " + str(round) + ").\n" \
+                + "It will be held in " + country + "," + city \
+                + " at " + circuit_name + ".\n" \
+                + "The following it's the official race schedule:\n" \
+                + schedule_header \
+                + "Race \t\t" + data['date'] + "\t" + data['time'].replace(':00Z', " (GMT)") + "\n" \
+                + "First Practice \t" + data['FirstPractice']['date'] \
+                    + "\t" + data['FirstPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
+                + "Second Practice\t" + data['SecondPractice']['date'] \
+                    + "\t" + data['SecondPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
+                + "Qualifying \t" +  data['Qualifying']['date'] \
+                    + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)") + "\n"
 
+            if 'Sprint' in data:
+                output += "Sprint \t\t" +  data['Sprint']['date'] \
+                    + "\t" + data['Sprint']['time'].replace(':00Z', " (GMT)")
+        else:
+            output = "Sorry there might be a problem with the server, please try again\n"
+
+        dispatcher.utter_message(text=output)
         return []
 
 class ActionNthRaceSchedule(Action):

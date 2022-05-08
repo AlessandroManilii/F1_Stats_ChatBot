@@ -27,7 +27,7 @@ stories:
   - intent: last_race_qualifying_results
   - action: action_last_race_qualifying_results
 
-- story: nth race path
+- story: nth race short
   steps:
   - intent: nth_race
   - action: action_nth_race

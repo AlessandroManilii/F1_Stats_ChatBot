@@ -55,6 +55,17 @@ nlu:
     - could you give me info on last race qualifying?
     - results of last qualifying 
 
+- intent: nth_race
+  examples: | 
+    - info on [third](race) race
+    - info on [1](race) race
+    - [10](race) race info
+    - give me info on [4](race) race
+    - general info on [first](race) race
+    - could you give me info on [6](race) race?
+    - what's general info on [2](race) race?
+    - where and when [fourth](race) race?
+
 - intent: nth_race_schedule
   examples: |
     - [4](race) race schedule
@@ -69,10 +80,6 @@ nlu:
 
 - intent: nth_race_circuit_info
   examples: |
-
-- intent: nth_race
-  examples: | 
-    - "Give the stats for the [4](race) race"
 
 - intent: nth_race_results
   examples: |
