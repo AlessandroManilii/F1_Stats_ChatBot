@@ -5,6 +5,7 @@ import requests
 import urllib.request
 import fastf1 as f1
 from datetime import date
+import re
 
 from rasa_sdk.events import SlotSet
 from rasa_sdk import Action, Tracker
