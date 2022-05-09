@@ -64,7 +64,7 @@ entities:
  - driver
  - race
  - race_name
- - constructor
+ - constructor_name
  - circuit
  - session_type
 
@@ -78,7 +78,7 @@ slots:
      type: text
      mappings:
      - type: from_entity
-       entity: constructor
+       entity: constructor_name
    driver:
       type: text
       mappings:
