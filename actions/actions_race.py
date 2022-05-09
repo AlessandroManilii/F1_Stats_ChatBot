@@ -1,18 +1,16 @@
 # This files contains custom actions related to races
 
-import json
-from pathlib import Path
 from typing import Any, Text, Dict, List
 import requests
-import wikipedia
+import urllib.request
 import fastf1 as f1
+from datetime import date
 
 from rasa_sdk.events import SlotSet
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.knowledge_base.storage import InMemoryKnowledgeBase
 from rasa_sdk.knowledge_base.actions import ActionQueryKnowledgeBase
-from rasa_sdk.events import SlotSet
 
 class ActionNextRace(Action):
 
@@ -239,7 +237,7 @@ class ActionNthRace(Action):
             if race in race_num_list:
                 race_num = race
             else:
-                session = f1.get_session(2022, race,'R')
+                session = f1.get_session(date.today().year, race,'R')
                 race_num = session.event.gput = "Sorry you didn't specify a correct race number.\n"
             r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'.json')
             if r.status_code == 200 :
@@ -297,7 +295,7 @@ class ActionNthRaceSchedule(Action):
             if race in race_num_list:
                 race_num = race
             else:
-                session = f1.get_session(2022, race,'R')
+                session = f1.get_session(date.today().year, race,'R')
                 race_num = session.event.gp
             r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'.json')
             if r.status_code == 200 :
@@ -347,7 +345,7 @@ class ActionNthRaceResults(Action):
             if race in race_num_list:
                 race_num = race
             else:
-                session = f1.get_session(2022, race, 'R')
+                session = f1.get_session(date.today().year, race, 'R')
                 race_num = session.event.gp
             r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'/results.json')
             if r.status_code == 200 :
@@ -413,7 +411,7 @@ class ActionNthRaceCircuit(Action):
             if race in race_num_list:
                 race_num = race
             else:
-                session = f1.get_session(2022, race, 'R')
+                session = f1.get_session(date.today().year, race, 'R')
                 race_num = session.event.gp
             r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'/circuits.json')
             if r.status_code == 200 :
@@ -440,8 +438,13 @@ class ActionHighlights(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        #todo
-        output = ""
-
-        dispatcher.utter_message(text=output)
+        r=requests.get(url='http://ergast.com/api/f1/current/last.json')
+        data = r.json()
+        race = data['MRData']['RaceTable']['Races'][0]['raceName']
+        search_keyword="f1+highlights+"+str(date.today().year)+"+"+race.replace(" ", "")
+        html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + search_keyword)
+        video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+        for i in range(1):
+            output = "https://www.youtube.com/watch?v=" + video_ids[i]
+            dispatcher.utter_message(text=output)
         return []
