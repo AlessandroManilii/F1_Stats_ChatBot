@@ -175,7 +175,7 @@ class ActionShowDriverLapTimes(Action):
         else:
             now = datetime.datetime.now()
             year = int(now.date().strftime("%Y"))
-            f1.Cache.enable_cache('C:/Users/User/Desktop/Rasa/F1_Stats_ChatBot/f1_cache')
+            f1.Cache.enable_cache('./f1_cache')
             try:
                 session = f1.get_session(year, race, stype)
             except ValueError as e:
