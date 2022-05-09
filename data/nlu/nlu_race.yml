@@ -59,48 +59,83 @@ nlu:
   examples: | 
     - info on race [3](race)
     - info on race [3](race) of current season
-    - about [melbourne](race) race
+    - about [melbourne](race_name) race
     - race [10](race) info
     - give me info on race [4](race)
-    - general info on [azerbaijan](race) race
+    - general info on [azerbaijan](race_name) race
     - could you give me info on race [6](race)?
-    - what's general info on [circuit de barcelona-catalunya](race) race?
-    - where and when [saudi arabia](race) race?
+    - what's general info on [circuit de barcelona-catalunya](race_name) race?
+    - where and when [saudi arabia](race_name) race?
+    - info on [melbourne](race_name) race 
+    - info on [italy](race_name) race of current season
+    - about race [3](race) 
+    - [red bull ring](race_name) race info
+    - give me info on [spain](race_name) race 
+    - general info on race [4](race)
+    - could you give me info on [mexico](race_name) race?
+    - what's general info on race [6](race)?
+    - where and when race [7](race)?
 
 - intent: nth_race_schedule
   examples: |
     - race [4](race) schedule
-    - schedule for [miami](race) race
-    - what's the schedule for the [autodromo nazionale di monza](race) race?
-    - what's the [red bull ring](race) race schedule?
+    - schedule for [miami](race_name) race
+    - what's the schedule for the [autodromo nazionale di monza](race_name) race?
+    - what's the [red bull ring](race_name) race schedule?
     - what's the schedule for the race [5](race)?
-    - what's the race [spielberg](race) schedule?
+    - what's the race [spielberg](race_name) schedule?
     - give me info on race [7](race) schedule
-    - info on [france](race) race schedule
+    - info on [france](race_name) race schedule
     - could you give me race [10](race)schedule?
+    - race [red bull ring](race_name) schedule
+    - schedule for race [3](race) 
+    - what's the schedule for race [4](race)?
+    - what's the race [10](race) schedule?
+    - what's the schedule for the race [mexico](race_name) race?
+    - what's the race [3](race) schedule?
+    - give me info on race [spain](race_name) race schedule
+    - info on race [12](race) schedule
+    - could you give me [italy](race_name)race schedule?
 
 - intent: nth_race_results
   examples: |
     - race [4](race) results
-    - [italy](race) race results
-    - what are [austria](race) race results?
-    - how did [circuit paul ricard](race) race end up?
+    - [italy](race_name) race results
+    - what are [austria](race_name) race results?
+    - how did [circuit paul ricard](race_name) race end up?
     - give me info on race [6](race) results
-    - could you give me info on [le castellet](race) race results?
-    - results of [mexico city](race) race
+    - could you give me info on [le castellet](race_name) race results?
+    - results of [mexico city](race_name) race
     - order of arrival for race [1](race)?
     - race [10](race) order of arrival
+    - [spain](race_name) race results
+    - race [3](race) results
+    - what are race [5](race) results?
+    - how did race [7](race) end up?
+    - give me info on [abu dhabi](race) race results
+    - could you give me info on race [8](race) results?
+    - results of race [9](race)
+    - order of arrival for [red bull ring](race_name) race ?
+    - [uk](race_name) race order of arrival
 
 - intent: nth_race_circuit
   examples: |
     - race [4](race) circuit
     - race [5](race) circuit info
-    - circuit of the [uk](race) race
-    - what's the circuit of the [spa](race) race?
+    - circuit of the [uk](race_name) race
+    - what's the circuit of the [spa](race_name) race?
     - give me info on race [6](race) circuit
-    - could you give me info on [silverstone](race) race circuit?
+    - could you give me info on [silverstone](race_name) race circuit?
     - general info on race circuit [1](race)?
     - describe race [10](race) circuit 
+    - [italy](race_name) race circuit
+    - [spain](race_name) race circuit info
+    - circuit of race [2](race) 
+    - what's the circuit of race [3](race)?
+    - give me info on [autodromo di monza](race_name) race circuit
+    - could you give me info on race [12](race) circuit?
+    - general info on [silverstone](race_name) race circuit?
+    - describe [mexico](race_name) race circuit
 
 - intent: highlights
   examples: |

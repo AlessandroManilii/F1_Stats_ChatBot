@@ -29,8 +29,7 @@ intents:
       use_entities: true
   - nth_race_circuit:
       use_entities: true
-  - highlights:
-      use_entities: true
+  - highlights
 
   # driver intents
   - standings
@@ -59,7 +58,6 @@ intents:
         use_entities: true
   - season_winner:
         use_entities: true
-
 
 entities:
  - season
@@ -138,6 +136,7 @@ actions:
 - action_nth_race_schedule
 - action_nth_race_results
 - action_nth_race_circuit
+- action_highlights
 - action_show_constructor_standings
 - action_show_standings_year
 - action_show_standings

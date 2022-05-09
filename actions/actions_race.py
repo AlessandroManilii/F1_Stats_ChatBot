@@ -224,48 +224,52 @@ class ActionNthRace(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-         
-        #race = next(tracker.get_latest_entity_values('race'), None)
-        #if race is None:
-        race = tracker.get_slot('race')
+
+        race_num_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
+
+        race_entity = next(tracker.get_latest_entity_values('race'), None)
+        race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
+        if race_entity is not None:
+            race = race_entity
+        else:
+            race = race_name_entity
         if race is None:
             output = "Sorry you didn't specify the race.\n"
         else:
-            session = f1.get_session(2022, race ,'R')
-            race_num = session.event.gp
-            if race_num not in range(1,25):
-                output = "Sorry you didn't specify a correct race number.\n"
-        r=requests.get(url='http://ergast.com/api/f1/current/'+str(race)+'.json')
+            if race in race_num_list:
+                race_num = race
+            else:
+                session = f1.get_session(2022, race,'R')
+                race_num = session.event.gput = "Sorry you didn't specify a correct race number.\n"
+            r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'.json')
+            if r.status_code == 200 :
+                data = r.json()
+                data = data['MRData'] ['RaceTable']['Races'][0]
+                round = data['round']
+                name = data['raceName']
+                country = data['Circuit']['Location']['country']
+                city = data['Circuit']['Location']['locality']
+                circuit_name = data['Circuit']['circuitName']
+                schedule_header = "\t\tDate\t\tTime \n"
+                output = str(race_num) + "° race of current season is " \
+                    + name + " (n° " + str(round) + ").\n" \
+                    + "It's planned to be held in " + country + "," + city \
+                    + " at " + circuit_name + ".\n" \
+                    + "The following it's the official race schedule:\n" \
+                    + schedule_header \
+                    + "Race \t\t" + data['date'] + "\t" + data['time'].replace(':00Z', " (GMT)") + "\n" \
+                    + "First Practice \t" + data['FirstPractice']['date'] \
+                        + "\t" + data['FirstPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
+                    + "Second Practice\t" + data['SecondPractice']['date'] \
+                        + "\t" + data['SecondPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
+                    + "Qualifying \t" +  data['Qualifying']['date'] \
+                        + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)") + "\n"
 
-        if r.status_code == 200 :
-            data = r.json()
-            data = data['MRData'] ['RaceTable']['Races'][0]
-            season = data['season']
-            round = data['round']
-            name = data['raceName']
-            country = data['Circuit']['Location']['country']
-            city = data['Circuit']['Location']['locality']
-            circuit_name = data['Circuit']['circuitName']
-            schedule_header = "\t\tDate\t\tTime \n"
-            output = "The " + str(race) + "° race of " + season + " season is " \
-                + name + " (n° " + str(round) + ").\n" \
-                + "It will be held in " + country + "," + city \
-                + " at " + circuit_name + ".\n" \
-                + "The following it's the official race schedule:\n" \
-                + schedule_header \
-                + "Race \t\t" + data['date'] + "\t" + data['time'].replace(':00Z', " (GMT)") + "\n" \
-                + "First Practice \t" + data['FirstPractice']['date'] \
-                    + "\t" + data['FirstPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
-                + "Second Practice\t" + data['SecondPractice']['date'] \
-                    + "\t" + data['SecondPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
-                + "Qualifying \t" +  data['Qualifying']['date'] \
-                    + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)") + "\n"
-
-            if 'Sprint' in data:
-                output += "Sprint \t\t" +  data['Sprint']['date'] \
-                    + "\t" + data['Sprint']['time'].replace(':00Z', " (GMT)")
-        else:
-            output = "Sorry there might be a problem with the server, please try again\n"
+                if 'Sprint' in data:
+                    output += "Sprint \t\t" +  data['Sprint']['date'] \
+                        + "\t" + data['Sprint']['time'].replace(':00Z', " (GMT)")
+            else:
+                output = "Sorry there might be a problem with the server, please try again\n"
 
         dispatcher.utter_message(text=output)
         return []
@@ -279,38 +283,43 @@ class ActionNthRaceSchedule(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        #race = next(tracker.get_latest_entity_values('race'), None)
-        #if race is None:
-        race = tracker.get_slot('race')
+        race_num_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
+        
+        race_entity = next(tracker.get_latest_entity_values('race'), None)
+        race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
+        if race_entity is not None:
+            race = race_entity
+        else:
+            race = race_name_entity
         if race is None:
             output = "Sorry you didn't specify the race.\n"
         else:
-            session = f1.get_session(2022, race ,'R')
-            race_num = session.event.gp
-            if race_num not in range(1,25):
-                output = "Sorry you didn't specify a correct race number.\n"
+            if race in race_num_list:
+                race_num = race
             else:
-                r=requests.get(url='http://ergast.com/api/f1/current/'+str(race)+'.json')
-                if r.status_code == 200 :
-                    data = r.json()
-                    data = data['MRData'] ['RaceTable']['Races'][0]
-                    name = data['raceName']
-                    schedule_header = "\t\tDate\t\tTime \n"
-                    output = "The following it's the official race schedule for " + name + ":\n" \
-                        + schedule_header \
-                        + "Race \t\t" + data['date'] + "\t" + data['time'].replace(':00Z', " (GMT)") + "\n" \
-                        + "First Practice \t" + data['FirstPractice']['date'] \
-                            + "\t" + data['FirstPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
-                        + "Second Practice\t" + data['SecondPractice']['date'] \
-                            + "\t" + data['SecondPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
-                        + "Qualifying \t" +  data['Qualifying']['date'] \
-                            + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)") + "\n"
+                session = f1.get_session(2022, race,'R')
+                race_num = session.event.gp
+            r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'.json')
+            if r.status_code == 200 :
+                data = r.json()
+                data = data['MRData'] ['RaceTable']['Races'][0]
+                name = data['raceName']
+                schedule_header = "\t\tDate\t\tTime \n"
+                output = "The following it's the official race schedule for " + name + ":\n" \
+                    + schedule_header \
+                    + "Race \t\t" + data['date'] + "\t" + data['time'].replace(':00Z', " (GMT)") + "\n" \
+                    + "First Practice \t" + data['FirstPractice']['date'] \
+                        + "\t" + data['FirstPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
+                    + "Second Practice\t" + data['SecondPractice']['date'] \
+                        + "\t" + data['SecondPractice']['time'].replace(':00Z', " (GMT)") + "\n" \
+                    + "Qualifying \t" +  data['Qualifying']['date'] \
+                        + "\t" + data['Qualifying']['time'].replace(':00Z', " (GMT)") + "\n"
 
-                    if 'Sprint' in data:
-                        output += "Sprint \t" +  data['Sprint']['date'] \
-                            + "\t" + data['Sprint']['time'].replace(':00Z', " (GMT)")
-                else:
-                    output = "Sorry there might be a problem with the server, please try again\n"
+                if 'Sprint' in data:
+                    output += "Sprint \t" +  data['Sprint']['date'] \
+                        + "\t" + data['Sprint']['time'].replace(':00Z', " (GMT)")
+            else:
+                output = "Sorry there might be a problem with the server, please try again\n"
 
         dispatcher.utter_message(text=output)
         return []
@@ -323,56 +332,60 @@ class ActionNthRaceResults(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        race_num_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
         
-       #race = next(tracker.get_latest_entity_values('race'), None)
-        #if race is None:
-        race = tracker.get_slot('race')
+        race_entity = next(tracker.get_latest_entity_values('race'), None)
+        race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
+        if race_entity is not None:
+            race = race_entity
+        else:
+            race = race_name_entity
         if race is None:
             output = "Sorry you didn't specify the race.\n"
         else:
-            session = f1.get_session(2022, race ,'R')
-            race_num = session.event.gp
-            if race_num not in range(1,25):
-                output = "Sorry you didn't specify a correct race number.\n"
+            if race in race_num_list:
+                race_num = race
             else:
-                r=requests.get(url='http://ergast.com/api/f1/current/'+str(race)+'/results.json')
+                session = f1.get_session(2022, race, 'R')
+                race_num = session.event.gp
+            r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'/results.json')
+            if r.status_code == 200 :
+                data = r.json()
+                data = data['MRData'] ['RaceTable']['Races']
+                if len(data) == 0:
+                    output = race + " race of current season hasn't be raced yet."
+                else:
+                    data = data[0]
+                    name = data['raceName']
+                    output = name + " race results of current season are the following:\n" 
+                    results_header = "N.\tPilot\t\tConstructor\tTime\t\tFastest Lap\tPoints\n"
+                    output += results_header
+                    results = data['Results']
+                    for record in results:
+                        row = []
+                        row.append(record['position'])
+                        row.append(record['Driver']['familyName'])
+                        row.append(record['Constructor']['name'])
+                        if 'Time' in record:
+                            row.append(record['Time']['time'])
+                        else: 
+                            row.append("-------")
+                        if 'FastestLap' in record:
+                            row.append(record['FastestLap']['Time']['time'])
+                        else: 
+                            row.append("-------")
+                        row.append(record['points'])
 
-                if r.status_code == 200 :
-                    data = r.json()
-                    data = data['MRData'] ['RaceTable']['Races']
-                    if len(data) == 0:
-                        output = "The " + race + "° race of current season hasn't be raced yet."
-                    else:
-                        data = data[0]
-                        name = data['raceName']
-                        output = "Results for " + race + "° race of current season are the following:\n" 
-                        results_header = "N.\tPilot\t\tConstructor\tTime\t\tFastest Lap\tPoints\n"
-                        output += results_header
-                        results = data['Results']
-                        for record in results:
-                            row = []
-                            row.append(record['position'])
-                            row.append(record['Driver']['familyName'])
-                            row.append(record['Constructor']['name'])
-                            if 'Time' in record:
-                                row.append(record['Time']['time'])
+                        output += row[0] + "\t"
+                        for el in row[1:]:
+                            if len(el)>7:
+                                output += el + "\t" 
                             else: 
-                                row.append("-------")
-                            if 'FastestLap' in record:
-                                row.append(record['FastestLap']['Time']['time'])
-                            else: 
-                                row.append("-------")
-                            row.append(record['points'])
-
-                            output += row[0] + "\t"
-                            for el in row[1:]:
-                                if len(el)>7:
-                                    output += el + "\t" 
-                                else: 
-                                    output += el + "\t\t"
-                            output +=  "\n"
-        else:
-            output = "Sorry there might be a problem with the server, please try again\n"
+                                output += el + "\t\t"
+                        output +=  "\n"
+            else:
+                output = "Sorry there might be a problem with the server, please try again\n"
 
         dispatcher.utter_message(text=output)
         return []
@@ -386,29 +399,34 @@ class ActionNthRaceCircuit(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        #race = next(tracker.get_latest_entity_values('race'), None)
-        #if race is None:
-        race = tracker.get_slot('race')
+        race_num_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
+
+        race_entity = next(tracker.get_latest_entity_values('race'), None)
+        race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
+        if race_entity is not None:
+            race = race_entity
+        else:
+            race = race_name_entity
         if race is None:
             output = "Sorry you didn't specify the race.\n"
         else:
-            session = f1.get_session(2022, race ,'R')
-            race_num = session.event.gp
-            if race_num not in range(1,25):
-                output = "Sorry you didn't specify a correct race number.\n"
+            if race in race_num_list:
+                race_num = race
             else:
-                r=requests.get(url='http://ergast.com/api/f1/current/'+str(race)+'/circuits.json')
-                if r.status_code == 200 :
-                    data = r.json()
-                    data = data['MRData']['CircuitTable']['Circuits'][0]
-                    circuit = data['circuitName']
-                    city_country = data['Location']['locality'] + ',' + data['Location']['country']
-                    wiki_url = data['url']
-                    output = "The " + race + "° race of current season is planned to be raced in " \
-                    + circuit + ", located in " + city_country \
-                    + ". More details on circuit can be found at " + wiki_url 
-                else:
-                    output = "Sorry there might be a problem with the server, please try again\n"     
+                session = f1.get_session(2022, race, 'R')
+                race_num = session.event.gp
+            r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'/circuits.json')
+            if r.status_code == 200 :
+                data = r.json()
+                data = data['MRData']['CircuitTable']['Circuits'][0]
+                circuit = data['circuitName']
+                city_country = data['Location']['locality'] + ',' + data['Location']['country']
+                wiki_url = data['url']
+                output = race + " race of current season is planned to be raced in " \
+                + circuit + ", located in " + city_country \
+                + ". More details on circuit can be found at " + wiki_url 
+            else:
+                output = "Sorry there might be a problem with the server, please try again\n"     
 
         dispatcher.utter_message(text=output)
         return []

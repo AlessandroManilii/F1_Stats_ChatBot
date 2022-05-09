@@ -47,4 +47,9 @@ stories:
   - intent: nth_race_circuit
   - action: action_nth_race_circuit
 
+- story: highlights short
+  steps:
+  - intent: highlights
+  - action: action_highlights
+
 
