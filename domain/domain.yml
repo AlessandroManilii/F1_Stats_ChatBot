@@ -30,6 +30,7 @@ intents:
   - nth_race_circuit:
       use_entities: true
   - highlights
+  - next_race_tv 
 
   # driver intents
   - standings
@@ -74,7 +75,7 @@ slots:
      mappings:
      - type: from_entity
        entity: season
-   constructor:
+   constructor_name:
      type: text
      mappings:
      - type: from_entity
@@ -149,3 +150,4 @@ actions:
 - action_list_constructors
 - action_show_winner_year
 - action_championship_wikipedia
+- action_next_race_on_tv

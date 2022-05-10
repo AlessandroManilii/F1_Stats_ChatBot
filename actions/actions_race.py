@@ -6,6 +6,7 @@ import urllib.request
 import fastf1 as f1
 from datetime import date
 import re
+import pandas as pd
 
 from rasa_sdk.events import SlotSet
 from rasa_sdk import Action, Tracker
@@ -449,3 +450,32 @@ class ActionHighlights(Action):
             output = "https://www.youtube.com/watch?v=" + video_ids[i]
             dispatcher.utter_message(text=output)
         return []
+
+class ActionNextRaceOnTv(Action):
+
+    def name(self) -> Text:
+        return "action_next_race_on_tv"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        r=requests.get(url='http://ergast.com/api/f1/current/next.json')
+        if r.status_code == 200 :
+            data = r.json()
+            data = data['MRData']['RaceTable']['Races'][0]
+            season = data['season']
+            round = data['round']
+            name = data['raceName']
+            #check info TV
+            df = pd.read_csv("./tv.csv", delimiter=';')
+            info = df.loc[df['Index'] == int(round)]
+            if info['free'].values[0] == "si":
+                output = "The race of " + name + " will be broadcast free to air on TV and pay TV Sky"
+            else:
+                output = "The race of " + name + " will be broadcast exclusively on Sky" 
+        else:
+            output = "Sorry there might be a problem with the server, please try again\n"
+
+        dispatcher.utter_message(text=output)
+        return []    

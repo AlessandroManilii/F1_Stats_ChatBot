@@ -52,4 +52,15 @@ stories:
   - intent: highlights
   - action: action_highlights
 
+- story: next race info tv
+  steps:
+  - intent: next_race_tv
+  - action: action_next_race_on_tv
+
+- story: next race more info
+  steps:
+  - intent: next_race
+  - action: action_next_race
+  - intent: next_race_tv
+  - action: action_next_race_on_tv  
 

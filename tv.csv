@@ -1,23 +1,23 @@
-index,Data,Number,Gran premio,Lunghezza,Giri,TV,free
-1,18-20 mar,first,GP Bahrain,5.412 km,57,Diretta esclusiva Sky,no
-2,25-27 mar,second,GP Arabia Saudita,6.174 km,50,Diretta esclusiva Sky,no
-3,8-10 apr,third,GP Australia,5.303 km,58,Diretta esclusiva Sky,no
-4,22-24 apr,fourth,GP Emilia Romagna,4.909 km,63,Diretta Sky,si
-5,6-8 mag,fifth,GP Miami5.41 km,57,Diretta esclusiva Sky,no
-6,20-22 mag,sixth,GP Spagna4.655 km,66,Diretta Sky,si
-7,27-29 mag,seventh,GP Monaco3.337 km,78,Diretta esclusiva Sky,no
-8,10-12 giu,eighth,GP Azerbaijan,6.003 km,51,Diretta esclusiva Sky,no
-9,17-19 giu,ninth,GP Canada4.361 km,70,Diretta esclusiva Sky,no
-10,1-3 lug,tenth,GP Gran Bretagna,5.891 km,52,Diretta esclusiva Sky,no
-11,8-10 lug,eleventh,GP Austria,4.318 km,71,Diretta esclusiva Sky,no
-12,22-24 lug,twelfth,GP Francia,5.842 km,53,Diretta Sky,si
-13,29-31 lug,thirteenth,GP Ungheria,4.381 km,70,Diretta esclusiva Sky,no
-14,26-28 ago,fourteenth,GP Belgio7.004 km,44,Diretta esclusiva Sky,no
-15,2-4 set,fifteenth,GP Olanda4.259 km,72,Diretta esclusiva Sky,no
-16,9-11 set,sixteenth,GP Italia5.793 km,53,Diretta Sky,si
-17,30 set-2 ott,seventeenth,GP Singapore,5.063 km,61,Diretta esclusiva Sky,no
-18,7-9 ott,eighteenth,GP Giappone,5.807 km,53,Diretta esclusiva Sky,no
-19,21-23 ott,nineteenth,GP Stati Uniti,5.513 km,56,Diretta Sky,si
-20,28-30 ott,twentieth,GP Messico,4.304 km,71,Diretta esclusiva Sky,no
-21,11-13 nov,twentieth-first,GP Brasile,4.309 km,71,Diretta esclusiva Sky,no
-22,18-20 nov,twentieth-second,GP Abu Dhabi,5.554 km,58,Diretta esclusiva Sky,no
+Index;Data;Number;Gran premio;Lunghezza;Giri;TV;free
+1;18-20 mar;first;GP Bahrain;5.412 km;57;Diretta esclusiva Sky;no
+2;25-27 mar;second;GP Arabia Saudita;6.174 km;50;Diretta esclusiva Sky;no
+3;8-10 apr;third;GP Australia;5.303 km;58;Diretta esclusiva Sky;no
+4;22-24 apr;fourth;GP Emilia Romagna;4.909 km;63;Diretta Sky;si
+5;6-8 mag;fifth;GP Miami;5.41 km;57;Diretta esclusiva Sky;no
+6;20-22 mag;sixth;GP Spagna;4.655 km;66;Diretta Sky;si
+7;27-29 mag;seventh;GP Monaco;3.337 km;78;Diretta esclusiva Sky;no
+8;10-12 giu;eighth;GP Azerbaijan;6.003 km;51;Diretta esclusiva Sky;no
+9;17-19 giu;ninth;GP Canada;4.361 km;70;Diretta esclusiva Sky;no
+10;1-3 lug;tenth;GP Gran Bretagna;5.891 km;52;Diretta esclusiva Sky;no
+11;8-10 lug;eleventh;GP Austria;4.318 km;71;Diretta esclusiva Sky;no
+12;22-24 lug;twelfth;GP Francia;5.842 km;53;Diretta Sky;si
+13;29-31 lug;thirteenth;GP Ungheria;4.381 km;70;Diretta esclusiva Sky;no
+14;26-28 ago;fourteenth;GP Belgio;7.004 km;44;Diretta esclusiva Sky;no
+15;2-4 set;fifteenth;GP Olanda;4.259 km;72;Diretta esclusiva Sky;no
+16;9-11 set;sixteenth;GP Italia;5.793 km;53;Diretta Sky;si
+17;30 set-2 ott;seventeenth;GP Singapore;5.063 km;61;Diretta esclusiva Sky;no
+18;7-9 ott;eighteenth;GP Giappone;5.807 km;53;Diretta esclusiva Sky;no
+19;21-23 ott;nineteenth;GP Stati Uniti;5.513 km;56;Diretta Sky;si
+20;28-30 ott;twentieth;GP Messico;4.304 km;71;Diretta esclusiva Sky;no
+21;11-13 nov;twentieth-first;GP Brasile;4.309 km;71;Diretta esclusiva Sky;no
+22;18-20 nov;twentieth-second;GP Abu Dhabi;5.554 km;58;Diretta esclusiva Sky;no

@@ -13,6 +13,20 @@ nlu:
     - details on next race
     - details on following race
 
+- intent: next_race_tv
+  examples: | 
+    - where can i see the next race on tv ?
+    - next race on TV
+    - where can i see the race ?
+    - give me info on next race on TV
+    - info on where i can see the race
+    - information on where i can see the race
+    - can you tell me where i can see the next race on tv?
+    - can you tell me where I can see the race? 
+    - tell me where I can see the race 
+    - the race will be broadcast in clear 
+    - will the race be broadcast in clear?
+
 - intent: next_race_schedule
   examples: | 
     - next race schedule
