@@ -179,6 +179,48 @@ nlu:
     - send me qualifying highlights please
     - qualifying highlights of last race
 
+- intent: nth_race_highlights
+  examples: |
+    - [miami](race_name) highlights
+    - [miami](race_name) race highlights
+    - [1](race) highlights
+    - race [2](race) highlights
+    - give me [mexico](race_name) highlights
+    - give me race [4](race) highlights
+    - highlights of [uk](race_name)
+    - highlights of [uk](race_name) race
+    - what are [red bull ring](race_name) race highlights?
+    - what are race [4](race) highlights?
+    - are there highlights for [italy](race_name)?
+    - are there highlights for race [2](race)?
+    - could you give me [monza](race_name) highlights?
+    - could you give me race [5](race) highlights?
+    - send me [monza](race_name) race highlights please?
+    - send me race [10](race) highlights please?
+
+- intent: nth_race_qualifying_highlights
+  examples: |
+    - [miami](race_name) qualifying highlights
+    - race [2](race) qualifying highlights
+    - qualification highlights [miami](race_name) 
+    - qualification highlights [miami](race_name)
+    - [1](race) qualifying highlights
+    - race [2](race) qualifying highlights
+    - give me [mexico](race_name) qualification highlights
+    - give me [mexico](race_name) qualifying highlights
+    - give me race [4](race) qualification highlights
+    - qualification highlights of [uk](race_name)
+    - qaulification highlights of [uk](race_name) race
+    - qualifying highlights of [uk](race_name) race
+    - what are [red bull ring](race_name) race qualifying highlights?
+    - what are race [4](race) qualifying highlights?
+    - are there qualifying highlights for [italy](race_name)?
+    - are there qualifying highlights for race [2](race)?
+    - could you give me [monza](race_name) qualifying highlights?
+    - could you give me race [5](race) qualifying highlights?
+    - send me [monza](race_name) race qualifying highlights please?
+    - send me race [10](race) qualifying highlights please?
+
 #regex definition
 - regex : race
   examples: |

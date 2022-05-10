@@ -443,7 +443,7 @@ class ActionHighlights(Action):
         r=requests.get(url='http://ergast.com/api/f1/current/last.json')
         data = r.json()
         race = data['MRData']['RaceTable']['Races'][0]['raceName']
-        search_keyword="f1+highlights+"+str(date.today().year)+"+"+race.replace(" ", "")
+        search_keyword="f1+"+str(date.today().year)+race.replace(" ", "")+"+highlights"
         html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + search_keyword)
         video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
         for i in range(1):
@@ -463,12 +463,100 @@ class ActionQualifyingHighlights(Action):
         r=requests.get(url='http://ergast.com/api/f1/current/last.json')
         data = r.json()
         race = data['MRData']['RaceTable']['Races'][0]['raceName']
-        search_keyword="f1+highlights+qualifying+"+str(date.today().year)+"+"+race.replace(" ", "")
+        search_keyword="f1+"+str(date.today().year)+race.replace(" ", "")+"qualifying+highlights"
         html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + search_keyword)
         video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
         for i in range(1):
             output = "https://www.youtube.com/watch?v=" + video_ids[i]
             dispatcher.utter_message(text=output)
+        return []
+
+class ActionNthRaceHighlights(Action):
+
+    def name(self) -> Text:
+        return "action_nth_race_highlights"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        race_num_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
+        
+        race_entity = next(tracker.get_latest_entity_values('race'), None)
+        race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
+        if race_entity is not None:
+            race = race_entity
+        else:
+            race = race_name_entity
+        if race is None:
+            output = "Sorry you didn't specify the race.\n"
+        else:
+            if race in race_num_list:
+                race_num = race
+            else:
+                session = f1.get_session(date.today().year, race, 'R')
+                race_num = session.event.gp
+            r=requests.get(url='http://ergast.com/api/f1/current/last.json')
+            data = r.json()
+            last_race = data['MRData']['RaceTable']['round']
+            if race_num < int(last_race):
+                output = race + "Given grand prix has not be raced yet."
+            else:
+                r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'.json')
+                data = r.json()
+                race = data['MRData']['RaceTable']['Races'][0]['raceName']
+                search_keyword="f1+"+str(date.today().year)+race.replace(" ", "")+"highlights"
+                html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + search_keyword)
+                video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+                for i in range(1):
+                    output = "https://www.youtube.com/watch?v=" + video_ids[i]
+        dispatcher.utter_message(text=output)
+        return []
+
+class ActionNthRaceQualifyingHighlights(Action):
+
+    def name(self) -> Text:
+        return "action_nth_race_qualifying_highlights"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        race_num_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
+        
+        race_entity = next(tracker.get_latest_entity_values('race'), None)
+        race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
+        if race_entity is not None:
+            race = race_entity
+        else:
+            race = race_name_entity
+        if race is None:
+            output = "Sorry you didn't specify the race.\n"
+        else:
+            if race in race_num_list:
+                race_num = race
+                print("no numerical race\n")
+            else:
+                session = f1.get_session(date.today().year, race, 'R')
+                race_num = session.event.gp
+                print(race_num)
+            
+            r=requests.get(url='http://ergast.com/api/f1/current/last.json')
+            data = r.json()
+            last_race = data['MRData']['RaceTable']['round']
+            if race_num > int(last_race):
+                output = "Given grand prix has not be raced yet."
+            else:
+                r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'.json')
+                data = r.json()
+                race = data['MRData']['RaceTable']['Races'][0]['raceName']
+                search_keyword="f1+"+str(date.today().year)+race.replace(" ", "")+"qualifying+highlights"
+                print(search_keyword)
+                html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + search_keyword)
+                video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+                for i in range(1):
+                    output = "https://www.youtube.com/watch?v=" + video_ids[i]
+        dispatcher.utter_message(text=output)
         return []
 
 class ActionNextRaceOnTv(Action):
