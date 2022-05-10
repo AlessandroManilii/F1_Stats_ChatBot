@@ -25,7 +25,7 @@ from rasa_sdk.knowledge_base.storage import InMemoryKnowledgeBase
 from rasa_sdk.knowledge_base.actions import ActionQueryKnowledgeBase
 from rasa_sdk.events import SlotSet
 
-codes = {"leclerc": "LEC", "sainz": "SAI", "max_verstappen": "VER", "perez": "PER", "hamilton": "HAM", "russel": "RUS",
+codes = {"leclerc": "LEC", "sainz": "SAI", "max_verstappen": "VER", "perez": "PER", "hamilton": "HAM", "russell": "RUS",
          "norris": "NOR", "ricciardo": "RIC", "alonso" : "ALO", "ocon" : "OCO", "gasly" : "GAS", "tsunoda" : "TSU",
          "magnussen" : "MAG", "mick_schumacher" : "MSC", "vettel" : "VET", "stroll" : "STR", "albon" : "alb", "latifi": "LAT",
          "bottas" : "BOT", "zhou" : "ZHO", "hulkenberg": "HUL"}
@@ -101,6 +101,7 @@ class ActionShowDriverStanding(Action):
                 season = data['MRData']['StandingsTable']['season']
                 ranking = list(data['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'])
                 not_found = True
+                driver = driver.lower()
                 for x in ranking:
                     if x['Driver']['driverId'] == driver:
                         output = x['Driver']['givenName'] + " " + x['Driver']['familyName'] + " "
@@ -131,6 +132,7 @@ class ActionShowDriverInfo(Action):
         if driver is None:
             output = "Sorry, you didn't specify the driver.\n"
         else:
+            driver = driver.lower()
             r=requests.get(url='http://ergast.com/api/f1/drivers/'+driver+'.json')
 
             if r.status_code == 200 :
@@ -144,7 +146,7 @@ class ActionShowDriverInfo(Action):
                     summary = wikipedia.summary(d["givenName"]+ " " +d["familyName"]+xt,auto_suggest=False, sentences = 3)
                     output = str(summary)
                 except Exception as e:
-                    output = e+"There might be problems with wikipedia at the moment, please try later.\n"
+                    output = str(e)+". There might be problems with wikipedia at the moment, please try later.\n"
             else:
                 output = "Sorry there might be a problem with the server, please try again.\n"
         dispatcher.utter_message(text=output)
@@ -170,12 +172,15 @@ class ActionShowDriverLapTimes(Action):
         
         if driver is None:
             output = "Sorry, you didn't specify the driver.\n"
+        elif driver not in codes:
+            output = "Sorry, this driver is not participating in this season.\n"
         elif race is None:
             output = "Sorry, you didn't specify a grand prix or a circuit.\n"
         else:
             now = datetime.datetime.now()
             year = int(now.date().strftime("%Y"))
             f1.Cache.enable_cache('./f1_cache')
+            driver = driver.lower()
             try:
                 session = f1.get_session(year, race, stype)
             except ValueError as e:
@@ -234,6 +239,7 @@ class ActionShowDriverConstructors(Action):
         if driver is None:
             output = "Sorry you didn't specify the driver.\n"
         else:
+            driver = driver.lower()
             # I have to specify current because in the list of all constructors the records aren't ordered
             r = requests.get(url='http://ergast.com/api/f1/current/drivers/'+driver+'/constructors.json')
             r2 = requests.get(url='http://ergast.com/api/f1/drivers/'+driver+'.json')

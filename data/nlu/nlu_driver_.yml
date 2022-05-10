@@ -25,11 +25,12 @@ nlu:
     - what is the standing of [max_verstappen](driver)?
     - show me the points of [alonso](driver)
     - i want to know the standings for [ricciardo](driver)
-    - can i have the points for [russel](driver)?
+    - can i have the points for [russell](driver)?
     - can i have [albon](driver)'s standing?
     - [stroll](driver) position in the championship
     - what is [perez](driver) position in the championship?
     - what is [magnussen](driver) standing?
+    - what's [zhou](driver) standing?
     - [charles](driver) standing
     - [lewis](driver) points
     - how many points does [sebastian](driver) have at the moment?
@@ -42,6 +43,7 @@ nlu:
     - what is [sergio](driver) position in the championship?
     - what is [kevin](driver) standing?
     - give me [pierre](driver) points
+    - how many points does [hulkenberg](driver) have?
     - i would like to know [yuki](driver) standing
     - standing of [valtteri](driver)
     - points obtained by [guanyu](driver)
@@ -62,9 +64,11 @@ nlu:
     - tell me something about [hamilton](driver)
     - who is [vettel](driver)?
     - who is [esteban](driver)
-    - information about [russel](driver)
+    - information about [russell](driver)
     - show me info on [max_verstappen](driver)
     - i would like some info on [alonso](driver)
+    - some more information on [hulkenberg](driver)
+    - extra information on [zhou](driver)
     - [perez](driver) information
     - i want [norris](driver) bio
     - what is his general information?
@@ -94,10 +98,11 @@ nlu:
     - what are his lap times at [baku city circuit](race_name) during the [sprint](session_type)? 
     - i would like to know the lap times of [ocon](driver) at [jeddah](race_name) on [qualifying](session_type) day
     - i want [gasly](driver)'s lap times for [free practice 3](session_type) in [australia](race_name)
-    - [russel](driver)'s lap times during [fp2](session_type) at [miami](race_name)
+    - [russell](driver)'s lap times during [fp2](session_type) at [miami](race_name)
     - lap times of [lewis](driver) during [free practice 2](session_type) in [abu dhabi](race_name)
     - what are [ocon](driver) lap times at the [australian](race_name) grand prix [fp3](session_type)
     - lap times for [carlos](driver) during [free practice 3](session_type) at [monza](race_name)
+    - lap times of [hulkenberg](driver) at [miami](race_name) [qualifying](session_type)
 
 - intent: driver_constructors
   examples: |
@@ -105,6 +110,7 @@ nlu:
     - which is [sebastian](driver)'s team?
     - for which constructors is [hamilton](driver) driving?
     - [magnussen](driver) constructors
+    - i want to know [zhou](driver)'s constructor
     - [fernando](driver) team
     - what team is [sainz](driver) signed to?
     - what are his constructors?
@@ -227,7 +233,7 @@ nlu:
     - max_verstappen
     - perez
     - hamilton
-    - russel
+    - russell
     - norris
     - bottas
     - zhou
@@ -248,18 +254,21 @@ nlu:
   examples: |
     - charles
     - charles leclerc
+    - Leclerc
 
 - synonym: sainz
   examples: |
     - carlos
     - carlos sainz
     - carlos sainz jr.
+    - Sainz
 
 - synonym: max_verstappen
   examples: |
     - max
     - max verstappen
     - verstappen
+    - Verstappen
 
 - synonym: perez
   examples: |
@@ -269,95 +278,100 @@ nlu:
     - sergio peréz
     - sergio perez
     - checo perez
+    - Perez
 
 - synonym: hamilton
   examples: |
     - lewis
     - lewis hamilton
+    - Hamilton
     
-- synonym: russel
+- synonym: russell
   examples: |
     - george
-    - george russel
+    - george russell
+    - Russell
 
 - synonym: norris
   examples: |
     - lando
     - lando norris
+    - Norris
 
 - synonym: ricciardo
   examples: |
     - daniel
     - daniel ricciardo
+    - Ricciardo
     
 - synonym: alonso
   examples: |
     - fernando
     - fernando alonso
-    
+    - Alonso
 - synonym: ocon
   examples: |
     - esteban
     - esteban ocon
-    
+    - Ocon
 - synonym: vettel
   examples: |
     - sebastian
     - sebastian vettel
-    
+    - Vettel
 - synonym: stroll
   examples: |
     - lance stroll
     - lance
-    
+    - Lance
 - synonym: bottas
   examples: |
     - valtteri
     - valtteri bottas
-
+    - Bottas
 - synonym: zhou
   examples: |
     - zhou guanyu
     - guanyu zhou
     - guanyu
-
+    - Zhou
 - synonym: albon
   examples: |
     - alexander albon
     - alexander
     - alex albon
-    
+    - Albon
 - synonym: latifi
   examples: |
     - nicholas latifi
-    
+    - Latifi
 - synonym: magnussen
   examples: |
     - kevin
     - kevin magnussen
-    
+    - Magnussen
 - synonym: mick_schumacher
   examples: |
     - mick
     - mick schumacher
-
+    - Schumacher
 - synonym: gasly
   examples: |
     - pierre
     - pierre jean-jacques
     - pierre gasly
     - pierre jean jacques gasly
-    
+    - Gasly
 - synonym: tsunoda
   examples: |
     - yuki
     - yuki tsunoda
-    
+    - Tsunoda
 - synonym: hulkenberg
   examples: |
     - nico hulkenberg
     - nicolas hulkenberg
-    
+    - Hulkenberg
 - synonym: info
   examples: |
     - information
