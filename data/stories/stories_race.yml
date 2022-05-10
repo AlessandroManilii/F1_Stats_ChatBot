@@ -52,6 +52,11 @@ stories:
   - intent: highlights
   - action: action_highlights
 
+- story: qualifying highlights short
+  steps:
+  - intent: qualifying_highlights
+  - action: action_qualifying_highlights
+
 - story: next race info tv
   steps:
   - intent: next_race_tv

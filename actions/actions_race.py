@@ -451,6 +451,26 @@ class ActionHighlights(Action):
             dispatcher.utter_message(text=output)
         return []
 
+class ActionQualifyingHighlights(Action):
+
+    def name(self) -> Text:
+        return "action_qualifying_highlights"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        r=requests.get(url='http://ergast.com/api/f1/current/last.json')
+        data = r.json()
+        race = data['MRData']['RaceTable']['Races'][0]['raceName']
+        search_keyword="f1+highlights+qualifying+"+str(date.today().year)+"+"+race.replace(" ", "")
+        html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + search_keyword)
+        video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+        for i in range(1):
+            output = "https://www.youtube.com/watch?v=" + video_ids[i]
+            dispatcher.utter_message(text=output)
+        return []
+
 class ActionNextRaceOnTv(Action):
 
     def name(self) -> Text:

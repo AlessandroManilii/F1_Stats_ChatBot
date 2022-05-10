@@ -30,6 +30,7 @@ intents:
   - nth_race_circuit:
       use_entities: true
   - highlights
+  - qualifying_highlights
   - next_race_tv 
 
   # driver intents
@@ -138,6 +139,7 @@ actions:
 - action_nth_race_results
 - action_nth_race_circuit
 - action_highlights
+- action_qualifying_highlights
 - action_show_constructor_standings
 - action_show_standings_year
 - action_show_standings

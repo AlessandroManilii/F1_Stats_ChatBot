@@ -164,6 +164,21 @@ nlu:
     - send me highlights please
     - highlights of last race
 
+- intent: qualifying_highlights
+  examples: |
+    - qualification highlights
+    - qualifying highlights
+    - last race qualification highlights
+    - last race qualifying highlights
+    - give me qualifying highlights
+    - qualifying highlights on last race
+    - what are last qualifying highlights
+    - are there qualifying highlights for last race?
+    - could you give me last qualifying highlights?
+    - could you give me qualifying higlights?
+    - send me qualifying highlights please
+    - qualifying highlights of last race
+
 #regex definition
 - regex : race
   examples: |
