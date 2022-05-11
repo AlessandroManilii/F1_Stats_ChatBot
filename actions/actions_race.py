@@ -240,7 +240,7 @@ class ActionNthRace(Action):
                 race_num = race
             else:
                 session = f1.get_session(date.today().year, race,'R')
-                race_num = session.event.gput = "Sorry you didn't specify a correct race number.\n"
+                race_num = session.event.gp
             r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'.json')
             if r.status_code == 200 :
                 data = r.json()
@@ -354,7 +354,7 @@ class ActionNthRaceResults(Action):
                 data = r.json()
                 data = data['MRData'] ['RaceTable']['Races']
                 if len(data) == 0:
-                    output = race + " race of current season hasn't be raced yet."
+                    output = str(race_num) + "° race of current season hasn't be raced yet."
                 else:
                     data = data[0]
                     name = data['raceName']
@@ -422,7 +422,7 @@ class ActionNthRaceCircuit(Action):
                 circuit = data['circuitName']
                 city_country = data['Location']['locality'] + ',' + data['Location']['country']
                 wiki_url = data['url']
-                output = race + " race of current season is planned to be raced in " \
+                output = str(race_num) + "° race of current season is planned to be raced in " \
                 + circuit + ", located in " + city_country \
                 + ". More details on circuit can be found at " + wiki_url 
             else:
@@ -499,8 +499,8 @@ class ActionNthRaceHighlights(Action):
             r=requests.get(url='http://ergast.com/api/f1/current/last.json')
             data = r.json()
             last_race = data['MRData']['RaceTable']['round']
-            if race_num < int(last_race):
-                output = race + "Given grand prix has not be raced yet."
+            if int(race_num) > int(last_race):
+                output = "Given grand prix has not be raced yet."
             else:
                 r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'.json')
                 data = r.json()
@@ -544,7 +544,7 @@ class ActionNthRaceQualifyingHighlights(Action):
             r=requests.get(url='http://ergast.com/api/f1/current/last.json')
             data = r.json()
             last_race = data['MRData']['RaceTable']['round']
-            if race_num > int(last_race):
+            if int(race_num) > int(last_race):
                 output = "Given grand prix has not be raced yet."
             else:
                 r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'.json')
