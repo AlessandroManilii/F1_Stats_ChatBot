@@ -3,23 +3,39 @@ version: "3.1"
 nlu:
 - intent: season_standings
   examples: |
-    - what was the final standing of the year [2012](season)?
-    - standings of the year [2012](season)
-    - standings [2012](season) 
-    - tell me the standings of the year [2012](season)   
+    - what was the final standing of the year [2005](season)?
+    - standings of the year [2020](season)
+    - standings [1997](season) 
+    - standings of the year [2003](season) 
+    - tell me the standings of the year [2017](season)   
 
 - intent: season_info
   examples: |
-    - tell me information about championship [2012](season)
-    - information on season [2012](season)
-    - Season [2012](season)
+    - tell me information about championship [2019](season)
+    - information on championship [2006](season)
+    - season [1988](season)
+    - info on championship [1991](season)
+    - championship [2020](season)
+    - some info on the championship [1973](season)
+       
 
 - intent: season_winner
   examples: |
-    - tell me information about winner [2012](season)
+    - tell me information about winner [1978](season)
+    - tell me information about champion [2018](season)
+    - tell me information about world champion [1993](season)
     - winner on season [2012](season)
-    - winner [2012](season)
-    - who won the championship in the [2012](season) ?
+    - winner [2008](season)
+    - who won the championship in the [2021](season) ?
+    - who was the champion in the year [2005](season)?
+    - who was the champion in [1960](season)?
+    - the champion in the year [2016](season)
+    - who was the world champion in [2006](season)?
+    - who was the world champion in the year [1994](season)?
+    - world Champion [2015](season)
+    - world champion in [1962](season)
+    - world champion in the year [1982](season)
+
 
 - synonym: standings
   examples: |

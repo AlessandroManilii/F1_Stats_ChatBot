@@ -80,7 +80,9 @@ entities:
 
 slots:
    season:
-     type: text
+     type: float
+     min_value: 1950
+     max_value: 2022
      mappings:
      - type: from_entity
        entity: season
