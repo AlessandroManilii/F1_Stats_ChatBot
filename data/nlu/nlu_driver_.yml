@@ -161,11 +161,11 @@ nlu:
 - lookup: race_name
   examples: |
     - albert park
-    - albert park grand prix circuit
+    - park grandprix circuit
     - melbourne
     - australia
     - australian
-    - circuit of the americas
+    - circuit of americas
     - austin
     - usa
     - united states
@@ -173,27 +173,34 @@ nlu:
     - sakhir
     - bahrain
     - baku city circuit
+    - baku city
     - baku
     - azerbaijan
     - circuit de barcelona-catalunya
+    - circuit de barcelona
     - montmeló
+    - montemelo
     - spain
     - hungaroring
     - budapest
     - hungary
-    - autodromo enzo e dino ferrari
+    - autodromo enzo-dino ferrari
+    - autodromo ferrari
     - emilia romagna
     - imola
     - italy
     - italia
-    - autódromo josé carlos pace
+    - autódromo josé-carlos pace
+    - autodromo jose pace
+    - autodromo pace
     - são paulo
+    - sao paulo
     - brazil
     - jeddah corniche circuit
     - jeddah
     - saudi arabia
     - saudi arabian
-    - marina bay street circuit
+    - marina-bay street circuit
     - marina bay
     - singapore
     - miami international autodrome
@@ -202,7 +209,7 @@ nlu:
     - circuit de monaco
     - monte-carlo
     - monaco
-    - autodromo nazionale di monza
+    - autodromo nazionale monza
     - monza
     - italy
     - red bull ring
@@ -212,7 +219,7 @@ nlu:
     - le castellet
     - france
     - autódromo hermanos rodríguez
-    - autodromo hermanos rodríguez
+    - autodromo hermanos rodriguez
     - mexico city
     - mexico
     - silverstone circuit
