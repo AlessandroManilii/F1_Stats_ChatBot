@@ -236,10 +236,12 @@ class ActionShowDriverConstructors(Action):
         driver = next(tracker.get_latest_entity_values('driver'), None)
         if driver is None:
             driver = tracker.get_slot('driver')
+        driver = driver.lower()
         if driver is None:
             output = "Sorry you didn't specify the driver.\n"
-        else:
-            driver = driver.lower()
+        elif driver not in codes:
+            output = "Sorry, this driver is not participating in this season.\n"
+        else:   
             # I have to specify current because in the list of all constructors the records aren't ordered
             r = requests.get(url='http://ergast.com/api/f1/current/drivers/'+driver+'/constructors.json')
             r2 = requests.get(url='http://ergast.com/api/f1/drivers/'+driver+'.json')

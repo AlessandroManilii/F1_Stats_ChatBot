@@ -2,4 +2,20 @@ version: "3.1"
 
 nlu:
 - intent: circuit_info
-  examples: | 
+  examples: |
+
+- intent: help
+  examples: |
+    - help
+    - help me
+    - what are the commands?
+    - what can i ask you?
+    - what can I ask you?
+    - what can i do?
+    - what can you tell me?
+    - what things can i ask you?
+    - what can you do?
+    - what f1 information you can give me?
+    - what do you know about formula 1?
+    - commands
+    - do you have a manual?

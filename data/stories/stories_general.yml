@@ -1,0 +1,19 @@
+version: "3.1"
+
+stories:
+
+- story: help no full list
+  steps:
+  - intent: help
+  - action: utter_help
+  - action: utter_ask_full_help
+  - intent: deny
+  - action: utter_reply_to_deny
+  
+- story: help full list
+  steps:
+  - intent: help
+  - action: utter_help
+  - action: utter_ask_full_help
+  - intent: full_help
+  - action: utter_full_help

@@ -103,6 +103,14 @@ nlu:
     - what are [ocon](driver) lap times at the [australian](race_name) grand prix [fp3](session_type)
     - lap times for [carlos](driver) during [free practice 3](session_type) at [monza](race_name)
     - lap times of [hulkenberg](driver) at [miami](race_name) [qualifying](session_type)
+    - [zhou](driver) fastest laps [circuit of the americas](race_name) [free practice 1](session_type)
+    - i want his lap times during the [race](session_type) at [marina bay street circuit](race_name)
+    - get [fernando](driver) lap times for [mexico city](race_name) [sprint](session_type)
+    - can i have [charles](driver) lap times at the [saudi arabia](race_name) grand prix during [sprint](session_type)
+    - [daniel](driver)'s best laps at [abu dhabi](race_name) [race](session_type)
+    - i want to know the lap time of [valtteri](driver) during [qualifying](session_type) at [autodromo hermanos rodríguez](race_name)
+    
+    
 
 - intent: driver_constructors
   examples: |
@@ -184,6 +192,7 @@ nlu:
     - jeddah corniche circuit
     - jeddah
     - saudi arabia
+    - saudi arabian
     - marina bay street circuit
     - marina bay
     - singapore
@@ -203,6 +212,7 @@ nlu:
     - le castellet
     - france
     - autódromo hermanos rodríguez
+    - autodromo hermanos rodríguez
     - mexico city
     - mexico
     - silverstone circuit

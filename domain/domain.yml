@@ -15,6 +15,10 @@ intents:
   - mood_unhappy
   - bot_challenge
 
+  # general intents
+  - help
+  - full_help
+
   # race intents
   - next_race
   - next_race_schedule
@@ -127,12 +131,61 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
   
+  utter_reply_to_deny:
+  - text: "Ok, no problem."
+  - text: "Ok, what else can I do for you?"
+  - text: "Understandable, need anything else?"
+  
   utter_fetching:
   - text: "Ok, give me a moment, I'm fetching the data."
+  
+  utter_help:
+  - text: |
+       You can ask me info about a particular race, like the schedule, the results of the race or quali, and the circuit it's held at.
+       I can get you the drivers standings, a driver's general information and lap times for a specific event.
+       Constructors info and standings. And lastly, the standings and the champion of any past season.
+   
+  utter_ask_full_help:   
+  - text: "Would you like to see the full list of tasks I can do?"
+    buttons:
+    - title: "Yes"
+      payload: "/full_help"
+    - title: "No"
+      payload: "/deny"
+  
+  utter_full_help:
+  - text: | 
+        Sure, here it is:
+        RACE INFO:
+        - Next race informations
+        - Next race schedule
+        - Next race tv schedule
+        - Last race details
+        - Last race results or highlights, (race or qualifying)
+        - A specific race schedule, circuit, results or highlights
+        DRIVERS:
+        - Standings
+        - Championship leader
+        - Specific driver's standing, information or constructor
+        - Specifc driver's lap times at a particular event and session
+        CONSTRUCTORS:
+        - Construsctors list of this season
+        - Constructors standings
+        - Specifc constructor general information
+        SEASONS:
+        - A specific season's standings, champion or information
+        GENERAL:
+        - Help
+        - Curiosities (not implemented yet)
+        - Circuit info (not implemented yet)
 
 
 actions:
 - utter_fetching
+- utter_ask_full_help
+- utter_help
+- utter_full_help
+- utter_reply_to_deny
 - action_next_race
 - action_next_race_schedule
 - action_last_race

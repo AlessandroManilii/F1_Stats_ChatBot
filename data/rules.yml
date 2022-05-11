@@ -11,3 +11,15 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: Full help request
+  steps:
+  - intent: full_help
+  - action: utter_full_help
+  
+- rule: help rule
+  steps:
+  - intent: help
+  - action: utter_help
+  - action: utter_ask_full_help
+  
