@@ -39,7 +39,9 @@ intents:
       use_entities: true
   - nth_race_qualifying_highlights:
       use_entities: true
-  - next_race_tv 
+  - next_race_tv
+  - nth_race_tv:
+      use_entities: true
 
   # driver intents
   - standings
@@ -214,3 +216,4 @@ actions:
 - action_show_winner_year
 - action_championship_wikipedia
 - action_next_race_on_tv
+- action_race_on_tv

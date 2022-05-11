@@ -15,16 +15,18 @@ nlu:
 
 - intent: next_race_tv
   examples: | 
-    - where can i see the next race on tv ?
+    - where can i watch the next race on tv ?
     - next race on TV
-    - where can i see the race ?
+    - where can i watch the race ?
     - give me info on next race on TV
-    - info on where i can see the race
-    - information on where i can see the race
-    - can you tell me where i can see the next race on tv?
-    - can you tell me where I can see the race? 
-    - tell me where I can see the race 
+    - info on where i can watch the gran prix
+    - information on where i can watch the race
+    - information on where i can watch the gp
+    - can you tell me where i can watch the next race on tv?
+    - can you tell me where I can watch the race? 
+    - tell me where I can watch the race 
     - the race will be broadcast in clear 
+    - the next gp will be broadcast in clear
     - will the race be broadcast in clear?
 
 - intent: next_race_schedule
@@ -104,6 +106,22 @@ nlu:
     - could you give me info on [circuit park zandvoort](race_name) race?
     - what's general info on race [6](race)?
     - where and when race [7](race)?
+
+- intent: nth_race_tv
+  examples: | 
+    - where can I watch the Grand Prix of [são paulo](race_name)?
+    - where to watch the grand prix of [united states](race_name)?
+    - TV [bahrain international circuit](race_name)
+    - where to watch the race of [italy](race_name)?
+    - where will the [imola](race_name) race be broadcast?[usa](race_name) race info
+    - [silverstone circuit](race_name) race on tv
+    - where can i see the race [budapest](race_name)?
+    - race [monte-carlo](race_name) on tv
+    - gran prix [autódromo josé-carlos pace](race_name) on tv
+    - gp [spain](race_name) on tv 
+    - information on the [silverstone](race_name) grand prix on tv
+    - information on the [jeddah](race_name) race on tv 
+    - tell me where I can watch the [spielberg](race_name) race  
 
 - intent: nth_race_schedule
   examples: |

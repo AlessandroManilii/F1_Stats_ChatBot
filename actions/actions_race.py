@@ -587,3 +587,38 @@ class ActionNextRaceOnTv(Action):
 
         dispatcher.utter_message(text=output)
         return []    
+
+class ActionRaceOnTv(Action):
+
+    def name(self) -> Text:
+        return "action_race_on_tv"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        race_num_list = [format(x, '02d') for x in list(range(1, 26))] #stackoverflow 
+        race_entity = next(tracker.get_latest_entity_values('race'), None)
+        race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
+        if race_entity is not None:
+            race = race_entity
+        else:
+            race = race_name_entity
+        if race is None:
+            output = "Sorry you didn't specify the race.\n"
+        else:
+            if race in race_num_list:
+                race_num = race
+            else:
+                session = f1.get_session(date.today().year, race, 'R')
+                race_num = session.event.gp
+                #check info TV
+                df = pd.read_csv("./tv.csv", delimiter=';')
+                info = df.loc[df['Index'] == int(race_num)]
+                if info['free'].values[0] == "si":
+                    output = "The " + info['Gran premio'].values[0] + " of will be broadcast free to air on TV and pay TV Sky"
+                else:
+                    output = "The " + info['Gran premio'].values[0] + " of will be broadcast exclusively on Sky" 
+        
+        dispatcher.utter_message(text=output)
+        return []                         
