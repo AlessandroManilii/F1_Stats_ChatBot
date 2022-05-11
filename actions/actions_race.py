@@ -14,6 +14,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.knowledge_base.storage import InMemoryKnowledgeBase
 from rasa_sdk.knowledge_base.actions import ActionQueryKnowledgeBase
 
+
 class ActionNextRace(Action):
 
     def name(self) -> Text:
@@ -225,7 +226,10 @@ class ActionNthRace(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        race_num_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
+        data=requests.get(url='http://ergast.com/api/f1/current.json').json()
+        season_rounds = int(data['MRData']['total'])
+
+        race_num_list = [format(x, 'd') for x in list(range(1, season_rounds + 1))]
 
         race_entity = next(tracker.get_latest_entity_values('race'), None)
         race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
@@ -234,7 +238,14 @@ class ActionNthRace(Action):
         else:
             race = race_name_entity
         if race is None:
-            output = "Sorry you didn't specify the race.\n"
+            race_slot = tracker.get_slot('race')
+            race_name_slot = tracker.get_slot('race_name')
+            if race_slot is not None:
+                race = race_slot
+            elif race_name_slot is not None:
+                race = race_name_slot
+            else:
+                output = "Sorry you didn't specify the race.\n"
         else:
             if race in race_num_list:
                 race_num = race
@@ -283,7 +294,10 @@ class ActionNthRaceSchedule(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        race_num_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
+        data=requests.get(url='http://ergast.com/api/f1/current.json').json()
+        season_rounds = int(data['MRData']['total'])
+
+        race_num_list = [format(x, 'd') for x in list(range(1, season_rounds + 1))]
         
         race_entity = next(tracker.get_latest_entity_values('race'), None)
         race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
@@ -292,7 +306,14 @@ class ActionNthRaceSchedule(Action):
         else:
             race = race_name_entity
         if race is None:
-            output = "Sorry you didn't specify the race.\n"
+            race_slot = tracker.get_slot('race')
+            race_name_slot = tracker.get_slot('race_name')
+            if race_slot is not None:
+                race = race_slot
+            elif race_name_slot is not None:
+                race = race_name_slot
+            else:
+                output = "Sorry you didn't specify the race.\n"
         else:
             if race in race_num_list:
                 race_num = race
@@ -333,7 +354,11 @@ class ActionNthRaceResults(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        race_num_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
+        data=requests.get(url='http://ergast.com/api/f1/current.json').json()
+        season_rounds = int(data['MRData']['total'])
+
+        race_num_list = [format(x, 'd') for x in list(range(1, season_rounds + 1))]
+        print(race_num_list)
         
         race_entity = next(tracker.get_latest_entity_values('race'), None)
         race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
@@ -342,7 +367,14 @@ class ActionNthRaceResults(Action):
         else:
             race = race_name_entity
         if race is None:
-            output = "Sorry you didn't specify the race.\n"
+            race_slot = tracker.get_slot('race')
+            race_name_slot = tracker.get_slot('race_name')
+            if race_slot is not None:
+                race = race_slot
+            elif race_name_slot is not None:
+                race = race_name_slot
+            else:
+                output = "Sorry you didn't specify the race.\n"
         else:
             if race in race_num_list:
                 race_num = race
@@ -399,7 +431,10 @@ class ActionNthRaceCircuit(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        race_num_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
+        data=requests.get(url='http://ergast.com/api/f1/current.json').json()
+        season_rounds = int(data['MRData']['total'])
+
+        race_num_list = [format(x, 'd') for x in list(range(1, season_rounds + 1))]
 
         race_entity = next(tracker.get_latest_entity_values('race'), None)
         race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
@@ -408,7 +443,14 @@ class ActionNthRaceCircuit(Action):
         else:
             race = race_name_entity
         if race is None:
-            output = "Sorry you didn't specify the race.\n"
+            race_slot = tracker.get_slot('race')
+            race_name_slot = tracker.get_slot('race_name')
+            if race_slot is not None:
+                race = race_slot
+            elif race_name_slot is not None:
+                race = race_name_slot
+            else:
+                output = "Sorry you didn't specify the race.\n"
         else:
             if race in race_num_list:
                 race_num = race
@@ -480,7 +522,10 @@ class ActionNthRaceHighlights(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        race_num_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
+        data=requests.get(url='http://ergast.com/api/f1/current.json').json()
+        season_rounds = int(data['MRData']['total'])
+
+        race_num_list = [format(x, 'd') for x in list(range(1, season_rounds + 1))]
         
         race_entity = next(tracker.get_latest_entity_values('race'), None)
         race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
@@ -489,7 +534,14 @@ class ActionNthRaceHighlights(Action):
         else:
             race = race_name_entity
         if race is None:
-            output = "Sorry you didn't specify the race.\n"
+            race_slot = tracker.get_slot('race')
+            race_name_slot = tracker.get_slot('race_name')
+            if race_slot is not None:
+                race = race_slot
+            elif race_name_slot is not None:
+                race = race_name_slot
+            else:
+                output = "Sorry you didn't specify the race.\n"
         else:
             if race in race_num_list:
                 race_num = race
@@ -522,7 +574,10 @@ class ActionNthRaceQualifyingHighlights(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        race_num_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
+        data=requests.get(url='http://ergast.com/api/f1/current.json').json()
+        season_rounds = int(data['MRData']['total'])
+
+        race_num_list = [format(x, 'd') for x in list(range(1, season_rounds + 1))]
         
         race_entity = next(tracker.get_latest_entity_values('race'), None)
         race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
@@ -531,7 +586,14 @@ class ActionNthRaceQualifyingHighlights(Action):
         else:
             race = race_name_entity
         if race is None:
-            output = "Sorry you didn't specify the race.\n"
+            race_slot = tracker.get_slot('race')
+            race_name_slot = tracker.get_slot('race_name')
+            if race_slot is not None:
+                race = race_slot
+            elif race_name_slot is not None:
+                race = race_name_slot
+            else:
+                output = "Sorry you didn't specify the race.\n"
         else:
             if race in race_num_list:
                 race_num = race
@@ -597,7 +659,10 @@ class ActionRaceOnTv(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        race_num_list = [format(x, '02d') for x in list(range(1, 26))] #stackoverflow 
+        data=requests.get(url='http://ergast.com/api/f1/current.json').json()
+        season_rounds = int(data['MRData']['total'])
+
+        race_num_list = [format(x, 'd') for x in list(range(1, season_rounds + 1))]
         race_entity = next(tracker.get_latest_entity_values('race'), None)
         race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
         if race_entity is not None:
@@ -605,7 +670,14 @@ class ActionRaceOnTv(Action):
         else:
             race = race_name_entity
         if race is None:
-            output = "Sorry you didn't specify the race.\n"
+            race_slot = tracker.get_slot('race')
+            race_name_slot = tracker.get_slot('race_name')
+            if race_slot is not None:
+                race = race_slot
+            elif race_name_slot is not None:
+                race = race_name_slot
+            else:
+                output = "Sorry you didn't specify the race.\n"
         else:
             if race in race_num_list:
                 race_num = race
