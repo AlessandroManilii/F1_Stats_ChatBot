@@ -74,19 +74,35 @@ nlu:
     - info on race [3](race)
     - info on race [3](race) of current season
     - about [melbourne](race_name) race
+    - about [united states](race_name) race
+    - about [bahrain international circuit](race_name) race
     - race [10](race) info
     - give me info on race [4](race)
     - general info on [azerbaijan](race_name) race
+    - general info on [emilia romagna](race_name) race
+    - general info on [baku city circuit](race_name) race
     - could you give me info on race [6](race)?
+    - what's general info on [montmelo](race_name) race?
+    - what's general info on [são paulo](race_name) race?
     - what's general info on [circuit de barcelona-catalunya](race_name) race?
+    - where and when [italy](race_name) race?
     - where and when [saudi arabia](race_name) race?
+    - where and when [marina bay street](race_name) race?
+
     - info on [melbourne](race_name) race 
-    - info on [italy](race_name) race of current season
+    - info on [saudi arabia](race_name) race
+    - info on [miami international autodrome](race_name) race
     - about race [3](race) 
+    - [usa](race_name) race info
+    - [silverstone circuit](race_name) race info
     - [red bull ring](race_name) race info
-    - give me info on [spain](race_name) race 
+    - give me info on [spain](race_name) race
+    - give me info on [mexico city](race_name) race
+    - give me info on [circuit gilles villeneuve](race_name) race
     - general info on race [4](race)
     - could you give me info on [mexico](race_name) race?
+    - could you give me info on [suzuka circuit](race_name) race?
+    - could you give me info on [circuit park zandvoort](race_name) race?
     - what's general info on race [6](race)?
     - where and when race [7](race)?
 
@@ -94,62 +110,112 @@ nlu:
   examples: |
     - race [4](race) schedule
     - schedule for [miami](race_name) race
+    - schedule for [suzuka circuit](race_name) race
+    - schedule for [yas marina circuit](race_name) race
+    - what's the schedule for the [mexico](race_name) race?
+    - what's the schedule for the [le castellet](race_name) race?
     - what's the schedule for the [autodromo nazionale di monza](race_name) race?
+    - what's the [austria](race_name) race schedule?
+    - what's the [saudi arabian](race_name) race schedule?
     - what's the [red bull ring](race_name) race schedule?
     - what's the schedule for the race [5](race)?
     - what's the race [spielberg](race_name) schedule?
+    - what's the race [mexico city](race_name) schedule?
+    - what's the race [circuit de spa-francorchamps](race_name) schedule?
     - give me info on race [7](race) schedule
     - info on [france](race_name) race schedule
-    - could you give me race [10](race)schedule?
+    - info on [suzuka circuit](race_name) race schedule
+    - info on [circuit gilles villeneuve](race_name) race schedule
+    - could you give me race [10](race) schedule?
     - race [red bull ring](race_name) schedule
     - schedule for race [3](race) 
     - what's the schedule for race [4](race)?
     - what's the race [10](race) schedule?
     - what's the schedule for the race [mexico](race_name) race?
+    - what's the schedule for the race [mexico](race_name) race?
+    - what's the schedule for the race [mexico](race_name) race?
     - what's the race [3](race) schedule?
     - give me info on race [spain](race_name) race schedule
+    - give me info on race [emilia romagna](race_name) race schedule
+    - give me info on race [jeddah corniche circuit](race_name) race schedule
     - info on race [12](race) schedule
     - could you give me [italy](race_name)race schedule?
+    - could you give me [saudi arabia](race_name)race schedule?
+    - could you give me [circuit de barcelona-catalunya](race_name)race schedule?
 
 - intent: nth_race_results
   examples: |
     - race [4](race) results
     - [italy](race_name) race results
+    - [abu dhabi](race_name) race results
+    - [italy](race_name) race results
     - what are [austria](race_name) race results?
+    - what are [emilia romagna](race_name) race results?
+    - what are [austria](race_name) race results?
+    - how did [circuit paul ricard](race_name) race end up?
+    - how did [abu dhabi](race_name) race end up?
     - how did [circuit paul ricard](race_name) race end up?
     - give me info on race [6](race) results
     - could you give me info on [le castellet](race_name) race results?
+    - could you give me info on [le castellet](race_name) race results?
+    - could you give me info on [le castellet](race_name) race results?
+    - results of [mexico city](race_name) race
+    - results of [mexico city](race_name) race
     - results of [mexico city](race_name) race
     - order of arrival for race [1](race)?
     - race [10](race) order of arrival
-    - [spain](race_name) race results
+    - [azerbaijan](race_name) race results
+    - [emilia romagna](race_name) race results
+    - [jeddah corniche circuit](race_name) race results
     - race [3](race) results
     - what are race [5](race) results?
     - how did race [7](race) end up?
+    - give me info on [azerbaijan](race) race results
     - give me info on [abu dhabi](race) race results
+    - give me info on [baku city circuit](race) race results
     - could you give me info on race [8](race) results?
     - results of race [9](race)
+    - order of arrival for [azerbaijan](race_name) race ?
+    - order of arrival for [united states](race_name) race ?
     - order of arrival for [red bull ring](race_name) race ?
     - [uk](race_name) race order of arrival
+    - [emilia romagna](race_name) race order of arrival
+    - [baku city circuit](race_name) race order of arrival
 
 - intent: nth_race_circuit
   examples: |
     - race [4](race) circuit
     - race [5](race) circuit info
     - circuit of the [uk](race_name) race
+    - circuit of the [marina bay](race_name) race
+    - circuit of the [bahrain international circuit](race_name) race
     - what's the circuit of the [spa](race_name) race?
+    - what's the circuit of the [saudi arabia](race_name) race?
+    - what's the circuit of the [bahrain international circuit](race_name) race?
     - give me info on race [6](race) circuit
     - could you give me info on [silverstone](race_name) race circuit?
+    - could you give me info on [saudi arabia](race_name) race circuit?
+    - could you give me info on [circuit de barcelona-catalunya](race_name) race circuit?
     - general info on race circuit [1](race)?
     - describe race [10](race) circuit 
     - [italy](race_name) race circuit
+    - [marina bay](race_name) race circuit
+    - [circuit de monaco](race_name) race circuit
     - [spain](race_name) race circuit info
+    - [saudi arabia](race_name) race circuit info
+    - [jeddah corniche circuit](race_name) race circuit info
     - circuit of race [2](race) 
     - what's the circuit of race [3](race)?
     - give me info on [autodromo di monza](race_name) race circuit
+    - give me info on [marina bay](race_name) race circuit
+    - give me info on [autodromo di monza](race_name) race circuit
     - could you give me info on race [12](race) circuit?
     - general info on [silverstone](race_name) race circuit?
+    - general info on [emilia romagna](race_name) race circuit?
+    - general info on [circuit de monaco](race_name) race circuit?
     - describe [mexico](race_name) race circuit
+    - describe [marina bay](race_name) race circuit
+    - describe [red bull ring](race_name) race circuit
 
 - intent: highlights
   examples: |
@@ -182,43 +248,76 @@ nlu:
 - intent: nth_race_highlights
   examples: |
     - [miami](race_name) highlights
+    - [united states](race_name) highlights
+    - [circuit park zandvoort](race_name) highlights
     - [miami](race_name) race highlights
+    - [emilia romagna](race_name) race highlights
+    - [circuit gilles villeneuve](race_name) race highlights
     - [1](race) highlights
     - race [2](race) highlights
     - give me [mexico](race_name) highlights
+    - give me [abu dhabi](race_name) highlights
+    - give me [yas marina circuit](race_name) highlights
     - give me race [4](race) highlights
     - highlights of [uk](race_name)
-    - highlights of [uk](race_name) race
+    - highlights of [united states](race_name) race
+    - highlights of [circuit de barcelona-catalunya](race_name) race
+    - what are [monaco](race_name) race highlights?
+    - what are [le castellet](race_name) race highlights?
     - what are [red bull ring](race_name) race highlights?
     - what are race [4](race) highlights?
     - are there highlights for [italy](race_name)?
+    - are there highlights for [le castellet](race_name)?
+    - are there highlights for [red bull ring](race_name)?
     - are there highlights for race [2](race)?
     - could you give me [monza](race_name) highlights?
+    - could you give me [suzuka circuit](race_name) highlights?
+    - could you give me [circuit gilles villeneuve](race_name) highlights?
     - could you give me race [5](race) highlights?
     - send me [monza](race_name) race highlights please?
+    - send me [mexico city](race_name) race highlights please?
+    - send me [circuit gilles villeneuve](race_name) race highlights please?
     - send me race [10](race) highlights please?
 
 - intent: nth_race_qualifying_highlights
   examples: |
     - [miami](race_name) qualifying highlights
+    - [united states](race_name) qualifying highlights
+    - [circuit of americas](race_name) qualifying highlights
     - race [2](race) qualifying highlights
     - qualification highlights [miami](race_name) 
-    - qualification highlights [miami](race_name)
+    - qualification highlights [saudi arabia](race_name)
+    - qualification highlights [autodromo nazionale monza](race_name)
     - [1](race) qualifying highlights
     - race [2](race) qualifying highlights
-    - give me [mexico](race_name) qualification highlights
-    - give me [mexico](race_name) qualifying highlights
+    - give me [montemelo](race_name) qualification highlights
+    - give me [baku city](race_name) qualification highlights
+    - give me [marina-bay street circuit](race_name) qualification highlights
+    - give me [brazil](race_name) qualifying highlights
+    - give me [emilia romagna](race_name) qualifying highlights
+    - give me [autódromo josé-carlos pac](race_name) qualifying highlights
     - give me race [4](race) qualification highlights
     - qualification highlights of [uk](race_name)
-    - qaulification highlights of [uk](race_name) race
+    - qualification highlights of [baku city](race_name)
+    - qualification highlights of [circuit of americas](race_name)
     - qualifying highlights of [uk](race_name) race
+    - qualifying highlights of [albert park](race_name) race
+    - qualifying highlights of [park grandprix circuit](race_name) race
+    - what are [montemelo](race_name) race qualifying highlights?
+    - what are [sao paulo](race_name) race qualifying highlights?
     - what are [red bull ring](race_name) race qualifying highlights?
     - what are race [4](race) qualifying highlights?
     - are there qualifying highlights for [italy](race_name)?
+    - are there qualifying highlights for [marina bay](race_name)?
+    - are there qualifying highlights for [circuit de monaco](race_name)?
     - are there qualifying highlights for race [2](race)?
     - could you give me [monza](race_name) qualifying highlights?
+    - could you give me [autodromo ferrari](race_name) qualifying highlights?
+    - could you give me [autodromo enzo-dino ferrari](race_name) qualifying highlights?
     - could you give me race [5](race) qualifying highlights?
     - send me [monza](race_name) race qualifying highlights please?
+    - send me [sao paulo](race_name) race qualifying highlights please?
+    - send me [autodromo jose pace](race_name) race qualifying highlights please?
     - send me race [10](race) qualifying highlights please?
 
 #regex definition

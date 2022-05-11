@@ -97,7 +97,7 @@ slots:
       - type: from_entity
         entity: driver
    race:
-      type: text
+      type: float
       mappings:
       - type: from_entity
         entity: race
