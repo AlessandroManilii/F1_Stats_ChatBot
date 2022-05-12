@@ -17,3 +17,10 @@ stories:
   - action: utter_ask_full_help
   - intent: full_help
   - action: utter_full_help
+  
+- story: curiosity short 
+  steps:
+  - intent: curiosity
+  - action: utter_agree
+  - action: utter_curiosity
+  - action: uttere_ask_more

@@ -19,3 +19,16 @@ nlu:
     - what do you know about formula 1?
     - commands
     - do you have a manual?
+    
+    
+- intent: curiosities
+  examples: |
+    - tell me something interesting
+    - what are some curiosities about formula 1?
+    - some curiosities about f1
+    - interesting facts about formula 1
+    - what is an interesting fact about f1?
+    - do you know any interesting fact?
+    - do you know any cool facts about f1?
+    - tell me a curiosity
+    - I'm bored, entertain me

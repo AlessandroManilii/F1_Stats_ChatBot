@@ -18,6 +18,7 @@ intents:
   # general intents
   - help
   - full_help
+  - curiosity
 
   # race intents
   - next_race
@@ -135,19 +136,46 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
   
+  utter_agree:
+  - text: "Sure"
+  - text: "Of course"
+  - text: "Gotcha"
+  - text: "Ok"
+  - text: "I'm on it"
+  - text: "Very well"
+  - text: "All right"
+  - text: "Roger"
+  - text: "Affirmative"
+  
+  utter_ask_more:
+  - text: "Need anything else?"
+  - text: "What else can I do for you?"
+  - text: "All right, what else do you want to know?"
+  
   utter_reply_to_deny:
   - text: "Ok, no problem."
   - text: "Ok, what else can I do for you?"
   - text: "Understandable, need anything else?"
   
   utter_fetching:
-  - text: "Ok, give me a moment, I'm fetching the data."
+  - text: "Ok, Give me a moment, I'm fetching the data."
+  - text: "Sure, I'm on it but it might take a few seconds"
+  - text: "All right, I'm getting the data"
+  - text: "Certainly, give me some seconds to fetch the data"
   
   utter_help:
   - text: |
        You can ask me info about a particular race, like the schedule, the results of the race or quali, and the circuit it's held at.
        I can get you the drivers standings, a driver's general information and lap times for a specific event.
        Constructors info and standings. And lastly, the standings and the champion of any past season.
+       
+  utter_curiosity:
+  - text: "The British Grand Prix of 2021 attracted a record-breaking 356,000 fans, crazy isn't it?"
+  - text: "Michael Schumacher has to this day the fastest lap for the most amount of races, an incredible 77, followed by Hamilton's 53 races."
+  - text: "A Formula 1 team has up to 600 members, though most of them are working behind the scenes like engineers, PR peoples and managers."
+  - text: "An F1 engine cannot be turned on when it's cold, it must be preheated with an external heater pump."
+  - text: "While a normal car can achieve up to 6,000 RPM, and F1 car gets to an absurd 20,000 RPM thanks to its pneumatic valve spring."
+  - text: "Because of the insane temperatures and G-forces inside the cockpit, a driver loses an average of 3 kg in one race."
    
   utter_ask_full_help:   
   - text: "Would you like to see the full list of tasks I can do?"
@@ -190,6 +218,9 @@ actions:
 - utter_help
 - utter_full_help
 - utter_reply_to_deny
+- utter_ask_more
+- utter_agree
+- utter_curiosity
 - action_next_race
 - action_next_race_schedule
 - action_last_race
