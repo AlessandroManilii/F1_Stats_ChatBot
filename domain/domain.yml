@@ -211,6 +211,12 @@ responses:
         - Curiosities (not implemented yet)
         - Circuit info (not implemented yet)
 
+  utter_reply_to_satisfied:
+  - text: "Great!"
+
+  utter_reply_to_unsatisfied:
+  - text: "I'm sorry! Can you try to ask again?"
+
 
 actions:
 - utter_fetching
