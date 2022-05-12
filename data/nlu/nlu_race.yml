@@ -122,6 +122,8 @@ nlu:
     - information on the [silverstone](race_name) grand prix on tv
     - information on the [jeddah](race_name) race on tv 
     - tell me where I can watch the [spielberg](race_name) race  
+    - where can I watch this race?
+    - can i see this race on tv?
 
 - intent: nth_race_schedule
   examples: |
