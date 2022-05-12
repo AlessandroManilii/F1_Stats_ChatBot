@@ -23,4 +23,4 @@ stories:
   - intent: curiosity
   - action: utter_agree
   - action: utter_curiosity
-  - action: uttere_ask_more
+  - action: utter_ask_more
