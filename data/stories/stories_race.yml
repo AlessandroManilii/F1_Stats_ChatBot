@@ -5,12 +5,55 @@ stories:
 - story: next race short
   steps:
   - intent: next_race
+  - action: utter_fetching
   - action: action_next_race
+
+- story: next race satisfied
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: next_race
+  - action: utter_fetching
+  - action: action_next_race
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_reply_to_satisfied
+
+- story: next race unsatisfied
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: next_race
+  - action: utter_fetching
+  - action: action_next_race
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_reply_to_unsatisfied
 
 - story: next race schedule short
   steps:
   - intent: next_race_schedule
   - action: action_next_race_schedule
+
+- story: next race schedule & tv info satisfied
+  steps:
+  - intent: next_race_schedule
+  - action: action_next_race_schedule
+  - intent: nth_race_tv
+  - action: action_race_on_tv
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_reply_to_unsatisfied
+
+- story: next race schedule & tv info unsatisfied
+  steps:
+  - intent: next_race_schedule
+  - action: action_next_race_schedule
+  - intent: nth_race_tv
+  - action: action_race_on_tv
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_reply_to_unsatisfied
 
 - story: last race short
   steps:
