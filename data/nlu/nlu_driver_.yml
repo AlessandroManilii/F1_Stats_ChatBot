@@ -74,6 +74,7 @@ nlu:
     - what is his general information?
     - what's his info?
     - show me his data
+    - tell me more about him
 
 - intent: championship_leader
   examples: |

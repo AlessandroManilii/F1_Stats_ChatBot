@@ -21,7 +21,7 @@ nlu:
     - do you have a manual?
     
     
-- intent: curiosities
+- intent: curiosity
   examples: |
     - tell me something interesting
     - what are some curiosities about formula 1?
