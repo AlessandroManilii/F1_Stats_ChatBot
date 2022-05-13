@@ -55,7 +55,9 @@ intents:
         use_entities: true
   - driver_constructors:
         use_entities: true
-
+  - telemetry
+  
+  
   # constructor intents
   - constructor_standings:
         use_entities: true  
@@ -243,6 +245,7 @@ actions:
 - action_show_constructor_standings
 - action_show_standings_year
 - action_show_standings
+- action_telemetry
 - action_show_driver_standing
 - action_show_driver_info
 - action_show_driver_lap_times
