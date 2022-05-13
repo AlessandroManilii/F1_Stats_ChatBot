@@ -251,7 +251,7 @@ class ActionNthRace(Action):
                 race_num = race
             else:
                 session = f1.get_session(date.today().year, race,'R')
-                race_num = session.event.gp
+                race_num = session.event.RoundNumber
             r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'.json')
             if r.status_code == 200 :
                 data = r.json()
@@ -319,7 +319,7 @@ class ActionNthRaceSchedule(Action):
                 race_num = race
             else:
                 session = f1.get_session(date.today().year, race,'R')
-                race_num = session.event.gp
+                race_num = session.event.RoundNumber
             r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'.json')
             if r.status_code == 200 :
                 data = r.json()
@@ -380,7 +380,7 @@ class ActionNthRaceResults(Action):
                 race_num = race
             else:
                 session = f1.get_session(date.today().year, race, 'R')
-                race_num = session.event.gp
+                race_num = session.event.RoundNumber
             r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'/results.json')
             if r.status_code == 200 :
                 data = r.json()
@@ -456,7 +456,7 @@ class ActionNthRaceCircuit(Action):
                 race_num = race
             else:
                 session = f1.get_session(date.today().year, race, 'R')
-                race_num = session.event.gp
+                race_num = session.event.RoundNumber
             r=requests.get(url='http://ergast.com/api/f1/current/'+str(race_num)+'/circuits.json')
             if r.status_code == 200 :
                 data = r.json()
@@ -547,7 +547,7 @@ class ActionNthRaceHighlights(Action):
                 race_num = race
             else:
                 session = f1.get_session(date.today().year, race, 'R')
-                race_num = session.event.gp
+                race_num = session.event.RoundNumber
             r=requests.get(url='http://ergast.com/api/f1/current/last.json')
             data = r.json()
             last_race = data['MRData']['RaceTable']['round']
@@ -600,7 +600,7 @@ class ActionNthRaceQualifyingHighlights(Action):
                 print("no numerical race\n")
             else:
                 session = f1.get_session(date.today().year, race, 'R')
-                race_num = session.event.gp
+                race_num = session.event.RoundNumber
                 print(race_num)
             
             r=requests.get(url='http://ergast.com/api/f1/current/last.json')
@@ -660,37 +660,24 @@ class ActionRaceOnTv(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         data=requests.get(url='http://ergast.com/api/f1/current.json').json()
-        season_rounds = int(data['MRData']['total'])
-
-        race_num_list = [format(x, 'd') for x in list(range(1, season_rounds + 1))]
-        race_entity = next(tracker.get_latest_entity_values('race'), None)
-        race_name_entity = next(tracker.get_latest_entity_values('race_name'), None)
-        if race_entity is not None:
-            race = race_entity
-        else:
-            race = race_name_entity
+        race = next(tracker.get_latest_entity_values('race_name'), None)
         if race is None:
-            race_slot = tracker.get_slot('race')
             race_name_slot = tracker.get_slot('race_name')
-            if race_slot is not None:
-                race = race_slot
-            elif race_name_slot is not None:
+            if race_name_slot is not None:
                 race = race_name_slot
             else:
                 output = "Sorry you didn't specify the race.\n"
         else:
-            if race in race_num_list:
-                race_num = race
+            session = f1.get_session(date.today().year, race, 'R')
+            race_num = session.event.RoundNumber
+            race_name_event = session.event.EventName
+            #check info TV
+            df = pd.read_csv("./tv.csv", delimiter=';')
+            info = df.loc[df['Index'] == int(race_num)]
+            if info['free'].values[0] == "si":
+                output = "The " + race_name_event + " of will be broadcast free to air on TV and pay TV Sky"
             else:
-                session = f1.get_session(date.today().year, race, 'R')
-                race_num = session.event.gp
-                #check info TV
-                df = pd.read_csv("./tv.csv", delimiter=';')
-                info = df.loc[df['Index'] == int(race_num)]
-                if info['free'].values[0] == "si":
-                    output = "The " + info['Gran premio'].values[0] + " of will be broadcast free to air on TV and pay TV Sky"
-                else:
-                    output = "The " + info['Gran premio'].values[0] + " of will be broadcast exclusively on Sky" 
-        
+                output = "The " + race_name_event + " of will be broadcast exclusively on Sky" 
+    
         dispatcher.utter_message(text=output)
         return []                         
