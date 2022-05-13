@@ -17,6 +17,7 @@ import datetime
 from math import isnan
 import numpy
 import pandas
+import matplotlib.pyplot as plt
 from rasa_sdk.events import SlotSet
 
 from rasa_sdk import Action, Tracker
@@ -225,6 +226,35 @@ def lap_time(timedelta):
     return ("{:01}:{:02}.{:03}".format(int(minutes), int(seconds), int(millis)))
 
 
+class ActionTelemetry(Action):
+
+    def name(self) -> Text:
+        return "action_telemetry"
+
+    def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        plotting.setup_mpl()
+
+
+        now = datetime.datetime.now()
+        year = int(now.date().strftime("%Y"))
+        f1.Cache.enable_cache('./f1_cache')
+
+        race = f1.get_session(year, 'miami', 'R')
+        race.load()
+
+        lec = race.laps.pick_driver('LEC')
+        ham = race.laps.pick_driver('HAM')
+
+        fig, ax = plt.subplots()
+        ax.plot(lec['LapNumber'], lec['LapTime'], color='red')
+        ax.plot(ham['LapNumber'], ham['LapTime'], color='cyan')
+        ax.set_title("LEC vs HAM")
+        ax.set_xlabel("Lap Number")
+        ax.set_ylabel("Lap Time")
+        
+        plt.savefig('./f1_cache/telemetry.png')
+        dispatcher.utter_message(image = "C:/Users/User/Desktop/Rasa/F1_Stats_ChatBot/f1_cache/telemetry.png")
+        return [] 
 
 class ActionShowDriverConstructors(Action):
 
