@@ -253,7 +253,9 @@ class ActionTelemetry(Action):
         ax.set_ylabel("Lap Time")
         
         plt.savefig('./img/telemetry.png')
-        path = "https://ac86-37-160-23-251.ngrok.io/img/telemetry.png"  #url da cambiare ogni volta (unica limitazione)
+        with open("url.txt") as file:
+            init_path = file.readlines()
+        path = init_path[0] +"/img/telemetry.png"  #url da cambiare ogni volta (unica limitazione)
         dispatcher.utter_message(image = path)
         return [] 
 
