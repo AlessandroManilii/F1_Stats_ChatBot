@@ -24,3 +24,14 @@ stories:
   - action: utter_agree
   - action: utter_curiosity
   - action: utter_ask_more
+  
+- story: curiosity long
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: curiosity
+  - action: utter_agree
+  - action: utter_curiosity
+  - action: utter_ask_more
+  - intent: goodbye
+  - action: utter_goodbye
