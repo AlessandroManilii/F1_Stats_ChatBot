@@ -122,6 +122,11 @@ responses:
   utter_greet:
   - text: "Hey! How are you?"
 
+  uttet_noquestion_greet:
+  - text: "Hello!"
+  - text: "Hi!"
+  - text: "Hi! Good to see you"
+
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
     image: "https://i.imgur.com/nGF1K8f.jpg"

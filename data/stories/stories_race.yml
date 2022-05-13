@@ -11,7 +11,7 @@ stories:
 - story: next race satisfied
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: utter_noquestion_greet
   - intent: next_race
   - action: utter_fetching
   - action: action_next_race
@@ -22,7 +22,7 @@ stories:
 - story: next race unsatisfied
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: utter_noquestion_greet
   - intent: next_race
   - action: utter_fetching
   - action: action_next_race
@@ -35,22 +35,36 @@ stories:
   - intent: next_race_schedule
   - action: action_next_race_schedule
 
+- story: next race schedule
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
+  - intent: next_race_schedule
+  - action: action_next_race_schedule
+
 - story: next race schedule & tv info satisfied
   steps:
+  - intent: greet
+  - action: utter_noquestion_greet
   - intent: next_race_schedule
   - action: action_next_race_schedule
   - intent: nth_race_tv
-  - action: action_race_on_tv
+  - action: utter_ask_more
+  - intent: next_race_on_tv
+  - action: action_next_race_on_tv
   - action: utter_did_that_help
   - intent: affirm
   - action: utter_reply_to_unsatisfied
 
 - story: next race schedule & tv info unsatisfied
   steps:
+  - intent: greet
+  - action: utter_noquestion_greet
   - intent: next_race_schedule
   - action: action_next_race_schedule
-  - intent: nth_race_tv
-  - action: action_race_on_tv
+  - action: utter_ask_more
+  - intent: next_race_on_tv
+  - action: action_next_race_on_tv
   - action: utter_did_that_help
   - intent: deny
   - action: utter_reply_to_unsatisfied
@@ -60,8 +74,22 @@ stories:
   - intent: last_race
   - action: action_last_race  
 
+- story: last race
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
+  - intent: last_race
+  - action: action_last_race
+
 - story: last race results short
   steps:
+  - intent: last_race_results
+  - action: action_last_race_results
+
+- story: last race results
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
   - intent: last_race_results
   - action: action_last_race_results
 
@@ -70,13 +98,47 @@ stories:
   - intent: last_race_qualifying_results
   - action: action_last_race_qualifying_results
 
+- story: last race qualifying results
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
+  - intent: last_race_qualifying_results
+  - action: action_last_race_qualifying_results
+  
 - story: nth race short
   steps:
   - intent: nth_race
   - action: action_nth_race
-  
+
+- story: nth race satisfied
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
+  - intent: nth_race
+  - action: action_nth_race
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_reply_to_satisfied
+
+- story: nth race unsatisfied
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
+  - intent: nth_race
+  - action: action_nth_race
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_reply_to_unsatisfied
+
 - story: nth race schedule short
   steps:
+  - intent: nth_race_schedule
+  - action: action_nth_race_schedule
+
+- story: nth race schedule
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
   - intent: nth_race_schedule
   - action: action_nth_race_schedule
 
@@ -85,52 +147,102 @@ stories:
   - intent: nth_race_results
   - action: action_nth_race_results
 
+- story: nth race results
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
+  - intent: nth_race_results
+  - action: action_nth_race_results
+  - action: utter_ask_more
+
 - story: nth race circuit short
   steps:
   - intent: nth_race_circuit
   - action: action_nth_race_circuit
+
+- story: nth race circuit
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
+  - intent: nth_race_circuit
+  - action: action_nth_race_circuit
+  - action: utter_ask_more
 
 - story: highlights short
   steps:
   - intent: highlights
   - action: action_highlights
 
+- story: highlights 
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
+  - intent: highlights
+  - action: action_highlights
+  - action: utter_ask_more
+
 - story: qualifying highlights short
   steps:
   - intent: qualifying_highlights
   - action: action_qualifying_highlights
+
+- story: qualifying highlights
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
+  - intent: qualifying_highlights
+  - action: action_qualifying_highlights
+  - action: utter_ask_more
 
 - story: nth race highlights short
   steps:
   - intent: nth_race_highlights
   - action: action_nth_race_highlights
 
+- story: nth race highlights
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
+  - intent: nth_race_highlights
+  - action: action_nth_race_highlights
+  - action: utter_ask_more
+
 - story: nth race qualifying highlights short
   steps:
   - intent: nth_race_qualifying_highlights
   - action: action_nth_race_qualifying_highlights
 
-- story: next race info tv
+- story: nth race qualifying highlights
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
+  - intent: nth_race_qualifying_highlights
+  - action: action_nth_race_qualifying_highlights
+  - action: utter_ask_more
+
+- story: next race info tv short
   steps:
   - intent: next_race_tv
   - action: action_next_race_on_tv
 
-- story: race tv
+- story: next race info tv
   steps:
-  - intent: nth_race_tv
-  - action: action_race_on_tv
-
-- story: next race more info
-  steps:
-  - intent: next_race
-  - action: action_next_race
+  - intent: greet
+  - action: utter_noquestion_greet
   - intent: next_race_tv
-  - action: action_next_race_on_tv  
+  - action: action_next_race_on_tv
+  - action: utter_ask_more
 
-- story: race more info
+- story: nth race tv short
   steps:
-  - intent: nth_race
-  - action: action_nth_race
   - intent: nth_race_tv
   - action: action_race_on_tv
+
+- story: nth race tv
+  steps:
+  - intent: greet
+  - action: utter_noquestion_greet
+  - intent: nth_race_tv
+  - action: action_race_on_tv
+  - action: utter_ask_more
 
