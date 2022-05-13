@@ -16,12 +16,14 @@ nlu:
 - intent: constructor_info
   examples: |
     - what are the constructors of the current season ?
-    - constructors of this season 
+    - constructors of this season
+    - constructors current season 
     - constructors
     - what are the constructors of this season ?
     - how many teams are there this season?
     - how many teams are there in the current season?
-    - number of constructors  
+    - number of constructors 
+    - number of constructors this season
 
 
 - intent: constructor_wiki
@@ -30,6 +32,7 @@ nlu:
     - tell me information about team [alphatauri](constructor_name)
     - information on [red bull](constructor_name)
     - [alfa romeo](constructor_name)
+    - info [haas](constructor_name)
     - the Constructor [mclaren](constructor_name)
     - the Car [mercedes](constructor_name)
     - team [alpine](constructor_name)

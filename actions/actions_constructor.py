@@ -20,7 +20,6 @@ from rasa_sdk.knowledge_base.storage import InMemoryKnowledgeBase
 from rasa_sdk.knowledge_base.actions import ActionQueryKnowledgeBase
 from rasa_sdk.events import SlotSet
 
-
 class ActionShowConstructorStandings(Action):
 
     def name(self) -> Text:
@@ -66,7 +65,6 @@ class ActionConstructorWikipedia(Action):
             teams = string.capwords(teams)
             #Api ergast per cercare la pagina wikipedia, poichè le scuderie hanno nomi diversi su wikipedia
             r=requests.get(url='http://ergast.com/api/f1/constructors/'+teams+'.json')
-
 
             if r.status_code == 200 :
                 data = r.json()
