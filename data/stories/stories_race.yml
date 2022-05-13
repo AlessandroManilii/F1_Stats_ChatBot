@@ -127,3 +127,10 @@ stories:
   - intent: next_race_tv
   - action: action_next_race_on_tv  
 
+- story: race more info
+  steps:
+  - intent: nth_race
+  - action: action_nth_race
+  - intent: nth_race_tv
+  - action: action_race_on_tv
+
