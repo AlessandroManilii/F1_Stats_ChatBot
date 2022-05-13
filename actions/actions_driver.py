@@ -252,8 +252,9 @@ class ActionTelemetry(Action):
         ax.set_xlabel("Lap Number")
         ax.set_ylabel("Lap Time")
         
-        plt.savefig('./f1_cache/telemetry.png')
-        dispatcher.utter_message(image = "C:/Users/User/Desktop/Rasa/F1_Stats_ChatBot/f1_cache/telemetry.png")
+        plt.savefig('./img/telemetry.png')
+        path = "https://ac86-37-160-23-251.ngrok.io/img/telemetry.png"  #url da cambiare ogni volta (unica limitazione)
+        dispatcher.utter_message(image = path)
         return [] 
 
 class ActionShowDriverConstructors(Action):
