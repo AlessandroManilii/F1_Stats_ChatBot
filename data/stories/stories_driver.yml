@@ -32,4 +32,12 @@ stories:
   - intent: driver_lap_times
   - action: utter_fetching
   - action: action_show_driver_lap_times
+
+- story: telemetry short
+  steps:
+  - intent: telemetry
+  - action: utter_fetching
+  - action: action_telemetry
+  
+  
   

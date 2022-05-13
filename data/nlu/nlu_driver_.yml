@@ -111,7 +111,18 @@ nlu:
     - [daniel](driver)'s best laps at [abu dhabi](race_name) [race](session_type)
     - i want to know the lap time of [valtteri](driver) during [qualifying](session_type) at [autodromo hermanos rodríguez](race_name)
     
-    
+
+- intent: telemetry
+  examples: |
+    - i would like to have the telemetry
+    - i want some telemetry data
+    - can you give me the telemetry?
+    - telemetry
+    - i want to compare two drivers lap times
+    - i want to compare two drivers fastest lap
+    - telemetry for two drivers
+    - compare lap times
+    - compare fastest laps
 
 - intent: driver_constructors
   examples: |
