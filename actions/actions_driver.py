@@ -250,8 +250,8 @@ class ActionTelemetry(Action):
         d2 = race.laps.pick_driver(codes[driver2])
 
         fig, ax = plt.subplots()
-        ax.plot(lec['LapNumber'], d1['LapTime'], color='red')
-        ax.plot(ham['LapNumber'], d2['LapTime'], color='cyan')
+        ax.plot(d1['LapNumber'], d1['LapTime'], color='red')
+        ax.plot(d2['LapNumber'], d2['LapTime'], color='cyan')
         ax.set_title("{0} vs {1}".format(driver1, driver2))
         ax.set_xlabel("Lap Number")
         ax.set_ylabel("Lap Time")
@@ -261,7 +261,7 @@ class ActionTelemetry(Action):
             init_path = file.readlines()
         path = init_path[0] +"/img/telemetry.png"  #url da cambiare ogni volta (unica limitazione)
         dispatcher.utter_message(image = path)
-        return [] 
+        return [SlotSet("driver1t", None), SlotSet("driver2t", None), SlotSet("race_name_t", None)] 
 
 class ActionShowDriverConstructors(Action):
 

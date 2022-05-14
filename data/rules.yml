@@ -23,6 +23,13 @@ rules:
   - action: utter_help
   - action: utter_ask_full_help
   
+  
+- rule: telemetry rule
+  steps:
+  - intent: telemetry
+  - action: telemetry_form
+  - active_loop: telemetry_form  
+  
 - rule: Submit telemetry form
   condition:
   - active_loop : telemetry_form
@@ -31,5 +38,6 @@ rules:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
+  - action: utter_fetching  
   - action: action_telemetry
   

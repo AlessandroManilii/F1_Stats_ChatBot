@@ -106,10 +106,16 @@ slots:
       type: text
       mappings:
       - type: from_text
+        conditions:
+        - active_loop: telemetry_form
+          requested_slot: driver1t 
    driver2t:
       type: text
       mappings:
       - type: from_text
+        conditions:
+        - active_loop: telemetry_form
+          requested_slot: driver2t
    race:
       type: float
       mappings:
@@ -124,6 +130,9 @@ slots:
       type: text
       mappings:
       - type: from_text
+        conditions:
+        - active_loop: telemetry_form
+          requested_slot: race_name_t
    session_type:
       type: text
       mappings:
@@ -132,6 +141,13 @@ slots:
 
 forms:
    telemetry_form:
+      ignored_intents:
+      - standings
+      - driver_standing
+      - driver_info
+      - championship_leader
+      - driver_lap_times
+      - driver_constructors
       required_slots:
          - driver1t
          - driver2t
@@ -139,13 +155,13 @@ forms:
 
 responses:
   utter_ask_driver1t:
-  - text: "Who is the first driver?"
+  - text: "Who is the first driver? (Last name)"
   
   utter_ask_driver2t:
-  - text: "Who do you want to compare him to?"
+  - text: "Who do you want to compare him to? (Last name)"
   
   utter_ask_race_name_t:
-  - text: "For what race do you want the comparison of their fastest laps?"
+  - text: "For what race do you want the comparison of their laps?"
 
   utter_greet:
   - text: "Hey! How are you?"
