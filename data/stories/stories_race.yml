@@ -50,7 +50,7 @@ stories:
   - action: action_next_race_schedule
   - intent: nth_race_tv
   - action: utter_ask_more
-  - intent: next_race_on_tv
+  - intent: next_race_tv
   - action: action_next_race_on_tv
   - action: utter_did_that_help
   - intent: affirm
@@ -63,7 +63,7 @@ stories:
   - intent: next_race_schedule
   - action: action_next_race_schedule
   - action: utter_ask_more
-  - intent: next_race_on_tv
+  - intent: next_race_tv
   - action: action_next_race_on_tv
   - action: utter_did_that_help
   - intent: deny
