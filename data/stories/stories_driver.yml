@@ -36,8 +36,8 @@ stories:
 - story: telemetry short
   steps:
   - intent: telemetry
-  - action: utter_fetching
-  - action: action_telemetry
+  - action: telemetry_form
+  - active_loop: telemetry_form
   
   
   

@@ -239,16 +239,20 @@ class ActionTelemetry(Action):
         year = int(now.date().strftime("%Y"))
         f1.Cache.enable_cache('./f1_cache')
 
-        race = f1.get_session(year, 'miami', 'R')
+        driver1 = tracker.get_slot('driver1t').lower()
+        driver2 = tracker.get_slot('driver2t').lower()
+        race_name = tracker.get_slot('race_name_t')
+
+        race = f1.get_session(year, race_name, 'R')
         race.load()
 
-        lec = race.laps.pick_driver('LEC')
-        ham = race.laps.pick_driver('HAM')
+        d1 = race.laps.pick_driver(codes[driver1])
+        d2 = race.laps.pick_driver(codes[driver2])
 
         fig, ax = plt.subplots()
-        ax.plot(lec['LapNumber'], lec['LapTime'], color='red')
-        ax.plot(ham['LapNumber'], ham['LapTime'], color='cyan')
-        ax.set_title("LEC vs HAM")
+        ax.plot(lec['LapNumber'], d1['LapTime'], color='red')
+        ax.plot(ham['LapNumber'], d2['LapTime'], color='cyan')
+        ax.set_title("{0} vs {1}".format(driver1, driver2))
         ax.set_xlabel("Lap Number")
         ax.set_ylabel("Lap Time")
         

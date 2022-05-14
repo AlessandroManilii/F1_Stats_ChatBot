@@ -77,6 +77,7 @@ intents:
 entities:
  - season
  - driver
+ - driver2
  - race
  - race_name
  - constructor_name
@@ -101,6 +102,14 @@ slots:
       mappings:
       - type: from_entity
         entity: driver
+   driver1t:
+      type: text
+      mappings:
+      - type: from_text
+   driver2t:
+      type: text
+      mappings:
+      - type: from_text
    race:
       type: float
       mappings:
@@ -111,14 +120,33 @@ slots:
       mappings:
       - type: from_entity
         entity: race_name
+   race_name_t:
+      type: text
+      mappings:
+      - type: from_text
    session_type:
       type: text
       mappings:
       - type: from_entity
         entity: session_type
 
+forms:
+   telemetry_form:
+      required_slots:
+         - driver1t
+         - driver2t
+         - race_name_t
 
 responses:
+  utter_ask_driver1t:
+  - text: "Who is the first driver?"
+  
+  utter_ask_driver2t:
+  - text: "Who do you want to compare him to?"
+  
+  utter_ask_race_name_t:
+  - text: "For what race do you want the comparison of their fastest laps?"
+
   utter_greet:
   - text: "Hey! How are you?"
 
