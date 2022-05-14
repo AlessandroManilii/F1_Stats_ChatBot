@@ -10,7 +10,6 @@ https://theoehrly.github.io/Fast-F1/examples/index.html
 pip install fastf1 <br>
 pip install requests-cache <br>
 pip install flask<br>
-pip install flask-ngrok<br>
 <br>
 http://ergast.com/mrd/
 <br>
