@@ -70,6 +70,7 @@ nlu:
     - some more information on [hulkenberg](driver)
     - extra information on [zhou](driver)
     - [perez](driver) information
+    - [gasly](driver) info
     - i want [norris](driver) bio
     - what is his general information?
     - what's his info?
@@ -119,10 +120,11 @@ nlu:
     - can you give me the telemetry?
     - telemetry
     - i want to compare two drivers lap times
-    - i want to compare two drivers fastest lap
+    - i want to compare two drivers laps
     - telemetry for two drivers
     - compare lap times
-    - compare fastest laps
+    - compare laps
+    - compare laps through the race
 
 - intent: driver_constructors
   examples: |

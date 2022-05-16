@@ -36,6 +36,7 @@ stories:
 - story: telemetry short
   steps:
   - intent: telemetry
+  - action: action_reset_slots
   - action: telemetry_form
   - active_loop: telemetry_form
   

@@ -24,7 +24,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.knowledge_base.storage import InMemoryKnowledgeBase
 from rasa_sdk.knowledge_base.actions import ActionQueryKnowledgeBase
-from rasa_sdk.events import SlotSet
+from rasa_sdk.events import SlotSet, AllSlotsReset
 
 codes = {"leclerc": "LEC", "sainz": "SAI", "max_verstappen": "VER", "perez": "PER", "hamilton": "HAM", "russell": "RUS",
          "norris": "NOR", "ricciardo": "RIC", "alonso" : "ALO", "ocon" : "OCO", "gasly" : "GAS", "tsunoda" : "TSU",
@@ -241,6 +241,7 @@ class ActionTelemetry(Action):
 
         driver1 = tracker.get_slot('driver1t').lower()
         driver2 = tracker.get_slot('driver2t').lower()
+        print(driver1, driver2)
         race_name = tracker.get_slot('race_name_t')
 
         race = f1.get_session(year, race_name, 'R')
@@ -256,12 +257,21 @@ class ActionTelemetry(Action):
         ax.set_xlabel("Lap Number")
         ax.set_ylabel("Lap Time")
         
-        plt.savefig('./img/telemetry.png')
+        plt.savefig("./img/{0}_{1}_{2}.png".format(driver1, driver2, race_name))
         with open("url.txt") as file:
             init_path = file.readlines()
-        path = init_path[0] +"/img/telemetry.png"  #url da cambiare ogni volta (unica limitazione)
+        path = init_path[0] +"/img/{0}_{1}_{2}.png".format(driver1, driver2, race_name)  #url da cambiare ogni volta (unica limitazione)
         dispatcher.utter_message(image = path)
+        return [SlotSet("driver1t", None), SlotSet("driver2t", None), SlotSet("race_name_t", None)]
+
+class ActionResetSlots(Action):
+
+    def name(self) -> Text:
+        return "action_reset_slots"
+
+    def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         return [SlotSet("driver1t", None), SlotSet("driver2t", None), SlotSet("race_name_t", None)] 
+
 
 class ActionShowDriverConstructors(Action):
 
