@@ -138,6 +138,30 @@ nlu:
     - which constructors has [george](driver) driven for?
     - which is his team?
     
+- intent: dummy_intent
+  examples: |
+    - leclerc
+    - sainz
+    - max_verstappen
+    - perez
+    - hamilton
+    - russell
+    - norris
+    - bottas
+    - zhou
+    - ricciardo
+    - alonso
+    - ocon
+    - gasly
+    - tsunoda
+    - vettel
+    - stroll
+    - hulkenberg
+    - magnussen
+    - mick_schumacher
+    - albon
+    - latifi
+    
 - lookup: session_type
   examples: |
     - race

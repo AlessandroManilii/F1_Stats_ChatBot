@@ -46,6 +46,7 @@ intents:
 
   # driver intents
   - standings
+  - dummy_intent
   - driver_standing:
         use_entities: true
   - driver_info:
@@ -166,7 +167,7 @@ responses:
   utter_greet:
   - text: "Hey! How are you?"
 
-  uttet_noquestion_greet:
+  utter_noquestion_greet:
   - text: "Hello!"
   - text: "Hi!"
   - text: "Hi! Good to see you"
