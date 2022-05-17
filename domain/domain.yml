@@ -14,6 +14,7 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - stop
 
   # general intents
   - help
@@ -196,7 +197,6 @@ responses:
   - text: "Of course"
   - text: "Gotcha"
   - text: "Ok"
-  - text: "I'm on it"
   - text: "Very well"
   - text: "All right"
   - text: "Roger"

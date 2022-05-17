@@ -245,23 +245,32 @@ class ActionTelemetry(Action):
         race_name = tracker.get_slot('race_name_t')
 
         race = f1.get_session(year, race_name, 'R')
-        race.load()
+        if session.date > now:
+            dispatcher.utter_message(text="The session hasn't started yet.\n")
+        else:
+            race.load()
 
-        d1 = race.laps.pick_driver(codes[driver1])
-        d2 = race.laps.pick_driver(codes[driver2])
-
-        fig, ax = plt.subplots()
-        ax.plot(d1['LapNumber'], d1['LapTime'], color='red')
-        ax.plot(d2['LapNumber'], d2['LapTime'], color='cyan')
-        ax.set_title("{0} vs {1}".format(driver1, driver2))
-        ax.set_xlabel("Lap Number")
-        ax.set_ylabel("Lap Time")
-        
-        plt.savefig("./img/{0}_{1}_{2}.png".format(driver1, driver2, race_name))
-        with open("url.txt") as file:
-            init_path = file.readlines()
-        path = init_path[0] +"/img/{0}_{1}_{2}.png".format(driver1, driver2, race_name)  #url da cambiare ogni volta (unica limitazione)
-        dispatcher.utter_message(image = path)
+            try:
+                d1 = race.laps.pick_driver(codes[driver1])
+                d2 = race.laps.pick_driver(codes[driver2])
+            except ValueError as e:
+                dispatcher.utter_message(text="Sorry, there is no data for one of the two drivers\n")
+            else:
+                fig, ax = plt.subplots()
+                ax.plot(d1['LapNumber'], d1['LapTime'], color='blue')
+                if driver1 != driver2:
+                    ax.plot(d2['LapNumber'], d2['LapTime'], color='red')
+                    ax.set_title("{0} vs {1} - {2}".format(driver1.capitalize(), driver2.capitalize(), race_name.capitalize()))
+                else:
+                    ax.set_title("{0} - {1}".format(driver1.capitalize(), race_name.capitalize()))
+                ax.set_xlabel("Lap Number")
+                ax.set_ylabel("Lap Time")
+                ax.legend()
+                plt.savefig("./img/{0}_{1}_{2}.png".format(driver1, driver2, race_name))
+                with open("url.txt") as file:
+                    init_path = file.readlines()
+                path = init_path[0] +"/img/{0}_{1}_{2}.png".format(driver1, driver2, race_name)
+                dispatcher.utter_message(image = path)
         return [SlotSet("driver1t", None), SlotSet("driver2t", None), SlotSet("race_name_t", None)]
 
 class ActionResetSlots(Action):

@@ -50,6 +50,18 @@ nlu:
     - no way
     - not really
 
+- intent: stop
+  examples: |
+    - stop
+    - i don't care anymore
+    - nevermind
+    - stop the task
+    - forget it
+    - i've changed my mind
+    - sorry i don't need it anymore
+    - sorry i don't want it anymore
+    - abort
+
 - intent: mood_great
   examples: |
     - perfect
