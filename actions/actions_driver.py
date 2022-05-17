@@ -249,9 +249,9 @@ class ActionTelemetry(Action):
         if race.date > now:
             dispatcher.utter_message(text="The session hasn't started yet.\n")
         elif driver1 not in codes:
-            dispatcher.utter_message(text="{0} is wrongly spelled or he's not participating in this season.\n".format(driver1.capitalize()))
+            dispatcher.utter_message(text="{0} is spelled wrongly or he's not participating in this season.\n".format(driver1.capitalize()))
         elif driver2 not in codes:
-            dispatcher.utter_message(text="{0} is wrongly spelled or he's not participating in this season.\n".format(driver2.capitalize()))
+            dispatcher.utter_message(text="{0} is spelled wrongly or he's not participating in this season.\n".format(driver2.capitalize()))
         else:
             race.load()
 
