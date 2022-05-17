@@ -153,6 +153,7 @@ forms:
       - championship_leader
       - driver_lap_times
       - driver_constructors
+      - stop
       required_slots:
          - driver1t
          - driver2t
@@ -162,14 +163,21 @@ responses:
   utter_ask_driver1t:
   - text: "Who is the first driver? (Last name)"
   
+  utter_want_more_driver_info:
+  - text: "What else do you want to know about {driver}?"
+  - text: "What more do you want to know about {driver}?"
+  - text: "What other things you need about {driver}?"
+  
   utter_ask_driver2t:
   - text: "Who do you want to compare {driver1t} to? (Last name)"
   
   utter_ask_race_name_t:
-  - text: "For what race do you want the compare {driver1t} and {driver2t} laps?"
+  - text: "For what race do you want to compare {driver1t} and {driver2t}'s laps?"
 
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: "Hey! How are you 😀?"
+  - text: "How's going F1 fan?"
+  - text: "Hello! I'm ready for your 🏎 questions!"
 
   utter_noquestion_greet:
   - text: "Hello!"
@@ -188,9 +196,11 @@ responses:
 
   utter_goodbye:
   - text: "Bye"
+  - text: "See ya"
+  - text: "Goodbye"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  - text: "I am an F1 statistics bot, powered by Rasa."
   
   utter_agree:
   - text: "Sure"
@@ -254,7 +264,8 @@ responses:
         - Standings
         - Championship leader
         - Specific driver's standing, information or constructor
-        - Specifc driver's lap times at a particular event and session
+        - Specifc driver's best laps at a particular event and session
+        - Telemetry (compare two drivers laps through whole race)
         CONSTRUCTORS:
         - Construsctors list of this season
         - Constructors standings
@@ -263,8 +274,7 @@ responses:
         - A specific season's standings, champion or information
         GENERAL:
         - Help
-        - Curiosities (not implemented yet)
-        - Circuit info (not implemented yet)
+        - Curiosities
 
   utter_reply_to_satisfied:
   - text: "Great!"
@@ -276,6 +286,7 @@ responses:
 actions:
 - utter_fetching
 - utter_ask_full_help
+- utter_want_more_driver_info
 - utter_help
 - utter_full_help
 - utter_reply_to_deny

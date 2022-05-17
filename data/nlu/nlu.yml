@@ -61,6 +61,7 @@ nlu:
     - sorry i don't need it anymore
     - sorry i don't want it anymore
     - abort
+    - cancel
 
 - intent: mood_great
   examples: |

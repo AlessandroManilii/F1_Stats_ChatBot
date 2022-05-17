@@ -18,6 +18,7 @@ from math import isnan
 import numpy
 import pandas
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 from rasa_sdk.events import SlotSet
 
 from rasa_sdk import Action, Tracker
@@ -29,7 +30,7 @@ from rasa_sdk.events import SlotSet, AllSlotsReset
 codes = {"leclerc": "LEC", "sainz": "SAI", "max_verstappen": "VER", "perez": "PER", "hamilton": "HAM", "russell": "RUS",
          "norris": "NOR", "ricciardo": "RIC", "alonso" : "ALO", "ocon" : "OCO", "gasly" : "GAS", "tsunoda" : "TSU",
          "magnussen" : "MAG", "mick_schumacher" : "MSC", "vettel" : "VET", "stroll" : "STR", "albon" : "alb", "latifi": "LAT",
-         "bottas" : "BOT", "zhou" : "ZHO", "hulkenberg": "HUL"}
+         "bottas" : "BOT", "zhou" : "ZHO", "hulkenberg": "HUL", "verstappen" : "VER", "schumacher": "MSC"}
 
 
 class ActionShowStandings(Action):
@@ -239,14 +240,18 @@ class ActionTelemetry(Action):
         year = int(now.date().strftime("%Y"))
         f1.Cache.enable_cache('./f1_cache')
 
-        driver1 = tracker.get_slot('driver1t').lower()
-        driver2 = tracker.get_slot('driver2t').lower()
+        driver1 = tracker.get_slot('driver1t').strip().lower()
+        driver2 = tracker.get_slot('driver2t').strip().lower()
         print(driver1, driver2)
         race_name = tracker.get_slot('race_name_t')
 
         race = f1.get_session(year, race_name, 'R')
-        if session.date > now:
+        if race.date > now:
             dispatcher.utter_message(text="The session hasn't started yet.\n")
+        elif driver1 not in codes:
+            dispatcher.utter_message(text="{0} is wrongly spelled or he's not participating in this season.\n".format(driver1.capitalize()))
+        elif driver2 not in codes:
+            dispatcher.utter_message(text="{0} is wrongly spelled or he's not participating in this season.\n".format(driver2.capitalize()))
         else:
             race.load()
 
@@ -257,15 +262,17 @@ class ActionTelemetry(Action):
                 dispatcher.utter_message(text="Sorry, there is no data for one of the two drivers\n")
             else:
                 fig, ax = plt.subplots()
-                ax.plot(d1['LapNumber'], d1['LapTime'], color='blue')
+                ax.plot(d1['LapNumber'], d1['LapTime'], color='red')
                 if driver1 != driver2:
-                    ax.plot(d2['LapNumber'], d2['LapTime'], color='red')
+                    ax.plot(d2['LapNumber'], d2['LapTime'], color='green')
                     ax.set_title("{0} vs {1} - {2}".format(driver1.capitalize(), driver2.capitalize(), race_name.capitalize()))
+                    lined1 = mpatches.Patch(color="red", label=codes[driver1])
+                    lined2 = mpatches.Patch(color="green", label=codes[driver2])
+                    ax.legend(handles=[lined1, lined2])
                 else:
                     ax.set_title("{0} - {1}".format(driver1.capitalize(), race_name.capitalize()))
                 ax.set_xlabel("Lap Number")
                 ax.set_ylabel("Lap Time")
-                ax.legend()
                 plt.savefig("./img/{0}_{1}_{2}.png".format(driver1, driver2, race_name))
                 with open("url.txt") as file:
                     init_path = file.readlines()
