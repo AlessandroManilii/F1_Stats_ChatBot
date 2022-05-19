@@ -1,8 +1,6 @@
 version: "3.1"
 
 nlu:
-- intent: circuit_info
-  examples: |
 
 - intent: help
   examples: |
