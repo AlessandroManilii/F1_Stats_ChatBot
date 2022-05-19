@@ -7,6 +7,7 @@ import fastf1 as f1
 from datetime import date
 import re
 import pandas as pd
+import os
 
 from rasa_sdk.events import SlotSet
 from rasa_sdk import Action, Tracker
@@ -14,6 +15,8 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.knowledge_base.storage import InMemoryKnowledgeBase
 from rasa_sdk.knowledge_base.actions import ActionQueryKnowledgeBase
 
+if not os.path.exists('./f1_cache'):
+    os.makedirs('./f1_cache')
 
 class ActionNextRace(Action):
 
@@ -638,7 +641,7 @@ class ActionNextRaceOnTv(Action):
             round = data['round']
             name = data['raceName']
             #check info TV
-            df = pd.read_csv("./tv.csv", delimiter=';')
+            df = pd.read_csv("./tv.csv", delimiter=',')
             info = df.loc[df['Index'] == int(round)]
             if info['free'].values[0] == "si":
                 output = "The race of " + name + " will be broadcast free to air on TV and pay TV Sky"
@@ -672,7 +675,7 @@ class ActionRaceOnTv(Action):
             race_num = session.event.RoundNumber
             race_name_event = session.event.EventName
             #check info TV
-            df = pd.read_csv("./tv.csv", delimiter=';')
+            df = pd.read_csv("./tv.csv", delimiter=',')
             info = df.loc[df['Index'] == int(race_num)]
             if info['free'].values[0] == "si":
                 output = "The " + race_name_event + " of will be broadcast free to air on TV and pay TV Sky"
