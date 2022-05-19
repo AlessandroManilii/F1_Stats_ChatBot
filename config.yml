@@ -24,7 +24,7 @@ pipeline:
   - name: ResponseSelector
     epochs: 100
   - name: FallbackClassifier
-    threshold: 0.6
+    threshold: 0.3
     ambiguity_threshold: 0.1  
 
 # Configuration for Rasa Core.
@@ -32,7 +32,7 @@ pipeline:
 policies:
   - name: MemoizationPolicy
   - name: RulePolicy
-    core_fallback_threshold: 0.5
+    core_fallback_threshold: 0.4
     core_fallback_action_name: "action_default_fallback"
     enable_fallback_prediction: True
   - name: UnexpecTEDIntentPolicy
