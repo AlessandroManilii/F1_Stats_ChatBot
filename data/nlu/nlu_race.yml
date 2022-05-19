@@ -113,7 +113,7 @@ nlu:
     - where to watch the grand prix of [united states](race_name)?
     - TV [bahrain international circuit](race_name)
     - where to watch the race of [italy](race_name)?
-    - where will the [imola](race_name) race be broadcast?[usa](race_name) race info
+    - where will the [imola](race_name) race be broadcast?
     - [silverstone circuit](race_name) race on tv
     - where can i see the race [budapest](race_name)?
     - race [monte-carlo](race_name) on tv
@@ -158,9 +158,9 @@ nlu:
     - give me info on race [emilia romagna](race_name) race schedule
     - give me info on race [jeddah corniche circuit](race_name) race schedule
     - info on race [12](race) schedule
-    - could you give me [italy](race_name)race schedule?
-    - could you give me [saudi arabia](race_name)race schedule?
-    - could you give me [circuit de barcelona-catalunya](race_name)race schedule?
+    - could you give me [italy](race_name) race schedule?
+    - could you give me [saudi arabia](race_name) race schedule?
+    - could you give me [circuit de barcelona-catalunya](race_name) race schedule?
 
 - intent: nth_race_results
   examples: |
