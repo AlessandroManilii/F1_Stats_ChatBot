@@ -192,23 +192,24 @@ responses:
   - text: "Did that help you?"
 
   utter_happy:
-  - text: "Great, carry on!"
+  - text: "Great, carry on!😀"
 
   utter_goodbye:
-  - text: "Bye"
+  - text: "Bye 😀"
   - text: "See ya"
   - text: "Goodbye"
 
   utter_iamabot:
-  - text: "I am an F1 statistics bot, powered by Rasa."
+  - text: "I am an F1 🏎 statistics bot, powered by Rasa."
   
   utter_agree:
   - text: "Sure"
   - text: "Of course"
+  - text: "👍"
   - text: "Gotcha"
   - text: "Ok"
-  - text: "Very well"
-  - text: "All right"
+  - text: "Very well 👍"
+  - text: "All right 👍"
   - text: "Roger"
   - text: "Affirmative"
   
@@ -238,9 +239,9 @@ responses:
   - text: "The British Grand Prix of 2021 attracted a record-breaking 356,000 fans, crazy isn't it?"
   - text: "Michael Schumacher has to this day the fastest lap for the most amount of races, an incredible 77, followed by Hamilton's 53 races."
   - text: "A Formula 1 team has up to 600 members, though most of them are working behind the scenes like engineers, PR peoples and managers."
-  - text: "An F1 engine cannot be turned on when it's cold, it must be preheated with an external heater pump."
+  - text: "An F1 engine cannot be turned on when it's cold, it must be preheated with an external heater pump.🧐"
   - text: "While a normal car can achieve up to 6,000 RPM, and F1 car gets to an absurd 20,000 RPM thanks to its pneumatic valve spring."
-  - text: "Because of the insane temperatures and G-forces inside the cockpit, a driver loses an average of 3 kg in one race."
+  - text: "Because of the insane temperatures and G-forces inside the cockpit, a driver loses an average of 3 kg in one race. 🧐"
    
   utter_ask_full_help:   
   - text: "Would you like to see the full list of tasks I can do?"
@@ -280,7 +281,12 @@ responses:
   - text: "Great!"
 
   utter_reply_to_unsatisfied:
-  - text: "I'm sorry! Can you try to ask again?"
+  - text: "I'm sorry I wasn't helpful"
+  
+  utter_default:
+  - text: "I'm sorry! I didn't understand what you said 🤌" 
+  - text: "I didn't get that, can you rephrase that ? 🤔"
+  - text: "Sorry, I'm not sure what you meant 🤔, type help if you need assistance" 
 
 
 actions:

@@ -49,7 +49,7 @@ class ActionShowStandingYear(Action):
                 temp = str("  "+x['position']+"\t"+x['Driver']['givenName']+" "+x['Driver']['familyName']+"\t"+x['points']+" \n")
                 rank.append(temp)
             lista = ''.join(rank)
-            output1="The driver who won the championship in {} was {} with {}. \n The drivers standings of the season {}: \n {}".format(season,winner,winnercar,season,lista)
+            output1="The driver who won the championship 🏆 in {} was {} with {}. \n The drivers standings of the season {}: \n {}".format(season,winner,winnercar,season,lista)
         else:
             flag_d = True
         
@@ -66,7 +66,7 @@ class ActionShowStandingYear(Action):
                 temp = str("  "+x['position']+"\t"+x['Constructor']['name']+"\t"+x['points']+" \n")
                 rank.append(temp)
             lista = ''.join(rank)
-            output2="\n The Constructor who won the championship in {} was {}. \n The Constructor standings of the season {}: \n {}".format(season,winnercar,season,lista)
+            output2="\n The Constructor who won the championship 🏁 in {} was {}. \n The Constructor standings of the season {}: \n {}".format(season,winnercar,season,lista)
         else:
             flag_c = True
 
@@ -115,7 +115,7 @@ class ActionShowWinnerYear(Action):
                     winner = str(x['Driver']['givenName']+" "+x['Driver']['familyName'])
                     winnercar = str(x['Constructors'][0]['name']) 
                     break
-            output="The driver who won the championship in {} was {} with {}. \n".format(season,winner,winnercar)
+            output="The driver who won the championship 🏆 in {} was {} with {}. \n".format(season,winner,winnercar)
         else:
             output = "I do not know anything about, what a mistery!? Are you sure it is correctly spelled?"
         

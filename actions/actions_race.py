@@ -390,7 +390,7 @@ class ActionNthRaceResults(Action):
                 else:
                     data = data[0]
                     name = data['raceName']
-                    output = name + " race results of current season are the following:\n" 
+                    output = name + "🏁 race results of current season are the following:\n" 
                     results_header = "N.\tPilot\t\tConstructor\tTime\t\tFastest Lap\tPoints\n"
                     output += results_header
                     results = data['Results']
