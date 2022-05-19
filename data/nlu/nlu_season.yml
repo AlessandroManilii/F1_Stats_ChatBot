@@ -17,7 +17,6 @@ nlu:
     - info on championship [1991](season)
     - championship [2020](season)
     - some info on the championship [1973](season)
-       
 
 - intent: season_winner
   examples: |
