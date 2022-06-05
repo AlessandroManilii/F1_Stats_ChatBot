@@ -1,22 +1,20 @@
 # F1_Stats_ChatBot
-F1 statistics and general info on races, pilots, circuits from 1950 season up to now.
+Chatbot implemented through RASA framework on F1 statistics and generic info about races, pilots, circuits from 1950 season up to now.
 
-Made with RASA.
-
-API used:
-https://github.com/theOehrly/Fast-F1
-https://theoehrly.github.io/Fast-F1/examples/index.html 
-<br>
-pip install fastf1 <br>
-pip install requests-cache <br>
-pip install flask<br>
-<br>
-http://ergast.com/mrd/
-<br>
-<p class="has-line-data" data-line-start="80" data-line-end="81">For install Spacy Model</p>
-<p class="has-line-data" data-line-start="82" data-line-end="85">pip install -U pip setuptools wheel<br>
-pip install -U spacy<br>
-python -m spacy download en_core_web_md</p>
-
-<p class="has-line-data" data-line-start="80" data-line-end="81">For run flask server: python app.py</p>
-
+Data retrival is made through 2 API:
+ - Fast-F1: 
+   - *pip install fastf1*
+   - more info and code at:
+      - https://github.com/theOehrly/Fast-F1 
+      - https://theoehrly.github.io/Fast-F1/examples/index.html
+ - Ergast:
+   - more info at: http://ergast.com/mrd/
+ 
+External library used:
+- Request cache: *pip install requests-cache*
+- Flask: *pip install flask*
+  - run server through *python app.py*
+- Spacy Model:
+  - *pip install -U pip setuptools wheel*
+  - *pip install -U spacy*
+  - python -m spacy download en_core_web_md
