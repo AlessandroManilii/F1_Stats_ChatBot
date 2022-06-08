@@ -30,6 +30,7 @@ nlu:
   examples: |
     - tell me information about constructor [ferrari](constructor_name)
     - tell me information about team [alphatauri](constructor_name)
+    - information on team [red bull](constructor_name)
     - information on [red bull](constructor_name)
     - [alfa romeo](constructor_name)
     - info [haas](constructor_name)
