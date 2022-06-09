@@ -42,4 +42,4 @@ nlu:
 
 - regex: season
   examples: |
-    - [1950-2022]+
+    - [1950-2021]+

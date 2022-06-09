@@ -14,7 +14,7 @@ def hello():
 def get_image(path):
     image_path = 'img/{}'.format(path)
 
-    return send_file(image_path, mimetype='image/gif')
+    return send_file(image_path, mimetype='image/png')
   
 if __name__ == "__main__":
   app.run()
